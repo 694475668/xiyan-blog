@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <!-- 花瓣 -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-love109.cn@2.0.6/js/sakura.js"></script> -->
+    <title>夕颜源码</title>
+    <style type="text/css">
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        
+        #apploading {
+            width: 100%;
+            height: 100%;
+        }
+        
+        #apploading .box {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            color: dodgerblue;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+        }
+        
+        #apploading .rond {
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            border: 1px solid dodgerblue;
+            position: absolute;
+        }
+        
+        #apploading .rond.rond-ani {
+            animation: rond 2s infinite;
+        }
+        
+        @keyframes rond {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        #apploading .rond .ball {
+            width: 10px;
+            height: 10px;
+            background: dodgerblue;
+            border-radius: 10px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            transition: all 1s ease;
+        }
+        
+        #apploading .rond .ball.ball-end {
+            width: 140px;
+            height: 140px;
+            border: 3px solid dodgerblue;
+            background: none;
+            border-radius: 140px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body class="docs">
+    <div id="apploading">
+        <div class="box">
+            <div class="rond rond-ani">
+                <div class="ball" id="loadingBall"></div>
+            </div>
+            <div id="loadingText">loading</div>
+        </div>
+    </div>
+    <div id="app"></div>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ip:8848
+        namespace: 8dfd0e08-395a-4f30-987c-e1977254e4ce
+  # 设置上传文件大小
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 5MB
+       
+  sleuth:
+    sampler:
+    #区间是0.1到1， 1代表保存所有的链路， 0.1表示保存10%的链路
+      probability: 1
+          #springCloudSleuth
+  zipkin:
+    baseUrl: http://ip:9411/
+    enabled: true
+    sender:
+      type: kafka
+    service:
+      name: oss-service
+
+  # Kafka
+  kafka:
+    bootstrap-servers: ip:9092
+    #=============== consumer  =======================
+    consumer:
+      auto-commit-interval: 100
+      auto-offset-reset: earliest
+      group-id: bss-${random.int(100)}
+      # true=自动提交；false=手动提交
+      enable-auto-commit: false
+    #=============== provider  =======================
+    # all,-1,0,1 
+    producer:
+      acks: -1
+      #批量发送消息字节数，默认值为16384
+      batch-size: 16384
+      #生产者可用于缓冲等待发送到服务器的记录的内存总字节数，默认值为33554432
+      buffer-memory: 33554432
+      retries: 0
+      
+      # Redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 10000
+    cache:
+      expires: -1
+      
+#feign
+feign: 
+  sentinel: 
+    enabled: true
+
+#  七牛秘钥
+oss:
+  qiniu:
+     accessKey: accessKey
+     secretKey: secretKey
+     #图片名字
+     bucketPictureName: sunset-pictures
+     #图片外部访问拦截
+     domainPicture: 图片外部访问地址
+     #文件名字
+     bucketFileName: sunset-file
+     #文件外部访问拦截
+     domainFile: 文件外部访问地址
+
+#redis序列化key
+redis-key: xiyan

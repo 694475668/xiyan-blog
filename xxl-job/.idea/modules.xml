@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/xxl-job.iml" filepath="$PROJECT_DIR$/xxl-job.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxl-job-admin/xxl-job-admin.iml" filepath="$PROJECT_DIR$/xxl-job-admin/xxl-job-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxl-job-core/xxl-job-core.iml" filepath="$PROJECT_DIR$/xxl-job-core/xxl-job-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-frameless/xxl-job-executor-sample-frameless.iml" filepath="$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-frameless/xxl-job-executor-sample-frameless.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-jboot/xxl-job-executor-sample-jboot.iml" filepath="$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-jboot/xxl-job-executor-sample-jboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-jfinal/xxl-job-executor-sample-jfinal.iml" filepath="$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-jfinal/xxl-job-executor-sample-jfinal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-nutz/xxl-job-executor-sample-nutz.iml" filepath="$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-nutz/xxl-job-executor-sample-nutz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-spring/xxl-job-executor-sample-spring.iml" filepath="$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-spring/xxl-job-executor-sample-spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-springboot/xxl-job-executor-sample-springboot.iml" filepath="$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-springboot/xxl-job-executor-sample-springboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-samples.iml" filepath="$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-samples.iml" />
+    </modules>
+  </component>
+</project>

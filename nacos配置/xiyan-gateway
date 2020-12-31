@@ -1,0 +1,342 @@
+management:
+  # 端点检查（健康检查）
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ip:8848
+        namespace: 8dfd0e08-395a-4f30-987c-e1977254e4ce
+    gateway:
+      #处理跨域
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedHeaders: "*"
+            allowedOrigins: "*"
+            allowedMethods: "*"
+      discovery:
+        locator:
+          #false为服务名不自动匹配，true则相反
+          enabled: false
+          #服务名以小写进行匹配
+          lowerCaseServiceId: true
+      routes:
+        #cms服务
+        - id: service-1
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/article/list
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+        
+        - id: service-2
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/article/byId/*
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+        
+        - id: service-3
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/code/tag/list
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+        
+        - id: service-4
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/code/list
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+        
+        - id: service-5
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/code/byId/*
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+        
+        - id: service-6
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/link/list
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+        
+        - id: service-7
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/leaderboard/gold
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+        
+        - id: service-8
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/leaderboard/upload
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-9
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/leaderboard/download
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-10
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/leaderboard/favorites
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+        
+        - id: service-11
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/message/list
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-12
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/message/add
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+        
+        - id: service-13
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/music/list
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-14
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/user/send
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-15
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/user/register
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-16
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/user/login
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-17
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/user/retrieve
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-18
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/user/login
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+        
+        - id: service-19
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/user/qq/back
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-20
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/user/weibo/back
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-21
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/aes/key
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+        
+        - id: service-22
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/comment/list
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-23
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/article/browse/*
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-24
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/article/like/*
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-25
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/code/browse/*
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-26
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/code/like/*
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-27
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/tv/list
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-28
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/search/list
+          filters:
+          #开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-29
+          uri: lb://cms-service
+          predicates:
+            - Path=/cms/**
+          filters:
+          #不开启token验证
+            - Authorize=true
+            - StripPrefix=1
+
+        - id: service-30
+          uri: lb://oss-service
+          predicates:
+            - Path=/oss/**
+          filters:
+          #开启token验证
+            - Authorize=true
+            - StripPrefix=1
+        
+    #Sentinel         
+    sentinel:
+      datasource:
+        gate-way-flow: 
+          nacos:
+            #如果你的配置分为了很多的环境，那么这个一定要配置，不然会出现找不到
+            namespace: 8dfd0e08-395a-4f30-987c-e1977254e4ce
+            data-id: xiyan-gateway-rules
+            group-id: DEFAULT_GROUP
+            rule-type: gw_flow
+            server-addr: ip:8848
+      transport:
+        dashboard: ip:8888  
+    # gateway 流控规则持久化配置  
+      # 限流返回的响应
+      scg:
+        fallback:
+          mode: response
+          response-status: 455
+          response-body: 您操作过快，请稍后在试!   
+            #springCloudSleuth
+  zipkin:
+    baseUrl: http://ip:9411/
+    enabled: true
+    sender: 
+      type: kafka
+    service: 
+      name: xiyan-gateway-service
+  #区间是0.1到1， 1代表保存所有的链路， 0.1表示保存10%的链路
+  sleuth:
+    sampler: 
+      probability: 1
+  kafka: 
+    bootstrap-servers: ip:9092
+  redis: 
+    host: 127.0.0.1
+    port: 6379
+    password: 
+    timeout: 5000
+    cache:
+      expires: -1
+# 序列化key
+redis-key: xiyan
+

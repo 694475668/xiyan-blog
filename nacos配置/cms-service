@@ -1,0 +1,173 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ip:8848
+        namespace: 8dfd0e08-395a-4f30-987c-e1977254e4ce
+       
+  sleuth:
+    sampler:
+    #区间是0.1到1， 1代表保存所有的链路， 0.1表示保存10%的链路
+      probability: 1
+          #springCloudSleuth
+  zipkin:
+    baseUrl: http://ip:9411/
+    enabled: true
+    sender:
+      type: kafka
+    service:
+      name: xiyan-service
+  # es
+  data:
+  elasticsearch:
+    rest:
+      uris: [ "ip:9200" ]
+    elasticsearch:
+      #集群名称
+      cluster-name: docker-cluster 
+      #配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode
+      cluster-nodes: ip:9300 
+      properties:
+        path:
+          #elasticsearch日志存储目录
+          logs: /home/aisys/logs/elasticsearch/log 
+          #elasticsearch数据存储目录
+          data: /home/aisys/logs/elasticsearch/data 
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: yoostar403
+    url: jdbc:mysql://127.0.0.1:3306/xiyan?serverTimezone=UTC&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    hikari:
+      auto-commit: true
+      connection-test-query: SELECT 1
+      connection-timeout: 10000
+      idle-timeout: 30000
+      max-lifetime: 900000
+      maximum-pool-size: 30
+      minimum-idle: 10
+    type: com.zaxxer.hikari.HikariDataSource
+
+  mail:
+    host: smtp.163.com
+    #邮箱
+    username: xiyanyuanma@163.com  
+    #密钥
+    password: 你的密钥 
+    port: 465
+    properties.mail.smtp.ssl.enable: true
+
+  # Kafka
+  kafka:
+    bootstrap-servers: ip:9092
+    #=============== consumer  =======================
+    consumer:
+      auto-commit-interval: 100
+      auto-offset-reset: earliest
+      group-id: bss-${random.int(100)}
+      # true=自动提交；false=手动提交
+      enable-auto-commit: false
+    #=============== provider  =======================
+    # all,-1,0,1 
+    producer:
+      acks: -1
+      #批量发送消息字节数，默认值为16384
+      batch-size: 16384
+      #生产者可用于缓冲等待发送到服务器的记录的内存总字节数，默认值为33554432
+      buffer-memory: 33554432
+      retries: 0
+      
+      # Redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 10000
+    cache:
+      expires: -1
+      
+#feign
+feign: 
+  sentinel: 
+    enabled: true
+     
+#  mybatis-plus配置
+mybatis-plus:
+  #实体类扫描地址
+  type-aliases-package: com.xiyan.domain
+  # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  # 以下配置均有默认值,可以不设置
+  global-config:
+    db-config:
+      #主键类型 AUTO:"数据库ID自增" INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: auto
+      #字段策略 IGNORED:"忽略判断"  NOT_NULL:"非 NULL 判断")  NOT_EMPTY:"非空判断"
+      field-strategy: NOT_EMPTY
+      #数据库类型
+      db-type: MYSQL
+  configuration:
+    # 是否开启自动驼峰命名规则映射:从数据库列名到Java属性驼峰命名的类似映射
+    map-underscore-to-camel-case: true
+    # 如果查询结果中包含空值的列，则 MyBatis 在映射的时候，不会映射这个字段
+    call-setters-on-nulls: true
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# Seata
+seata:
+  # seata 事务组编号，用于 TC 集群名
+  tx-service-group: xiyan-seata
+  # seata 应用编号，默认为 ${spring.application.name}
+  application-id: cms-service
+  service:
+     # 虚拟组和分组的映射, key一定要与 tx-service-group一致
+    vgroup-mapping:
+      xiyan-seata: default
+    grouplist:
+      default: ip:8091
+  # seata 注册中心配置项，对应 RegistryProperties 类
+  # registry:
+  #   # 注册中心类型，默认为 file
+  #   type: nacos
+  #   nacos:
+  #     #Nacos 服务地址
+  #     server-addr: ip:8848
+  # config:
+  #    # 注册中心类型，默认为 file
+  #   type: nacos
+  #   nacos:
+  #     # Nacos 服务地址
+  #     server-addr: ip:8848 
+#分布式任务调度报警邮箱
+alarm-email: 694475668@qq.com
+
+#分布式任务调度 xxl-job
+xxl:
+  job:
+    #数据库admin账户的密码
+    password: 123456
+    accessToken: member
+    admin:
+      addresses: http://ip:8088/xxl-job-admin
+    executor:
+      #address: 
+      appname: xxl-job
+      #ip: 
+      logpath: /home/aisys/logs/xxl-job/dlocal-jobhandler
+      logretentiondays: 30
+      port: 9988
+
+#redis序列化key
+redis-key: xiyan
+
+#QQ互联中的回调地址
+qq:
+  back: 回调地址
+  app_id:app_id
+  app_key: app_key
+
+weibo:
+  back: 回调地址
+  client_id: client_id
+  client_secret: client_secret

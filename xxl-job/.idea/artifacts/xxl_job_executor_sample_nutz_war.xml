@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="xxl-job-executor-sample-nutz:war">
+    <output-path>$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-nutz/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>xxl-job-executor-sample-nutz</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="xxl-job-executor-sample-nutz-2.2.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="xxl-job-executor-sample-nutz:war exploded" />
+    </root>
+  </artifact>
+</component>

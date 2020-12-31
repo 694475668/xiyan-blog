@@ -1,0 +1,181 @@
+[{
+		"resource": "service-1",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-2",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-3",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-4",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-5",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-6",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-7",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-8",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-9",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-10",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-11",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-12",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-13",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-14",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-15",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-16",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-17",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-18",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-19",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-20",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-21",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-22",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-23",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-24",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-25",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-26",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-27",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-28",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-29",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},
+	{
+		"resource": "service-30",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	}
+]

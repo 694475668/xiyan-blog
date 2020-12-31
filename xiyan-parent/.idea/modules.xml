@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cms-service/cms-service.iml" filepath="$PROJECT_DIR$/cms-service/cms-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oss-service/oss-service.iml" filepath="$PROJECT_DIR$/oss-service/oss-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xiyan-gateway/xiyan-gateway.iml" filepath="$PROJECT_DIR$/xiyan-gateway/xiyan-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xiyan-parent.iml" filepath="$PROJECT_DIR$/xiyan-parent.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,36 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="xxl-job-executor-sample-jfinal:war exploded">
+    <output-path>$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-jfinal/target/xxl-job-executor-sample-jfinal-2.2.1-SNAPSHOT</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>xxl-job-executor-sample-jfinal</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="xxl-job-executor-sample-jfinal" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.jfinal:jfinal:2.2" />
+          <element id="library" level="project" name="Maven: cglib:cglib-nodep:3.1" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.7.30" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.30" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="archive" name="xxl-job-core-2.2.1-SNAPSHOT.jar">
+            <element id="module-output" name="xxl-job-core" />
+          </element>
+          <element id="library" level="project" name="Maven: io.netty:netty-all:4.1.50.Final" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.6" />
+          <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy:3.0.3" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-jfinal/target/xxl-job-executor-sample-jfinal-2.2.1-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="xxl-job-executor-sample-jfinal/web/Web" />
+    </root>
+  </artifact>
+</component>

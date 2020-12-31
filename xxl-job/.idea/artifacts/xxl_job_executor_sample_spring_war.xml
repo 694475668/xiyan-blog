@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="xxl-job-executor-sample-spring:war">
+    <output-path>$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-spring/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>xxl-job-executor-sample-spring</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="xxl-job-executor-sample-spring-2.2.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="xxl-job-executor-sample-spring:war exploded" />
+    </root>
+  </artifact>
+</component>

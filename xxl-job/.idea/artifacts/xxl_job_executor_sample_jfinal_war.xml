@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="xxl-job-executor-sample-jfinal:war">
+    <output-path>$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-jfinal/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>xxl-job-executor-sample-jfinal</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="xxl-job-executor-sample-jfinal-2.2.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="xxl-job-executor-sample-jfinal:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,44 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="xxl-job-executor-sample-spring:war exploded">
+    <output-path>$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-spring/target/xxl-job-executor-sample-spring-2.2.1-SNAPSHOT</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>xxl-job-executor-sample-spring</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="xxl-job-executor-sample-spring" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.2.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.2.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.2.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.2.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.2.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.2.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.2.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:5.2.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.logback-extensions:logback-ext-spring:0.1.4" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.1.1" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.1.1" />
+          <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.25" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
+          <element id="archive" name="xxl-job-core-2.2.1-SNAPSHOT.jar">
+            <element id="module-output" name="xxl-job-core" />
+          </element>
+          <element id="library" level="project" name="Maven: io.netty:netty-all:4.1.50.Final" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.6" />
+          <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy:3.0.3" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/xxl-job-executor-samples/xxl-job-executor-sample-spring/target/xxl-job-executor-sample-spring-2.2.1-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="xxl-job-executor-sample-spring/web/Web" />
+    </root>
+  </artifact>
+</component>

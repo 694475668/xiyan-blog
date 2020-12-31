@@ -1,0 +1,11 @@
+server:
+  port: 8095
+spring:
+  application:
+    name: cms-service
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+        namespace: 8dfd0e08-395a-4f30-987c-e1977254e4ce
+        server-addr: ip:8848
