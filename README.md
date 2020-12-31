@@ -1,4 +1,4 @@
-# 夕颜博客  (支持在线电视直播)
+# 夕颜博客 (支持在线电视直播+个人支付)
 <p align="center">
 <a target="_blank" https://gitee.com/bright-boy/xiyan-blog">
     	<img src="https://img.shields.io/hexpm/l/plug.svg" ></img>
