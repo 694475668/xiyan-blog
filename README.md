@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://images.gitee.com/uploads/images/2021/0127/122407_d420f070_4856424.png "xiyan-logo.png" ></img>
-</p>
+
 
 # 夕颜博客 (集成K8S一键部署和Docker compose一键部署+集成支付)
 ## 支持Linux系统|Windows系统一键部署夕颜博客，通过K8S或者Docker compose二套容器编排与管理
