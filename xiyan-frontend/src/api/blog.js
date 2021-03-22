@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 export function list(data) {
     return request({
-        url: '/cms/article/list',
+        url: '/web/article/list',
         method: 'post',
         data
     })
@@ -9,34 +9,34 @@ export function list(data) {
 
 export function getArticleById(id) {
     return request({
-        url: '/cms/article/byId/' + id,
+        url: '/web/article/byId/' + id,
         method: 'get',
     })
 }
 export function add(data) {
     return request({
-        url: '/cms/article/add',
+        url: '/web/article/add',
         method: 'post',
         data
     })
 }
 export function browse(id) {
     return request({
-        url: '/cms/article/browse/' + id,
+        url: '/web/article/browse/' + id,
         method: 'get',
     })
 }
 
 export function like(id) {
     return request({
-        url: '/cms/article/like/' + id,
+        url: '/web/article/like/' + id,
         method: 'get',
     })
 }
 
 export function update(data, id) {
     return request({
-        url: '/cms/article/update/' + id,
+        url: '/web/article/update/' + id,
         method: 'put',
         data
     })

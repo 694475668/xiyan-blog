@@ -12,8 +12,10 @@
             <title-menu-filter
               @filterByMenu="getList"
               slot="menu"
-              :downloadType="'downloadCount'"
+              :downloadType="'download_count'"
+              :title="'文章'"
               :menu-filter-list="defaultFilterList"
+              :show="true"
             ></title-menu-filter>
           </section-title>
           <article-list-cell
@@ -58,6 +60,21 @@ import { list } from "@/api/blog";
 import { getAes } from "@/utils/auth";
 import { AESEncrypt } from "@/api/aes";
 export default {
+  metaInfo: {
+    title: "夕颜源码 - 技术博客",
+    meta: [
+      {
+        name: "keywords",
+        content:
+          "夕颜博客,夕颜社区,夕颜技术社区,,夕颜IT社区,IT社区,技术社区,Java技术分享",
+      },
+      {
+        name: "description",
+        content:
+          "一个专注于技术|源码分享的IT技术平台，大家以共同学习，乐于分享，拥抱开源的价值观进行学习交流",
+      },
+    ],
+  },
   data() {
     return {
       //加密后请求服务器的参数
@@ -72,11 +89,17 @@ export default {
         pageNo: 1,
         pageSize: 5,
         //默认是以创建时间倒叙排序
-        sortField: "createTime",
+        sortField: "create_time",
+        type: "",
       },
     };
   },
   created() {
+    //获取类型
+    let type = this.$route.query.type;
+    if (type != undefined) {
+      this.param.type = type;
+    }
     this.getList();
     if (document.body.offsetWidth <= 678) {
       this.isShow = false;

@@ -343,6 +343,20 @@ import SectionTitle from "@/components/views/SectionTitle/SectionTitle";
 import { gold, upload, favorites, download } from "@/api/leaderboard";
 import { getAes } from "@/utils/auth";
 export default {
+  metaInfo: {
+    title: "排行榜",
+    meta: [
+      {
+        name: "keywords",
+        content: "金币排行,上传排行,下载排行,收藏排行,排行",
+      },
+      {
+        name: "description",
+        content:
+          "提供金币排行,上传排行,下载排行,收藏排行,排行,为广大网友的开发工作提供便利。",
+      },
+    ],
+  },
   data() {
     return {
       goldList: [],
@@ -356,7 +370,9 @@ export default {
   },
   mounted() {
     //开启粒子特效
-    document.getElementById("particles-js").style.display = "block";
+    if (document.getElementById("particles-js") != null) {
+      document.getElementById("particles-js").style.display = "block";
+    }
   },
   methods: {
     getList() {

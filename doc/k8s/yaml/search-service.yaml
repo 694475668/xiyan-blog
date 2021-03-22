@@ -1,0 +1,52 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: search-service
+  name: search-service
+  namespace: xiyan
+spec:
+  ports:
+  - name: http
+    nodePort: 32323
+    port: 8087
+    protocol: TCP
+    targetPort: 8087
+  selector:
+    app: search-service
+  type: NodePort
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: search-service
+  name: search-service
+  namespace: xiyan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: search-service
+  template:
+    metadata:
+      labels:
+        app: search-service
+    spec:
+      containers:
+        -  name: xiyan-web-service
+           image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/search-service
+           imagePullPolicy: Always
+           ports:
+             - containerPort: 8087
+           volumeMounts:
+            - name: search-service-data
+              mountPath: /home/aisys/logs/search-service/
+      volumes:
+        - name: search-service-data
+          hostPath:
+            path: /root/k8s/data/search-service_data

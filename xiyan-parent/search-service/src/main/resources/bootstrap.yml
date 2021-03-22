@@ -1,0 +1,11 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: search-service
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+        namespace: prod
+        server-addr: nacos:8848

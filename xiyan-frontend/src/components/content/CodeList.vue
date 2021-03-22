@@ -13,6 +13,8 @@
               @filterByMenu="getList"
               slot="menu"
               :menu-filter-list="defaultFilterList"
+              :title="'源码'"
+              :show="true"
             ></title-menu-filter>
           </section-title>
           <article-list-cell
@@ -57,6 +59,21 @@ import { list } from "@/api/code";
 import { getAes } from "@/utils/auth";
 import { AESEncrypt } from "@/api/aes";
 export default {
+  metaInfo: {
+    title: "夕颜源码 - 毕设源码",
+    meta: [
+      {
+        name: "keywords",
+        content:
+          "Java毕设,Java项目,Java源码,Vue博客,代码,教程,web编程,前端开发,后端开发",
+      },
+      {
+        name: "description",
+        content:
+          "Java毕设,Java项目,Java源码,Vue博客,代码,教程,web编程,前端开发,后端开发",
+      },
+    ],
+  },
   data() {
     return {
       //加密后请求服务器的参数
@@ -70,12 +87,18 @@ export default {
         pageNo: 1,
         pageSize: 5,
         //默认是以创建时间倒叙排序
-        sortField: "createTime",
+        sortField: "create_time",
+        type: "",
       },
       defaultFilterList: DefaultFilterList,
     };
   },
   created() {
+    //获取类型
+    let type = this.$route.query.type;
+    if (type != undefined) {
+      this.listQuery.type = type;
+    }
     if (document.body.offsetWidth <= 678) {
       this.isShow = false;
     }

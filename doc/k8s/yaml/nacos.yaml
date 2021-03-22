@@ -1,0 +1,123 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nacos
+  namespace: xiyan
+  labels:
+    app: nacos
+spec:
+  ports:
+    - port: 8848
+      name: nacos
+      targetPort: 8848
+      nodePort: 32308 
+  selector:
+    app: nacos
+  type: NodePort
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nacos-cm
+  namespace: xiyan
+data:
+  mysql.db.host: "mysql"
+  mysql.db.name: "nacos"
+  mysql.port: "3306"
+  mysql.user: "root"
+  mysql.password: "yoostar403"
+
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nacos
+  namespace: xiyan
+spec:
+  serviceName: nacos
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nacos
+      annotations:
+        pod.alpha.kubernetes.io/initialized: "true"
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                      - nacos
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: nacos
+          imagePullPolicy: Always
+          image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/nacos-server
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8848
+              name: client
+          env:
+            - name: NACOS_REPLICAS
+              value: "1"
+            - name: MYSQL_SERVICE_DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: nacos-cm
+                  key: mysql.db.name
+            - name: MYSQL_SERVICE_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: nacos-cm
+                  key: mysql.db.host
+            - name: MYSQL_SERVICE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: nacos-cm
+                  key: mysql.port
+            - name: MYSQL_SERVICE_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: nacos-cm
+                  key: mysql.user
+            - name: MYSQL_SERVICE_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: nacos-cm
+                  key: mysql.password
+            - name: NACOS_SERVER_PORT
+              value: "8848"
+            - name: PREFER_HOST_MODE
+              value: "hostname"
+            - name: MODE
+              value: "standalone"
+            - name: SPRING_DATASOURCE_PLATFORM
+              value: "mysql"
+            - name: JVM_XMS
+              value: "256m"
+            - name: JVM_XMX
+              value: "256m"
+            - name: JVM_XMN
+              value: "256m"
+          volumeMounts:
+            - name: custom-config
+              mountPath: /home/nacos/init.d/custom.properties
+      volumes:
+        - name: custom-config
+          hostPath:
+            path: /root/k8s/yaml/nacos/custom.properties
+  selector:
+    matchLabels:
+      app: nacos
+ 

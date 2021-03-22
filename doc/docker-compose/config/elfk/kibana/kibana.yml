@@ -1,0 +1,5 @@
+server.host: "kibana"
+elasticsearch.hosts: ["http://elasticsearch:9200"]
+# 英文很6的可以忽略这个
+i18n.locale: "zh-CN"
+monitoring.ui.container.elasticsearch.enabled: true

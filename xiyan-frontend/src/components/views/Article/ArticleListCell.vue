@@ -343,7 +343,7 @@ export default {
 
 .live-down-left {
   float: left;
-  width: 200px;
+  width: 340px;
 }
 
 .live-down {

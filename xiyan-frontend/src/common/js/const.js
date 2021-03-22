@@ -20,27 +20,27 @@ export const DefaultLimitSize = 5
 // section title默认的menus
 export const DefaultFilterList = [{
         name: '最新',
-        type: 'createTime',
+        type: 'create_time',
         active: true
     },
     {
         name: '访问最多',
-        type: 'readCount',
+        type: 'read_count',
         active: false
     },
     {
         name: '点赞最多',
-        type: 'starCount',
+        type: 'star_count',
         active: false
     },
     {
         name: '评论最多',
-        type: 'conCount',
+        type: 'con_count',
         active: false
     },
     {
         name: '下载最多',
-        type: 'downloadCount',
+        type: 'download_count',
         active: false
     }
 ]

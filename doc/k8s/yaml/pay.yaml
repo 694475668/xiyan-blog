@@ -1,0 +1,52 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: pay
+  name: pay
+  namespace: xiyan
+spec:
+  ports:
+  - name: http
+    nodePort: 32316
+    port: 6690
+    protocol: TCP
+    targetPort: 6690
+  selector:
+    app: pay
+  type: NodePort
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pay
+  name: pay
+  namespace: xiyan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pay
+  template:
+    metadata:
+      labels:
+        app: pay
+    spec:
+      containers:
+        -  name: pay
+           image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/pay
+           imagePullPolicy: Always
+           ports:
+             - containerPort: 6690
+           volumeMounts:
+            - name: pay-data
+              mountPath: /home/aisys/logs/pay/    
+      volumes:
+        - name: pay-data
+          hostPath:
+            path: /root/k8s/data/pay_data

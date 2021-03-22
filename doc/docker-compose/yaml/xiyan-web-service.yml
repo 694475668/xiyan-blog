@@ -1,0 +1,17 @@
+version: '3'
+services:
+  xiyan-web-service:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/xiyan-web-service
+    container_name: xiyan-web-service
+    restart: always
+    ports:
+      - 8085:8085
+    networks:
+      - xiyan
+    environment:
+      - COMPOSE_PROJECT_NAME=xiyan-web-service
+    volumes:
+      - ../log/xiyan-web-service/:/home/aisys/logs/xiyan-web-service/
+networks:
+  xiyan:
+    external: true

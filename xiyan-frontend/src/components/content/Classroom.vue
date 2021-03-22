@@ -18,6 +18,20 @@ import { videoPlayer } from "vue-video-player";
 import "video.js/dist/video-js.css";
 import "vue-video-player/src/custom-theme.css";
 export default {
+  metaInfo: {
+    title: "在线课堂",
+    meta: [
+      {
+        name: "keywords",
+        content: "直播,课堂,在线课堂,网上课堂",
+      },
+      {
+        name: "description",
+        content:
+          "提供直播,课堂,在线课堂,网上课堂,为广大网友的开发工作提供便利。",
+      },
+    ],
+  },
   data() {
     return {
       playerOptions: {
@@ -31,13 +45,11 @@ export default {
         fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
         sources: [
           {
-            src:
-              "http://qiniu-plug.xiyanyuanma.com/%E6%93%8D%E4%BD%9C%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B.mp4", // 路径
+            src: "", // 路径
             type: "video/mp4", // 类型
           },
         ],
-        poster:
-          "http://qiniu-picture.xiyanyuanma.com/013316_0049a203_734677.png", //你的封面地址
+        poster: "", //你的封面地址
         // width: document.documentElement.clientWidth,
         notSupportedMessage: "此视频暂无法播放，请稍后再试", //允许覆盖Video.js无法播放媒体源时显示的默认信息。
         controlBar: {

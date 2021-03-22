@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 export function insert(data) {
     return request({
-        url: '/cms/favorites/add',
+        url: '/web/favorites/add',
         method: 'post',
         data
     })
@@ -9,7 +9,7 @@ export function insert(data) {
 
 export function del(data) {
     return request({
-        url: '/cms/favorites/delete',
+        url: '/web/favorites/delete',
         method: 'post',
         data
     })
@@ -17,7 +17,7 @@ export function del(data) {
 
 export function query(data) {
     return request({
-        url: '/cms/favorites/query',
+        url: '/web/favorites/query',
         method: 'post',
         data
     })

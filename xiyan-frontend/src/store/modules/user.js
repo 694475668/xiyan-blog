@@ -35,7 +35,16 @@ const user = {
                 })
             })
         },
-
+        //盒子端登录
+        webLogin({ commit }, data) {
+            return new Promise((resolve, reject) => {
+                setToken(data.token)
+                setUserInfo(data.userVO)
+                commit('SET_TOKEN', data.token)
+                commit('SET_USERINFO', data.userVO)
+                resolve()
+            })
+        },
 
         Register({ commit }, requestData) {
             return new Promise((resolve, reject) => {

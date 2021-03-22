@@ -1,0 +1,17 @@
+version: '3'
+services:
+  system-base-service:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/system-base-service
+    container_name: system-base-service
+    restart: always
+    ports:
+      - 8088:8088
+    networks:
+      - xiyan
+    environment:
+      - COMPOSE_PROJECT_NAME=system-base-service
+    volumes:
+      - ../log/system-base-service/:/home/aisys/logs/system-base-service/
+networks:
+  xiyan:
+    external: true

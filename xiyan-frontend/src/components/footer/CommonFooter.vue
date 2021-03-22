@@ -1,5 +1,9 @@
 <template>
-  <div class="foot">Copyright©2020 All Rights Reserved. 湘ICP备20008715号</div>
+  <div class="foot">
+    <a href="http://beian.miit.gov.cn/">
+      Copyright©2021 All Rights Reserved. 湘ICP备2021001381号</a
+    >
+  </div>
 </template>
 <script>
 export default {};

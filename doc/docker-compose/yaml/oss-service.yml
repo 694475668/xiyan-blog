@@ -1,0 +1,17 @@
+version: '3'
+services:
+  oss-service:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/oss-service
+    container_name: oss-service
+    restart: always
+    ports:
+      - 8086:8086
+    networks:
+      - xiyan
+    environment:
+      - COMPOSE_PROJECT_NAME=oss-service
+    volumes:
+      - ../log/oss-service/:/home/aisys/logs/oss-service/
+networks:
+  xiyan:
+    external: true

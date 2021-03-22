@@ -177,5 +177,16 @@
 		"grade": 1,
 		"count": 10,
 		"intervalSec": 1
+	},
+	{
+		"resource": "service-31",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
+	},{
+		"resource": "service-32",
+		"grade": 1,
+		"count": 10,
+		"intervalSec": 1
 	}
 ]

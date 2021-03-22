@@ -4,8 +4,10 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 export default {};
+</script>
+<script>
 </script>
 
 <style lang="stylus" scoped rel="stylesheet/stylus">

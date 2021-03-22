@@ -1,0 +1,52 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: xiyan-web-service
+  name: xiyan-web-service
+  namespace: xiyan
+spec:
+  ports:
+  - name: http
+    nodePort: 32321
+    port: 8085
+    protocol: TCP
+    targetPort: 8085
+  selector:
+    app: xiyan-web-service
+  type: NodePort
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: xiyan-web-service
+  name: xiyan-web-service
+  namespace: xiyan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xiyan-web-service
+  template:
+    metadata:
+      labels:
+        app: xiyan-web-service
+    spec:
+      containers:
+        -  name: xiyan-web-service
+           image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/xiyan-web-service
+           imagePullPolicy: Always
+           ports:
+             - containerPort: 8085
+           volumeMounts:
+            - name: xiyan-web-service-data
+              mountPath: /home/aisys/logs/xiyan-web-service/
+      volumes:
+        - name: xiyan-web-service-data
+          hostPath:
+            path: /root/k8s/data/xiyan-web-service_data

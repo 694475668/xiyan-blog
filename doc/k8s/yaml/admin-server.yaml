@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: admin-server
+  name: admin-server
+  namespace: xiyan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admin-server
+  template:
+    metadata:
+      labels:
+        app: admin-server
+    spec:
+      containers:
+        -  name: admin-server
+           image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/admin-server
+           imagePullPolicy: Always
+           ports:
+             - containerPort: 8087
+
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: admin-server
+  name: admin-headless
+  namespace: xiyan
+spec:
+  ports:
+  - name: http
+    nodePort: 32315
+    port: 8087
+    protocol: TCP
+    targetPort: 8087
+  selector:
+    app: admin-server
+  type: NodePort

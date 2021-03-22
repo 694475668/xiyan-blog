@@ -92,7 +92,6 @@ export default {
             }
           });
         }
-        console.log(resultFiles.length);
       };
       this.editor.config.uploadImgHooks = {
         fail: (xhr, editor, result) => {

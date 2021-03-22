@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: zipkin
+  name: zipkin
+  namespace: xiyan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zipkin
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: zipkin
+    spec:
+      containers:
+      - env:
+        - name: STORAGE_TYPE
+          value: mysql
+        - name: MYSQL_DB
+          value: zipkin
+        - name: MYSQL_USER
+          value: root
+        - name: MYSQL_PASS
+          value: yoostar403
+        - name: MYSQL_HOST
+          value: mysql-headless
+        - name: MYSQL_TCP_PORT
+          value: "3306"
+        image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/zipkin
+        imagePullPolicy: IfNotPresent
+        name: zipkin
+        ports:
+        - containerPort: 9411
+          name: http
+          protocol: TCP
+
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: zipkin
+  name: zipkin
+  namespace: xiyan
+spec:
+  ports:
+  - name: http
+    nodePort: 32313
+    port: 9411
+    protocol: TCP
+    targetPort: 9411
+  selector:
+    app: zipkin
+  sessionAffinity: None
+  type: NodePort

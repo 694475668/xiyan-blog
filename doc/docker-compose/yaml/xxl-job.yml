@@ -1,0 +1,17 @@
+version: '3'
+services:
+  xxl-job-admin:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/xxl-job-admin
+    container_name: xxl-job-admin
+    restart: always
+    ports:
+      - 8097:8097
+    networks:
+      - xiyan
+    environment:
+      - COMPOSE_PROJECT_NAME=xxl-job-admin
+    volumes:
+      - ../log/xxl-job/:/home/aisys/logs/xxl-job/
+networks:
+  xiyan:
+    external: true

@@ -1,0 +1,52 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: xxl-job-admin
+  name: xxl-job-admin
+  namespace: xiyan
+spec:
+  ports:
+  - name: http
+    nodePort: 32317
+    port: 8097
+    protocol: TCP
+    targetPort: 8097
+  selector:
+    app: xxl-job-admin
+  type: NodePort
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: xxl-job-admin
+  name: xxl-job-admin
+  namespace: xiyan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xxl-job-admin
+  template:
+    metadata:
+      labels:
+        app: xxl-job-admin
+    spec:
+      containers:
+        -  name: xxl-job-admin
+           image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/xxl-job-admin
+           imagePullPolicy: Always
+           ports:
+             - containerPort: 8097
+           volumeMounts:
+            - name: xxl-job-admin-data
+              mountPath: /home/aisys/logs/xxl-job/
+      volumes:
+        - name: xxl-job-admin-data
+          hostPath:
+            path: /root/k8s/data/xxl_data

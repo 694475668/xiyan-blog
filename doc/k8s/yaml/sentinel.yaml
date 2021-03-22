@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sentinel
+  namespace: xiyan
+  labels:
+    app: sentinel
+spec:
+  ports:
+    - protocol: TCP
+      name: http
+      port: 8070
+      targetPort: 8070
+      nodePort: 32314
+  type: NodePort
+  selector:
+    app: sentinel
+
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: xiyan
+  name: sentinel
+spec:
+  serviceName: sentinel
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sentinel
+      annotations:
+        pod.alpha.kubernetes.io/initialized: "true"
+    spec:
+      containers:
+        - name: sentinel
+          imagePullPolicy: IfNotPresent
+          image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/sentinel
+          resources:
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+          ports:
+            - containerPort: 8070
+              name: client
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+            - name: JAVA_OPTS
+              value: "-Dserver.port=8070 -Dcsp.sentinel.dashboard.server=localhost:8070 -Dsentinel.dashboard.auth.username=sentinel -Dsentinel.dashboard.auth.password=sentinel -Dserver.servlet.session.timeout=7200"
+  selector:
+    matchLabels:
+      app: sentinel

@@ -33,7 +33,7 @@ Vue.use(Router)
 
 export default new Router({
     mode: 'history',
-    // base:"/aqian_blog/",
+    base: __dirname,
     scrollBehavior: () => ({ y: 0 }),
     routes: [{
         path: '/',

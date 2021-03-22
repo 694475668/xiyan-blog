@@ -43,6 +43,20 @@ import { getAes } from "@/utils/auth";
 import { AESEncrypt } from "@/api/aes";
 import "videojs-flash";
 export default {
+  metaInfo: {
+    title: "电视直播",
+    meta: [
+      {
+        name: "keywords",
+        content: "电视在线直播,在线直播,卫视直播,高清直播,超清直播,电影",
+      },
+      {
+        name: "description",
+        content:
+          "提供电视在线直播,在线直播,卫视直播,高清直播,超清直播,电影,为广大网友的开发工作提供便利。",
+      },
+    ],
+  },
   data() {
     return {
       tvList: [],
@@ -71,7 +85,9 @@ export default {
   },
   mounted() {
     //此页面不需要粒子特效
-    document.getElementById("particles-js").style.display = "none";
+    if (document.getElementById("particles-js") != null) {
+      document.getElementById("particles-js").style.display = "none";
+    }
     //设置左边的节目栏跟播放器一样的高度
     document.querySelector(".channel").style.height =
       document.querySelector(".video").offsetHeight + "px";

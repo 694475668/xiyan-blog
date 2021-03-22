@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  sentinel:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/sentinel
+    restart: always
+    container_name: sentinel
+    ports:
+      - 8888:8070
+    networks:
+      - xiyan
+
+networks:
+  xiyan:
+    external: true

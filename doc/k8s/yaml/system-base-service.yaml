@@ -1,0 +1,52 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: system-base-service
+  name: system-base-service
+  namespace: xiyan
+spec:
+  ports:
+  - name: http
+    nodePort: 32322
+    port: 8088
+    protocol: TCP
+    targetPort: 8088
+  selector:
+    app: system-base-service
+  type: NodePort
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: system-base-service
+  name: system-base-service
+  namespace: xiyan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: system-base-service
+  template:
+    metadata:
+      labels:
+        app: system-base-service
+    spec:
+      containers:
+        -  name: xiyan-web-service
+           image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/system-base-service
+           imagePullPolicy: Always
+           ports:
+             - containerPort: 8088
+           volumeMounts:
+            - name: system-base-service-data
+              mountPath: /home/aisys/logs/system-base-service/
+      volumes:
+        - name: system-base-service-data
+          hostPath:
+            path: /root/k8s/data/system-base-service_data

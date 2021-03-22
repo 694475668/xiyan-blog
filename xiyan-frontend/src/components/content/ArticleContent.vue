@@ -14,6 +14,7 @@
               slot="content"
               ref="article"
               v-html="article.content"
+              v-viewer
             ></article>
           </article-page-content>
           <article-page-footer
@@ -55,9 +56,29 @@ import { getArticleById, browse } from "@/api/blog";
 import { getAes } from "@/utils/auth";
 
 export default {
+  //收录
+  metaInfo() {
+    return {
+      title: this.article.title,
+      meta: [
+        {
+          name: "keywords",
+          content: this.article.remark,
+        },
+        {
+          name: "description",
+          content: this.article.remark,
+        },
+      ],
+    };
+  },
   data() {
     return {
-      article: {},
+      article: {
+        title: "夕颜源码 - 专注于技术|源码分享的IT技术平台",
+        remark:
+          "夕颜博客,夕颜源码,夕颜社区,夕颜技术社区,,夕颜IT社区,IT社区,技术社区,Java技术分享,Spring教程,开发者社区,Java毕设,Java博客,Java项目,Java源码,Vue博客,代码,教程,web编程,前端开发,后端开发",
+      },
       arrnum: 5,
     };
   },

@@ -1,0 +1,79 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-config
+  namespace: xiyan
+  labels:
+    app: redis
+data:
+  redis-config: |
+    bind 0.0.0.0
+    port 6379
+    pidfile .pid
+    maxmemory 2mb
+    maxmemory-policy allkeys-lru
+    dir /data
+    appendonly yes
+    requirepass yoostar403
+    save 900 1
+    save 300 10
+    save 60 10000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  namespace: xiyan
+  labels:
+    app: redis
+spec:
+  selector:
+    app: redis
+  ports:
+    - port: 6379
+      targetPort: 6379
+      nodePort: 32307
+  type: NodePort
+
+
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis
+  namespace: xiyan
+  labels:
+    app: redis
+spec:
+  containers:
+    - name: redis
+      image: 'registry.cn-shenzhen.aliyuncs.com/xiyan-blog/redis'
+      command:
+        - redis-server
+        - /redis-conf/redis.conf
+      env:
+        - name: MASTER
+          value: 'true'
+      ports:
+        - containerPort: 6379
+      resources:
+        limits:
+          cpu: '0.1'
+      volumeMounts:
+        - mountPath: /data
+          name: data
+        - mountPath: /redis-conf
+          name: config
+  volumes:
+    - name: data
+      emptyDir: {}
+    - name: config
+      configMap:
+        name: redis-config
+        items:
+          - key: redis-config
+            path: redis.conf
+

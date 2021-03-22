@@ -151,8 +151,8 @@ public class RequestBodyFilter implements GlobalFilter, Ordered {
      */
     public String InterceptFormData(Object requestData, ServerHttpRequest request) {
         //过滤一些请求,因为支付的回调里面的参数是没有加密的所以转换会出现问题,所以需要过滤下支付的回调地址
-        if (request.getURI().toString().indexOf("/cms/user/qq/back") != -1
-                || request.getURI().toString().indexOf("/cms/user/weibo/back") != -1
+        if (request.getURI().toString().indexOf("/user/user/qq/back") != -1
+                || request.getURI().toString().indexOf("/user/user/weibo/back") != -1
         ) {
             return "";
         }
@@ -181,8 +181,8 @@ public class RequestBodyFilter implements GlobalFilter, Ordered {
      */
     public String InterceptPost(Object requestBody, ServerHttpRequest request) {
         //过滤一些请求,因为支付的回调里面的参数是没有加密的所以转换会出现问题,所以需要过滤下支付的回调地址
-        if (request.getURI().toString().indexOf("/cms/user/qq/back") != -1
-                || request.getURI().toString().indexOf("/cms/user/weibo/back") != -1
+        if (request.getURI().toString().indexOf("/user/qq/back") != -1
+                || request.getURI().toString().indexOf("/user/weibo/back") != -1
         ) {
             return "";
         }

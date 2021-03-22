@@ -143,7 +143,7 @@ export default {
     },
   },
   methods: {
-      getContent(item) {
+    getContent(item) {
       //判断是博客内容还是源码内容
       if (item.good == null) {
         this.$router.push({
@@ -273,7 +273,7 @@ export default {
 .live-down-left {
   margin-top: 20px;
   float: left;
-  width: 200px;
+  width: 340px;
 }
 
 .live-for {

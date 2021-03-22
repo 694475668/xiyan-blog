@@ -1,0 +1,29 @@
+version: "3.1"
+services:
+    seata:
+        image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/seata-server
+        container_name: seata
+        ports:
+            - 8091:8091
+        environment:
+            #- SEATA_IP=127.0.0.1
+            - SEATA_PORT=8091
+            # 指定seata-server的事务日志存储方式, 支持db ,file,redis(Seata-Server 1.3及以上版本支持), 默认是 file
+            - STORE_MODE=file
+            # 指定配置文件位置, 如 file:/root/registry, 将会加载 /root/registry.conf 作为配置文件，如果需要同时指定 file.conf文件，需要将registry.conf的config.file.name的值改为类似file:/root/file.conf：
+            - SEATA_CONFIG_NAME=file:/root/seata-config/registry
+            # 指定 seata-server 运行环境, 如 dev, test 等, 服务启动时会使用 registry-dev.conf 这样的配置
+            #- SEATA_ENV=dev
+        expose:
+            - 8091
+        volumes:
+            # 使用 SEATA_CONFIG_NAME 环境变量后，需要挂载本地 config 配置路径到 SEATA_CONFIG_NAME 路径
+            - ../config/seata/:/root/seata-config/
+        #command:
+        restart: always
+        networks:
+          - xiyan
+      
+networks:
+  xiyan:
+    external: true

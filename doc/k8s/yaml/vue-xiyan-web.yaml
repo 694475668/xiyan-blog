@@ -1,0 +1,40 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: vue-xiyan-web
+  name: vue-xiyan-web
+  namespace: xiyan
+spec:
+  ports:
+  - name: http
+    nodePort: 32318
+    port: 80
+    targetPort: 80
+  selector:
+    run: vue-xiyan-web
+  type: NodePort
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vue-xiyan-web
+  namespace: xiyan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: vue-xiyan-web
+  template:
+    metadata:
+      labels:
+        run: vue-xiyan-web
+    spec:
+      containers:
+        - name: vue-xiyan-web
+          image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/vue-xiyan-web
+          ports:
+            - containerPort: 80

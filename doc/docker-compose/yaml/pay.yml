@@ -1,0 +1,17 @@
+version: '3'
+services:
+  pay:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/pay
+    container_name: pay
+    restart: always
+    ports:
+      - 6690:6690
+    networks:
+      - xiyan
+    environment:
+      - COMPOSE_PROJECT_NAME=pay
+    volumes:
+      - ../log/pay/:/home/aisys/logs/pay/
+networks:
+  xiyan:
+    external: true

@@ -58,7 +58,7 @@
                       <li class="price3" @click="select('price3')">
                         <label class="am-radio-inline">
                           <input type="radio" />
-                          30/350金币
+                          30/500金币
                         </label>
                       </li>
 
@@ -121,12 +121,7 @@
         </div>
       </Col>
     </Row>
-    <form
-      style="display: none"
-      id="form"
-      method="post"
-      action="http://pay.xiyanyuanma.com/createOrder"
-    >
+    <form style="display: none" id="form" method="post">
       <input name="payId" id="payId" type="text" value="" />
       <input name="type" id="type" type="text" value="" />
       <input name="price" id="price" type="text" value="" />
@@ -148,6 +143,20 @@ import { create } from "@/api/order";
 import { getUserInfo, getAes } from "@/utils/auth";
 import { AESEncrypt } from "@/api/aes";
 export default {
+  metaInfo: {
+    title: "金币充值",
+    meta: [
+      {
+        name: "keywords",
+        content: "微信支付,支付宝支付,支付,支付系统,支付源码",
+      },
+      {
+        name: "description",
+        content:
+          "提供微信支付,支付宝支付,支付,支付系统,支付源码,为广大网友的开发工作提供便利。",
+      },
+    ],
+  },
   data() {
     return {
       userInfo: {},
@@ -178,6 +187,7 @@ export default {
       this.res.requestData = AESEncrypt(dataJson, aesKey);
       create(this.res).then((res) => {
         if (res.success) {
+          $("#form")[0].action = res.url + "/createOrder";
           $("#payId").val(res.payId);
           $("#type").val(res.type);
           $("#sign").val(res.sign);
@@ -236,8 +246,6 @@ export default {
   },
 };
 </script>
-<style>
-</style>
 <style lang="stylus" scoped rel="stylesheet/stylus">
 @import '../../common/stylus/main.css';
 

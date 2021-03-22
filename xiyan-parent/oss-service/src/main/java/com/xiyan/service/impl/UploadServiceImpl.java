@@ -26,11 +26,11 @@ public class UploadServiceImpl implements UploadService {
         String fileName = file.getOriginalFilename();
         if (fileName == null) {
             log.error("传入的文件名不能为空");
-            return new BaseVO(false, ErrorCodeEnum.E0804.getKey(), ErrorCodeEnum.E0804.getValue());
+            return new BaseVO(false, ErrorCodeEnum.E0751.getKey(), ErrorCodeEnum.E0751.getValue());
         }
         if (!this.validateFileName(fileName)) {
             log.error("文件名应仅包含汉字、字母、数字、下划线和点号");
-            return new BaseVO(false, ErrorCodeEnum.E0805.getKey(), ErrorCodeEnum.E0805.getValue());
+            return new BaseVO(false, ErrorCodeEnum.E0752.getKey(), ErrorCodeEnum.E0752.getValue());
         }
         FileInputStream fileInputStream = (FileInputStream) file.getInputStream();
         String url = "";

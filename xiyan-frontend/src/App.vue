@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vue-particles
+    <!-- <vue-particles
       color="#00FFFF"
       :particleOpacity="1"
       :particlesNumber="80"
@@ -17,7 +17,7 @@
       :clickEffect="true"
       clickMode="push"
     >
-    </vue-particles>
+    </vue-particles> -->
     <router-view v-if="isRouterALive"></router-view>
   </div>
 </template>
@@ -25,23 +25,6 @@
 <script>
 export default {
   name: "app",
-  metaInfo: {
-    title: "夕颜源码", // set a title
-    meta: [
-      {
-        // set meta
-        name: "夕颜源码",
-        content: "夕颜源码",
-      },
-    ],
-    link: [
-      {
-        // set link
-        rel: "asstes",
-        href: "http://www.xiyanyuanma.com",
-      },
-    ],
-  },
   created() {
     try {
       setTimeout(function () {
@@ -103,7 +86,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   position: relative;
 }

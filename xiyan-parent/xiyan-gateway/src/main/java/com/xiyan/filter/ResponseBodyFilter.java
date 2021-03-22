@@ -92,7 +92,7 @@ public class ResponseBodyFilter implements GlobalFilter, Ordered {
                             log.info("\n 加密之前数据的内容：[{}]", responseData);
                             byte[] uppedContent = null;
                             //过滤获取aes密钥接口不需要加密
-                            if (url.indexOf("/cms/aes/key") == -1) {
+                            if (url.indexOf("/web/aes/key") == -1 && url.indexOf("/web/pay/back") == -1) {
                                 try {
                                     responseData = AESUtil.aesEncrypt(responseData, aesKeypair).toString();
                                     log.info("\n 数据加密后==========={}", responseData);

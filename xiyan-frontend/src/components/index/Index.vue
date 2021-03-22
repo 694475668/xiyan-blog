@@ -8,61 +8,14 @@
       <aplayer autoplay :audio="audio" :lrcType="1" fixed />
       <div id="weather-v2-plugin-simple"></div>
     </div>
-    <Modal
-      v-model="modal"
-      title="为了以后安全的找回密码,请绑定邮箱，下次也可以通过账号进行登陆"
-    >
-      <Form
-        autocomplete="off"
-        class="ivu-form ivu-form-label-top"
-        ref="bindingFrom"
-        :model="form"
-        :rules="rules"
-        @keydown.enter.native="handleSubmit"
-      >
-        <div class="ivu-form-item ivu-form-item-required ivu-form-item-error">
-          <label class="ivu-form-item-label">电子邮箱</label>
-          <FormItem prop="username">
-            <Input
-              type="text"
-              placeholder="请填写你的电子邮箱"
-              v-model="form.username"
-            >
-            </Input>
-          </FormItem>
-        </div>
-        <div class="ivu-form-item ivu-form-item-required ivu-form-item-error">
-          <label class="ivu-form-item-label">密码</label>
-          <FormItem prop="password">
-            <Input
-              autocomplete="off"
-              type="password"
-              v-model="form.password"
-              placeholder="请输入密码"
-              password
-            />
-          </FormItem>
-        </div>
-        <div class="footer">
-          <FormItem>
-            <Button type="primary" @click="handleSubmit('bindingFrom')"
-              >绑定</Button
-            >
-            <Button @click="modal = false">取消</Button>
-          </FormItem>
-        </div>
-      </Form>
-    </Modal>
   </div>
 </template>
 
 <script>
 import Cookie from "js-cookie";
 import { list } from "@/api/music";
-import { bind } from "@/api/user";
 import { getKey } from "@/api/key";
 import { setAesKey, getAes } from "@/utils/auth";
-import { AESEncrypt } from "@/api/aes";
 export default {
   data() {
     return {
@@ -71,28 +24,8 @@ export default {
         requestData: "",
       },
       btnFlag: false,
+      loading: false,
       audio: [],
-      form: {
-        username: "",
-        password: "",
-      },
-      modal: false,
-      rules: {
-        username: [
-          {
-            required: true,
-            message: "用户名不能为空",
-            trigger: "blur",
-          },
-        ],
-        password: [
-          {
-            required: true,
-            message: "密码不能为空",
-            trigger: "blur",
-          },
-        ],
-      },
     };
   },
   beforeCreate() {
@@ -105,12 +38,14 @@ export default {
     }
   },
   created() {
-    if (Cookie.get("loginToken") != undefined) {
-      let data = JSON.parse(Cookie.get("userInfo"));
-      if (data.username == undefined || data.username == "") {
-        this.modal = true;
+    this.$nextTick(function () {
+      if (Cookie.get("loginToken") != undefined) {
+        let data = JSON.parse(Cookie.get("userInfo"));
+        if (data.username == undefined || data.username == "") {
+          this.modal = true;
+        }
       }
-    }
+    });
     // vue的两个生命钩子，这里不多解释。
     // window对象，所有浏览器都支持window对象。它表示浏览器窗口，监听滚动事件
     window.addEventListener("scroll", this.scrollToTop);
@@ -166,54 +101,10 @@ export default {
         aesKey = getAes();
       }, 50);
     },
-    handleSubmit(name) {
-      this.$refs[name].validate((valid) => {
-        if (valid) {
-          var re = /[^`~!@#$%\^&\var*\(\)\+=\|\{\}\':;\',\\\[\]<>\/\?~！@#￥%……&\*（）——+\|\{\}【】‘；：”“’。，、？\s]{1,}@[^`~!@#$%\^&\*\(\)\+=\|\{\}\':;\',\\\[\]\.<>\/\?~！@#￥%……&\*（）——+\|\{\}【】‘；：”“’。，、？\s]{1,}\.[^`~!@#$%\^&\*\(\)\+=\|\{\}\':;\',\\\[\]<>\/\?~！@#￥%……&\*（）——+\|\{\}【】‘；：”“’。，、？\s]{1,}/i;
-          if (!re.test(this.form.username)) {
-            this.$Message.warning({
-              content: "请填写正确邮箱哦！",
-              duration: 3,
-              top: 50,
-              backgroun: true,
-            });
-          } else {
-            //获取保存在cookie的AES密钥
-            let aesKey = getAes();
-            //进行参数加密,必须把对象转换json字符串，不然加密不了
-            let dataJson = JSON.stringify(this.form);
-            //数据进行加密
-            this.res.requestData = AESEncrypt(dataJson, aesKey);
-            //执行绑定接口
-            bind(this.res).then((res) => {
-              if (res.success) {
-                this.$Message.success({
-                  content: "绑定成功！",
-                  duration: 3,
-                  top: 50,
-                  backgroun: true,
-                });
-                this.modal = false;
-              }
-            });
-          }
-        } else {
-          this.$Message.error({
-            content: "信息还没有填写完整哦!",
-            duration: 3,
-            top: 50,
-            backgroun: true,
-          });
-        }
-      });
-    },
   },
 };
 </script>
 <style scoped>
-.ivu-modal-footer {
-  display: none !important;
-}
 #snowbox {
   position: fixed;
   top: 0;
@@ -232,7 +123,7 @@ export default {
   cursor: pointer;
 }
 </style>
-<style lang="stylus" rel="stylesheet/stylus" >
+<style lang="stylus" scoped rel="stylesheet/stylus" >
 html, body {
   height: 100%;
 }

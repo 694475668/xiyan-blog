@@ -9,8 +9,8 @@ package com.xiyan.enumeration;
  */
 public enum ErrorCodeEnum {
 
-    E0804("E0804", "传入的文件名不能为空."),
-    E0805("E0805", "文件名应仅包含汉字、字母、数字、下划线和点号."),
+    E0751("E0751", "传入的文件名不能为空."),
+    E0752("E0752", "文件名应仅包含汉字、字母、数字、下划线和点号."),
     ;
 
     private String key;

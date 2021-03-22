@@ -45,12 +45,13 @@
       <li>
         <div style="float: left; margin-top: 0px" class="desc">加入我们:</div>
         <a
-          href="https://qm.qq.com/cgi-bin/qm/qr?k=MR8TChVi_FtBishIZO7FvkUNaxb5L7ei&jump_from=webapi"
           target="_blank"
-          alt="夕颜源码"
-          title="夕颜源码"
-          style="margin-left: -30px"
-          ><img src="../../assets/icon/QQqun.png" alt=""
+          href="https://qm.qq.com/cgi-bin/qm/qr?k=g58e_OK0YbSw91Y_2FxJtqyAAQSVx19Q&jump_from=webapi"
+          ><img
+            border="0"
+            src="../../assets/icon/QQqun.png"
+            alt="夕颜源码"
+            title="夕颜源码"
         /></a>
       </li>
     </ul>
@@ -65,7 +66,7 @@
             status="active"
             :hide-info="true"
             :stroke-width="10"
-            :percent="60"
+            :percent="90"
             class="bar"
           ></Progress>
         </Col>
@@ -79,7 +80,7 @@
             status="wrong"
             :hide-info="true"
             :stroke-width="10"
-            :percent="40"
+            :percent="60"
             class="bar"
           ></Progress>
         </Col>
@@ -93,21 +94,21 @@
             status="success"
             :hide-info="true"
             :stroke-width="10"
-            :percent="10"
+            :percent="40"
             class="bar"
           ></Progress>
         </Col>
       </Row>
       <Row :gutter="20">
         <Col :span="6">
-          <p class="title">Cloud</p>
+          <p class="title">Python</p>
         </Col>
         <Col :span="18">
           <Progress
             status="normal"
             :hide-info="true"
             :stroke-width="10"
-            :percent="30"
+            :percent="25"
             class="bar"
             stroke-color="yellow"
           ></Progress>
@@ -121,7 +122,7 @@
 export default {};
 </script>
 
-<style lang="stylus" scoped rel="stylesheet/stylus" scoped>
+<style lang="stylus" rel="stylesheet/stylus" scoped>
 @import '../../common/stylus/theme.styl';
 
 .about {

@@ -2,8 +2,8 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: ip:8848
-        namespace: 8dfd0e08-395a-4f30-987c-e1977254e4ce
+        server-addr: nacos:8848
+        namespace: prod
   # 设置上传文件大小
   servlet:
     multipart:
@@ -16,7 +16,7 @@ spring:
       probability: 1
           #springCloudSleuth
   zipkin:
-    baseUrl: http://ip:9411/
+    baseUrl: http://zipkin:9411/
     enabled: true
     sender:
       type: kafka
@@ -25,12 +25,12 @@ spring:
 
   # Kafka
   kafka:
-    bootstrap-servers: ip:9092
+    bootstrap-servers: kafka-service:9092
     #=============== consumer  =======================
     consumer:
       auto-commit-interval: 100
       auto-offset-reset: earliest
-      group-id: bss-${random.int(100)}
+      group-id: oss-group
       # true=自动提交；false=手动提交
       enable-auto-commit: false
     #=============== provider  =======================
@@ -45,8 +45,9 @@ spring:
       
       # Redis
   redis:
-    host: 127.0.0.1
+    host: redis
     port: 6379
+    password: yoostar403
     timeout: 10000
     cache:
       expires: -1
@@ -55,6 +56,12 @@ spring:
 feign: 
   sentinel: 
     enabled: true
+  #feign调用超时时间配置，超过这个时间就熔断降级
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
 
 #  七牛秘钥
 oss:

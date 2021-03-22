@@ -3,7 +3,7 @@ import request from '@/utils/request'
 //绑定
 export function bind(data) {
     return request({
-        url: '/cms/user/bind',
+        url: '/system/user/bind',
         method: 'put',
         data
     })
@@ -11,7 +11,7 @@ export function bind(data) {
 //找回密码
 export function retrievePassword(data) {
     return request({
-        url: '/cms/user/retrieve',
+        url: '/system/user/retrieve',
         method: 'put',
         data
     })
@@ -20,7 +20,7 @@ export function retrievePassword(data) {
 //发送验证码
 export function send(data) {
     return request({
-        url: '/cms/user/send',
+        url: '/system/user/send',
         method: 'post',
         data
     })

@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function login(data) {
     return request({
-        url: '/cms/user/login',
+        url: '/system/user/login',
         method: 'post',
         data
     })
@@ -10,7 +10,7 @@ export function login(data) {
 
 export function qqLogin() {
     return request({
-        url: '/cms/user/login',
+        url: '/system/qq/login',
         method: 'get',
     })
 }

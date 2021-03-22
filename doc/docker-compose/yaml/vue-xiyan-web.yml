@@ -1,0 +1,15 @@
+version: '3'
+services:
+  vue-xiyan-web:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/vue-xiyan-web
+    container_name: vue-xiyan-web
+    restart: always
+    ports:
+      - 8090:80
+    networks:
+      - xiyan
+    environment:
+      - COMPOSE_PROJECT_NAME=vue-xiyan-web
+networks:
+  xiyan:
+    external: true

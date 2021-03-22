@@ -255,6 +255,14 @@ export default {
         },
         {
           value: "8",
+          label: "Linux",
+        },
+        {
+          value: "9",
+          label: "APP",
+        },
+        {
+          value: "10",
           label: "其它",
         },
       ],

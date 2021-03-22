@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function list() {
     return request({
-        url: '/cms/music/list',
+        url: '/web/music/list',
         method: 'get'
     })
 }

@@ -1,0 +1,12 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: system-base-service
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+        # b6d39908-c0bc-4299-be3e-805105bdc4de
+        namespace: prod
+        server-addr: nacos:8848

@@ -39,9 +39,7 @@
     <transition name="slide-fade">
       <div id="header" v-show="show">
         <router-link id="logo" to="/home">
-          <img src="../../../assets/logo.png" />
-          <span class="title">夕颜源码</span>
-          <span class="motto">go！！！</span>
+          <img src="../../../assets/images/xiyan-logo.png"/>
         </router-link>
         <ul id="nav">
           <li>

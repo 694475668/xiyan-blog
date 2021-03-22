@@ -1,0 +1,38 @@
+version: '3'
+services:
+    # search engine
+    elasticsearch:
+        image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/elasticsearch
+        container_name: elasticsearch
+        environment:
+            - discovery.type=single-node
+            - http.port=9200
+            - http.cors.enabled=true
+            - http.cors.allow-origin=*
+            - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+            - http.cors.allow-credentials=false
+            - bootstrap.memory_lock=true
+            - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
+        volumes:
+            - ../data/elasticsearch_data:/usr/share/elasticsearch/data
+        networks:
+            - xiyan
+        ports:
+            - '9200:9200'
+            - '9300:9300'
+    # es的可视化界面，如果需要请放开注释
+    #dejavu:
+        #image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/dejavu
+        #container_name: dejavu
+        #ports:
+            #- '1358:1358'
+        #links:
+            #- elasticsearch
+        #networks:
+            #- xiyan
+
+networks:
+    xiyan:
+        external: true
+
+

@@ -67,10 +67,10 @@
                     <router-link to="/regist" class="">注册</router-link>
                   </p>
                 </div>
-                <div @click="qqLogin" class="login">
-                  <a> <img src="../../assets/QQ.svg" /></a>
+                <div class="login">
+                  <a @click="qqLogin"> <img src="../../assets/QQ.svg" /></a>
                   <a
-                    href="https://api.weibo.com/oauth2/authorize?client_id=3751771182&response_type=code&redirect_uri=http://xiyanyuanma.com/weibo/back"
+                    href="https://api.weibo.com/oauth2/authorize?client_id=3751771182&response_type=code&redirect_uri=http://xiyanit.cn/xiyan/system/weibo/back"
                   >
                     <img src="../../assets/weibo.svg"
                   /></a>
@@ -184,7 +184,7 @@ export default {
   padding-right: 20px !important;
 }
 </style>
-<style lang="stylus" type="text/stylus" rel="stylesheet/stylus">
+<style lang="stylus" scope type="text/stylus" rel="stylesheet/stylus">
 @import '../../common/stylus/theme.styl';
 @import '../../common/stylus/article.styl';
 
@@ -210,12 +210,6 @@ export default {
     margin: 15px 35px 0 35px;
   }
 
-  @media screen and (min-width: 1200px) {
-    width: 1200px;
-    margin: 15px auto 0;
-    margin-bottom: 200px;
-  }
-
   .layout-left, .layout-right {
     padding: 0;
 
@@ -235,12 +229,6 @@ export default {
       padding: 0 10px;
     }
   }
-}
-
-/* .live-bg{
-  background-image:url({{this.imgUrl}})
-} */
-element.style {
 }
 
 .dev-sign-main {

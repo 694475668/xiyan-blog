@@ -6,23 +6,39 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="cms-service" />
-        <module name="oss-service" />
+        <module name="search-service" />
         <module name="xiyan-gateway" />
+        <module name="admin-server" />
+        <module name="xiyan-web-service" />
+        <module name="oss-service" />
+        <module name="system-base-service-api" />
+        <module name="system-base-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="admin-server" target="1.8" />
       <module name="cms-service" target="1.8" />
+      <module name="email-service" target="1.8" />
       <module name="oss-service" target="1.8" />
+      <module name="search-service" target="1.8" />
+      <module name="system-base-service" target="1.8" />
+      <module name="system-base-service-api" target="1.8" />
       <module name="xiyan-gateway" target="1.8" />
       <module name="xiyan-parent" target="1.8" />
+      <module name="xiyan-web-service" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="admin-server" options="-parameters" />
       <module name="cms-service" options="-parameters" />
+      <module name="email-service" options="-parameters" />
       <module name="oss-service" options="-parameters" />
+      <module name="search-service" options="-parameters" />
+      <module name="system-base-service" options="-parameters" />
+      <module name="system-base-service-api" options="-parameters" />
       <module name="xiyan-gateway" options="-parameters" />
+      <module name="xiyan-web-service" options="-parameters" />
     </option>
   </component>
 </project>

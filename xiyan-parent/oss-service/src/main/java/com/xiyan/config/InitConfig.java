@@ -18,9 +18,6 @@ import org.springframework.stereotype.Component;
 @Data
 @RefreshScope
 public class InitConfig {
-    /**
-     * AccessKey
-     */
     private String accessKey;
     /**
      * SecretKey

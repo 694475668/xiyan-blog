@@ -117,7 +117,7 @@ export default {
             //数据进行加密
             this.res.requestData = AESEncrypt(dataJson, aesKey);
             query(this.res).then((res) => {
-              if (res.errorCode == "E0708") {
+              if (res.errorCode == "E0701") {
                 this.favorites = "取消收藏";
               } else {
                 this.favorites = "收藏";

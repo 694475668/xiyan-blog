@@ -9,21 +9,114 @@
           >{{ menuFilter.name }}</a
         >
       </li>
+      <li v-if="show">
+        <Dropdown trigger="click" @on-click="queryByType">
+          <a href="javascript:void(0)" style="font-size: 15px">
+            {{ title }}类型
+            <Icon type="ios-arrow-down"></Icon>
+          </a>
+          <DropdownMenu slot="list">
+            <DropdownItem
+              ><i
+                class="arrow iconfont icon-quanbu-"
+                style="color: #f4ea2a; font-weight: 400"
+                ><span>全部</span></i
+              ></DropdownItem
+            >
+            <DropdownItem name="0"
+              ><i
+                class="arrow iconfont icon-java"
+                style="color: #d52bb3; font-weight: 400"
+                ><span>JAVA</span></i
+              ></DropdownItem
+            >
+            <DropdownItem name="1"
+              ><i
+                class="arrow iconfont icon-python"
+                style="color: #3cc48d; font-weight: 400"
+                ><span>Python</span></i
+              ></DropdownItem
+            >
+            <DropdownItem name="2"
+              ><i
+                class="arrow iconfont icon-go"
+                style="color: #d81e06; font-weight: 400"
+                ><span>GO</span></i
+              ></DropdownItem
+            >
+            <DropdownItem name="3"
+              ><i
+                class="arrow iconfont icon-php1"
+                style="color: #f28a1c; font-weight: 400"
+                ><span>PHP</span></i
+              ></DropdownItem
+            >
+            <DropdownItem name="4"
+              ><i
+                class="arrow iconfont icon-Vue"
+                style="color: #1296db; font-weight: 400"
+                ><span>VUE</span></i
+              ></DropdownItem
+            >
+            <DropdownItem name="5"
+              ><i
+                class="arrow iconfont icon-java-script"
+                style="color: #13227a; font-weight: 400"
+                ><span>JavaScript</span></i
+              ></DropdownItem
+            >
+            <DropdownItem name="6"
+              ><i
+                class="arrow iconfont icon-c"
+                style="color: #3cc2a8; font-weight: 400"
+                ><span>C</span></i
+              ></DropdownItem
+            >
+            <DropdownItem name="7"
+              ><i
+                class="arrow iconfont icon-c1"
+                style="color: #1cedf2; font-weight: 400"
+                ><span>C++</span></i
+              ></DropdownItem
+            >
+            <DropdownItem name="8"
+              ><i
+                class="arrow iconfont icon-linux"
+                style="color: #6b1cf2; font-weight: 400"
+                ><span>Linux</span></i
+              ></DropdownItem
+            >
+            <DropdownItem name="9"
+              ><i
+                class="arrow iconfont icon-app"
+                style="color: #ed4014; font-weight: 400"
+                ><span>APP</span></i
+              ></DropdownItem
+            >
+            <DropdownItem name="10"
+              ><i
+                class="arrow iconfont icon-other"
+                style="color: #e71cf2; font-weight: 400"
+                ><span>其它</span></i
+              ></DropdownItem
+            >
+          </DropdownMenu>
+        </Dropdown>
+      </li>
     </ul>
-    <div class="refresh">
-      <a @click="refresh" title="刷新">
-        <Icon type="refresh"></Icon>
-      </a>
-    </div>
   </div>
 </template>
 
 <script>
 export default {
+  //暴露reload方法
+  inject: ["reload"],
   props: {
     menuFilterList: Array,
     //是技术分享页面不显示下载最多的查询按钮
-    downloadType: "",
+    downloadType: String,
+    title: String,
+    show: Boolean,
   },
   computed: {
     filterList() {
@@ -31,8 +124,20 @@ export default {
     },
   },
   methods: {
-    refresh() {
-      this.$router.go(0);
+    queryByType(item) {
+      if (this.title == "文章") {
+        this.$router.push({
+          name: "articleList",
+          query: { type: item },
+        });
+      } else {
+        this.$router.push({
+          name: "codes",
+          query: { type: item },
+        });
+      }
+      //处理跳转同一路由，参数不同，数据不刷新的问题
+      this.reload();
     },
     filterByMenu(type) {
       this.replaceActive(type);
@@ -52,9 +157,12 @@ export default {
   },
 };
 </script>
-
 <style lang="stylus" scoped rel="stylesheet/stylus" scoped>
 @import '../../../common/stylus/theme.styl';
+
+span {
+  margin-left: 5px;
+}
 
 .title-menu-timeline {
   display: flex;
@@ -73,21 +181,6 @@ export default {
           font-weight: bold;
           border-bottom: 2px solid $color-main-primary;
         }
-      }
-    }
-  }
-
-  .refresh {
-    margin-left: 15px;
-    line-height: inherit;
-
-    a {
-      font-size: 20px;
-      color: $color-gradually-gray-41;
-      cursor: pointer;
-
-      &:hover {
-        color: $color-main-primary;
       }
     }
   }

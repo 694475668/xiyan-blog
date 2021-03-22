@@ -14,7 +14,9 @@
           class="wrapper"
         >
           <div class="menu-container" ref="menuContainer">
-            <img ref="bannerHeight" :src="item.url" @load="imgLoad" />
+            <a :href="item.href" target="black"
+              ><img ref="bannerHeight" :src="item.url" @load="imgLoad"
+            /></a>
           </div>
         </v-touch>
       </el-carousel-item>
@@ -29,15 +31,18 @@ export default {
       banners: [
         {
           id: 1,
-          url: require("../../assets/xiyan2.png"),
+          url: require("../../assets/xiyan1.png"),
+          href: "https://gitee.com/bright-boy/xiyan-blog",
         },
         {
           id: 2,
-          url: require("../../assets/xiyan2.png"),
+          url: require("../../assets/xiyan1.png"),
+          href: "https://gitee.com/bright-boy/xiyan-blog",
         },
         {
           id: 3,
-          url: require("../../assets/xiyan2.png"),
+          url: require("../../assets/xiyan1.png"),
+          href: "https://gitee.com/bright-boy/xiyan-blog",
         },
       ],
       bannerHeight: "",

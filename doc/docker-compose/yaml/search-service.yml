@@ -1,0 +1,17 @@
+version: '3'
+services:
+  search-service:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/search-service
+    container_name: search-service
+    restart: always
+    ports:
+      - 8087:8087
+    networks:
+      - xiyan
+    environment:
+      - COMPOSE_PROJECT_NAME=search-service
+    volumes:
+      - ../log/search-service/:/home/aisys/logs/search-service/
+networks:
+  xiyan:
+    external: true

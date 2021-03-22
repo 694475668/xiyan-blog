@@ -1,0 +1,17 @@
+version: '3'
+services:
+  xiyan-gateway:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/xiyan-gateway
+    container_name: xiyan-gateway
+    restart: always
+    ports:
+      - 8084:8084
+    networks:
+      - xiyan
+    environment:
+      - COMPOSE_PROJECT_NAME=xiyan-gateway
+    volumes:
+    - ../log/xiyan-gateway/:/home/aisys/logs/xiyan-gateway/
+networks:
+  xiyan:
+    external: true

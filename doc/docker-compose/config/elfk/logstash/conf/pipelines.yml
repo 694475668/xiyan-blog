@@ -1,0 +1,15 @@
+- pipeline.id: log-kafka-dev
+  queue.type: memory
+  path.config: "/usr/share/logstash/pipeline/log-kafka-dev.conf"
+  pipeline.workers: 1 
+  pipeline.batch.size: 1000
+# - pipeline.id: log-kafka-test
+  # queue.type: persisted 
+  # path.config: "/usr/share/logstash/pipeline/log-kafka-test.conf"
+  # pipeline.workers: 2 
+  # pipeline.batch.size: 3000   
+# - pipeline.id: log-kafka-prod
+  # queue.type: persisted 
+  # path.config: "/usr/share/logstash/pipeline/log-kafka-prod.conf"
+  # pipeline.workers: 8 
+  # pipeline.batch.size: 3000   

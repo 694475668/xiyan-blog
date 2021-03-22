@@ -7,6 +7,13 @@
         <option value="$PROJECT_DIR$/cms-service/pom.xml" />
         <option value="$PROJECT_DIR$/oss-service/pom.xml" />
         <option value="$PROJECT_DIR$/xiyan-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/admin-server/pom.xml" />
+        <option value="$PROJECT_DIR$/user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/search-service/pom.xml" />
+        <option value="$PROJECT_DIR$/xiyan-web-service/pom.xml" />
+        <option value="$PROJECT_DIR$/user-service-api/pom.xml" />
+        <option value="$PROJECT_DIR$/system-base-service-api/pom.xml" />
+        <option value="$PROJECT_DIR$/system-base-service/pom.xml" />
       </list>
     </option>
   </component>

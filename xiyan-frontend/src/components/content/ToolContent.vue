@@ -850,6 +850,21 @@ import TagWall from "@/components/views/TagWall";
 import FriendLinks from "@/components/views/FriendLinks";
 
 export default {
+  // 配置title和meta数据
+  metaInfo: {
+    title: "夕颜源码 - 开发工具",
+    meta: [
+      {
+        name: "keywords",
+        content: "毕业设计系统",
+      },
+      {
+        name: "description",
+        content:
+          "提供毕业设计系统,网站HTML模板,java管理后台模板,jQuery插件,在线工具,为广大网友的开发工作提供便利。",
+      },
+    ],
+  },
   data() {
     return {};
   },

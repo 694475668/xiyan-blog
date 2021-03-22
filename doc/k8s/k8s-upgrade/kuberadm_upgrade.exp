@@ -1,0 +1,8 @@
+#!/usr/bin/expect  
+
+set version [lindex $argv 0]
+
+kubeadm upgrade apply v$version
+expect {  
+	"*pgrade? *" {send "y\r";exp_continue}  
+	}  

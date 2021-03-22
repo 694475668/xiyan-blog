@@ -25,8 +25,8 @@ export function getUserInfo() {
     return VueCookie.get(UserInfo)
 }
 //设置当前登录用户信息
-export function setUserInfo(token) {
-    return VueCookie.set(UserInfo, token, { expires: inFifteenMinutes })
+export function setUserInfo(userInfo) {
+    return VueCookie.set(UserInfo, userInfo, { expires: inFifteenMinutes })
 }
 
 //删除当前登录用户信息

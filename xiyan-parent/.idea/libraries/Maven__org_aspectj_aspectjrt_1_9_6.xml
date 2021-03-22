@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.aspectj:aspectjrt:1.9.6">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/aspectj/aspectjrt/1.9.6/aspectjrt-1.9.6.jar!/" />
+      <root url="jar://E:/apache-maven-3.6.3/warehouse/org/aspectj/aspectjrt/1.9.6/aspectjrt-1.9.6.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/org/aspectj/aspectjrt/1.9.6/aspectjrt-1.9.6-javadoc.jar!/" />
+      <root url="jar://E:/apache-maven-3.6.3/warehouse/org/aspectj/aspectjrt/1.9.6/aspectjrt-1.9.6-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/aspectj/aspectjrt/1.9.6/aspectjrt-1.9.6-sources.jar!/" />
+      <root url="jar://E:/apache-maven-3.6.3/warehouse/org/aspectj/aspectjrt/1.9.6/aspectjrt-1.9.6-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -57,8 +57,8 @@ export default {
         pageNo: 1,
         pageSize: 4,
         //默认是以创建时间倒叙排序
-        sortField: "createTime",
-        keywords: "",
+        sortField: "create_time",
+        type: "",
       },
     };
   },
@@ -83,7 +83,9 @@ export default {
   },
   mounted() {
     //开启粒子特效
-    document.getElementById("particles-js").style.display = "block";
+    if (document.getElementById("particles-js") != null) {
+      document.getElementById("particles-js").style.display = "block";
+    }
   },
   created() {
     this.getList();

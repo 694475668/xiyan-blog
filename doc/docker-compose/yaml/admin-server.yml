@@ -1,0 +1,15 @@
+version: '3'
+services:
+  admin-server:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/admin-server
+    container_name: admin-server
+    restart: always
+    ports:
+      - 8087:8087
+    networks:
+      - xiyan
+    environment:
+      - COMPOSE_PROJECT_NAME=admin-server
+networks:
+  xiyan:
+    external: true

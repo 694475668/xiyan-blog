@@ -1,0 +1,11 @@
+#!/usr/bin/expect  
+
+spawn ssh-keygen -t rsa
+send "\r"  
+expect "phrase"  
+send "\r"  
+expect "again"  
+send "\r"  
+interact  
+
+

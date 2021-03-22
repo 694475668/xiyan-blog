@@ -1,0 +1,11 @@
+server:
+  port: 8098
+spring:
+  application:
+    name: admin-server-service
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+        namespace: 4ec05052-6224-4d34-975a-b27132b60587
+        server-addr: 128.14.163.18:8848

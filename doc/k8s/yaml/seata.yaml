@@ -1,0 +1,118 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: seata
+  namespace: xiyan
+  labels:
+    k8s-app: seata
+spec:
+  type: NodePort
+  ports:
+    - port: 8091
+      nodePort: 32310
+      protocol: TCP
+      name: http
+  selector:
+    k8s-app: seata
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seata
+  namespace: xiyan
+  labels:
+    k8s-app: seata
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: seata
+  template:
+    metadata:
+      labels:
+        k8s-app: seata
+    spec:
+      containers:
+        - name: seata
+          image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/seata-server
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SEATA_CONFIG_NAME
+              value: file:/root/seata-config/registry
+          ports:
+            - name: http
+              containerPort: 8091
+              protocol: TCP
+          volumeMounts:
+            - name: seata-config
+              mountPath: /root/seata-config
+      volumes:
+        - name: seata-config
+          configMap:
+            name: seata-server-config
+
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: seata-server-config
+  namespace: xiyan
+data:
+  registry.conf: |
+    registry {
+      # file 、nacos 、eureka、redis、zk、consul、etcd3、sofa
+      type = "nacos"
+      nacos {
+        application = "seata-server"
+        serverAddr = "nacos.xiyan.svc.cluster.local:8848"
+        group = "SEATA_GROUP"
+        namespace = "prod"
+        cluster = "default"
+        username = "nacos"
+        password = "nacos"
+      }
+    }
+    config {
+      type = "file"
+      file {
+        name = "/root/seata-config/file.conf"
+      }
+    }
+    store {
+      ## store mode: file、db、redis
+      mode = "db"
+      ## database store property
+      db {
+        ## the implement of javax.sql.DataSource, such as DruidDataSource(druid)/BasicDataSource(dbcp)/HikariDataSource(hikari) etc.
+        datasource = "druid"
+        ## mysql/oracle/postgresql/h2/oceanbase etc.
+        dbType = "mysql"
+        driverClassName = "com.mysql.jdbc.Driver"
+        ## if using mysql to store the data, recommend add rewriteBatchedStatements=true in jdbc connection param
+        url = "jdbc:mysql://mysql:3306/nacos?rewriteBatchedStatements=true"
+        user = "root"
+        password = "yoostar403"
+        minConn = 5
+        maxConn = 100
+        globalTable = "global_table"
+        branchTable = "branch_table"
+        lockTable = "lock_table"
+        queryLimit = 100
+        maxWait = 5000
+      }
+    }
+
+    service {
+        #transaction service group mapping
+        vgroupMapping.bss = "default"
+        #only support when registry.type=file, please don't set multiple addresses
+        default.grouplist = "127.0.0.1:8091"
+        #degrade, current not support
+        enableDegrade = false
+        #disable seata
+        disableGlobalTransaction = false
+    }

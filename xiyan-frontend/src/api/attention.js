@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 export function add(data) {
     return request({
-        url: '/cms/attention/add',
+        url: '/web/attention/add',
         method: 'post',
         data
     })
@@ -9,7 +9,7 @@ export function add(data) {
 
 export function del(data) {
     return request({
-        url: '/cms/attention/delete',
+        url: '/web/attention/delete',
         method: 'post',
         data
     })
@@ -17,7 +17,7 @@ export function del(data) {
 
 export function query(data) {
     return request({
-        url: '/cms/attention/query',
+        url: '/web/attention/query',
         method: 'post',
         data
     })

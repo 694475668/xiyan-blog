@@ -1,0 +1,17 @@
+version: '3.1'
+services:
+  redis:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/redis
+    restart: always
+    container_name: redis
+    ports:
+      - 6379:6379
+    command: redis-server --requirepass yoostar403 --appendonly yes # 启动redis服务并添加密码为：yoostar403,并开启redis持久化配置
+    volumes:
+      - ../data/redis_data:/data
+    networks:
+      - xiyan
+      
+networks:
+  xiyan:
+    external: true

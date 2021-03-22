@@ -26,11 +26,18 @@
                     placeholder="请填写你的电子邮箱"
                     v-model="form.username"
                   >
-                    <Button style="height: 30px" slot="append" @click="ToEmail">
+                    <Button
+                      style="height: 30px"
+                      :disabled="disabled"
+                      slot="append"
+                      @click="ToEmail"
+                    >
                       <div
+                        v-if="show"
                         class="iconfont icon-youxiang3"
                         style="margin-top: -10px; color: #d81e06"
                       ></div>
+                      <span v-else style="color: #ed4014">{{ send }}</span>
                     </Button>
                   </Input>
                 </FormItem>
@@ -60,8 +67,13 @@
                     v-model="form.code"
                     placeholder="请输入验证码"
                     style="width: 150px"
+                    maxlength="6"
                   />
-                  <a @click="ToEmail" style="margin-left: 15px">
+                  <a
+                    @click="ToEmail"
+                    :disabled="disabled"
+                    style="margin-left: 15px"
+                  >
                     没有收到验证码？再来一条</a
                   >
                 </FormItem>
@@ -88,6 +100,17 @@
                   <router-link to="/login">登录</router-link>
                 </p>
               </div>
+              <!-- 拖动验证码 -->
+              <Modal footer-hide v-model="modal" width="400"
+                ><slide-verify
+                  :l="42"
+                  :r="10"
+                  :w="310"
+                  :h="155"
+                  slider-text="向右滑动"
+                  @success="onSuccess"
+                ></slide-verify>
+              </Modal>
             </div>
           </div>
         </div>
@@ -97,8 +120,6 @@
 </template>
 
 <script>
-// import "vue-nav-tabs/themes/paper.css";
-// mixin
 import { send, retrievePassword } from "@/api/user";
 import { mixin } from "@/utils";
 import { getAes } from "@/utils/auth";
@@ -128,6 +149,11 @@ export default {
   },
   data() {
     return {
+      show: true,
+      send: "",
+      timer: "",
+      modal: false,
+      disabled: false,
       //加密后请求服务器的参数
       res: {
         requestData: "",
@@ -140,7 +166,6 @@ export default {
     };
   },
   mixins: [mixin],
-  created() {},
   computed: {
     rules() {
       return {
@@ -151,6 +176,42 @@ export default {
     },
   },
   methods: {
+    onSuccess() {
+      //获取保存在cookie的AES密钥
+      let aesKey = getAes();
+      //进行参数加密,必须把对象转换json字符串，不然加密不了
+      let dataJson = JSON.stringify(this.form);
+      //数据进行加密
+      this.res.requestData = AESEncrypt(dataJson, aesKey);
+      send(this.res).then((res) => {
+        if (res.success) {
+          this.$Message.success({
+            content: "验证码发送成功，三分钟之内有效",
+            duration: 3,
+            top: 50,
+            backgroun: true,
+          });
+          this.modal = false;
+          //倒计时60秒
+          const TIME_COUNT = 60;
+          if (!this.timer) {
+            this.send = TIME_COUNT;
+            this.timer = setInterval(() => {
+              if (this.send > 0 && this.send <= TIME_COUNT) {
+                this.send--;
+                this.show = false;
+                this.disabled = true;
+              } else {
+                this.show = true;
+                clearInterval(this.timer);
+                this.timer = null;
+                this.disabled = false;
+              }
+            }, 1000);
+          }
+        }
+      });
+    },
     ToEmail() {
       // alert("请注意去你的邮箱查收验证码哦");
       if (this.form.username === null || this.form.username === "") {
@@ -172,22 +233,7 @@ export default {
         });
         return;
       }
-      //获取保存在cookie的AES密钥
-      let aesKey = getAes();
-      //进行参数加密,必须把对象转换json字符串，不然加密不了
-      let dataJson = JSON.stringify(this.form);
-      //数据进行加密
-      this.res.requestData = AESEncrypt(dataJson, aesKey);
-      send(this.res).then((res) => {
-        if (res.success) {
-          this.$Message.success({
-            content: "验证码发送成功，三分钟之内有效",
-            duration: 3,
-            top: 50,
-            backgroun: true,
-          });
-        }
-      });
+      this.modal = true;
     },
     rePassword() {
       // alert("请注意去你的邮箱查收验证码哦");
@@ -240,15 +286,22 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style scoped lang="stylus">
 .ivu-form .ivu-form-item-label {
   font-size: 14px;
 }
+
 .ivu-form-item-content a {
   font-size: 13px;
 }
+
+>>>.ivu-modal-content {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
 </style>
-<style lang="stylus" type="text/stylus" rel="stylesheet/stylus">
+<style lang="stylus" scope type="text/stylus" rel="stylesheet/stylus">
 @import '../../common/stylus/theme.styl';
 @import '../../common/stylus/article.styl';
 
@@ -260,8 +313,8 @@ export default {
     margin: 5px 5px 0 5px;
   }
 
-  @media screen and (min-width: 768px) {
-    margin: 10px 10px 0 10px;
+  @media only screen and (max-width: 768px) {
+    margin: 5px 5px 0 5px;
 
     .dev-sign-main {
       width: 100%;
@@ -272,12 +325,6 @@ export default {
 
   @media screen and (min-width: 992px) {
     margin: 15px 35px 0 35px;
-  }
-
-  @media screen and (min-width: 1200px) {
-    width: 1200px;
-    margin: 15px auto 0;
-    margin-bottom: 200px;
   }
 
   .layout-left, .layout-right {
@@ -299,12 +346,6 @@ export default {
       padding: 0 10px;
     }
   }
-}
-
-/* .live-bg{
-  background-image:url({{this.imgUrl}})
-} */
-element.style {
 }
 
 .dev-sign-main {

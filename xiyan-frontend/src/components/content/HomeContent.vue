@@ -9,6 +9,7 @@
               @filterByMenu="getList"
               slot="menu"
               :menu-filter-list="defaultFilterList"
+              :show="false"
             ></title-menu-filter>
           </section-title>
           <code-list-cell
@@ -44,9 +45,25 @@ import Recommend from "@/components/views/Recommend";
 import { DefaultFilterList } from "@/common/js/const";
 import { list } from "@/api/code";
 import { getAes } from "@/utils/auth";
-import { AESEncrypt } from "@/api/aes";
+import { AESEncrypt, AESDecrypt } from "@/api/aes";
+import { getUrlKey } from "@/utils/intercept";
 
 export default {
+  metaInfo: {
+    title: "夕颜源码 - 专注于技术|源码分享的IT技术平台",
+    meta: [
+      {
+        name: "keywords",
+        content:
+          "夕颜博客,夕颜源码,夕颜社区,夕颜技术社区,,夕颜IT社区,IT社区,技术社区,Java技术分享,Spring教程,开发者社区,Java毕设,Java博客,Java项目,Java源码,Vue博客,代码,教程,web编程,前端开发,后端开发",
+      },
+      {
+        name: "description",
+        content:
+          "一个专注于技术|源码分享的IT技术平台，大家以共同学习，乐于分享，拥抱开源的价值观进行学习交流",
+      },
+    ],
+  },
   data() {
     return {
       //加密后请求服务器的参数
@@ -60,7 +77,8 @@ export default {
         pageNo: 1,
         pageSize: 6,
         //默认是以创建时间倒叙排序
-        sortField: "createTime",
+        sortField: "create_time",
+        type: "",
       },
     };
   },
@@ -76,6 +94,15 @@ export default {
   },
   created() {
     this.getList();
+    var param = getUrlKey("param", window.location.href);
+    if (param != null) {
+      //处理特殊字符的转义
+      var repData = param.replace(/ /g, "+");
+      let aesKey = getAes();
+      let dateJson = JSON.parse(AESDecrypt(repData, aesKey));
+      //授权
+      this.$store.dispatch("webLogin", dateJson).then(() => {});
+    }
   },
   mounted() {
     this.$nextTick(() => {

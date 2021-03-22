@@ -1,0 +1,100 @@
+version: '3'
+services:
+  elasticsearch:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/elasticsearch
+    container_name: elasticsearch
+    restart: "always"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+      - http.port=9200
+      - http.cors.enabled=true
+      - http.cors.allow-origin=*
+      - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+      - http.cors.allow-credentials=false
+      - bootstrap.memory_lock=true
+      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
+    volumes:
+      - ../data/elasticsearch_data/:/usr/share/elasticsearch/data:rw
+      - ../log/elfk/elasticsearch:/user/share/elasticsearch/logs:rw
+    networks:
+      - xiyan
+  
+
+
+  kibana:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/kibana
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      # 需要将Kibana配置文件中的小写转换成大写，然后这个才能用于变量，才能被设置到
+      - I18N_LOCALE=zh-CN
+      - xpack.monitoring.ui.container.elasticsearch.enabled=false
+    volumes:
+      - ../data/kibana_data:/usr/share/kibana/data
+      - ../log/elfk/kibana:/user/share/kibana/logs
+    ports:
+      - 5601:5601
+    networks:
+      - xiyan
+    depends_on:
+      - elasticsearch
+
+
+
+  logstash:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/logstash
+    container_name: logstash
+    environment:
+      NODE_NAME: logstash
+      # 閰嶇疆鏂囦欢鑷姩閲嶆柊鍔犺浇
+      CONFIG_RELOAD_AUTOMATIC: "true"
+      # 寮€鍚洃鎺?      XPACK_MONITORING_ENABLED: "true"
+      XPACK_MONITORING_ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
+    volumes:
+      - ../config/elfk/logstash/conf:/usr/share/logstash/pipeline
+      - ../config/elfk/logstash/conf/pipelines.yml:/usr/share/logstash/config/pipelines.yml
+      - ../data/logstash_data:/usr/share/logstash/data
+      - ../log/elfk/logstash:/user/share/logstash/logs
+    ports:
+      - 5044:5044
+    environment:
+      LS_JAVA_OPTS: "-Xmx512m -Xms512m"
+    networks:
+      - xiyan
+    depends_on:
+      - elasticsearch
+      - kibana
+ 
+    
+  filebeat:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/filebeat
+    container_name: filebeat
+    user: root
+    environment:
+      - BEAT_STRICT_PERMS=false
+    restart: always
+    networks:
+      - xiyan
+    volumes:
+      - ../config/elfk/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ../log/elfk/filebeat/:/opt/ 
+    depends_on:
+      - elasticsearch
+      - kibana
+      - logstash
+
+  es-head:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/es-head
+    container_name: es-head
+    restart: always
+    ports:
+      - "9100:9100"
+    networks:
+      - xiyan
+
+networks:
+  xiyan:
+    external: true

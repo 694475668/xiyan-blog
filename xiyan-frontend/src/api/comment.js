@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 export function list(data) {
     return request({
-        url: '/cms/comment/list',
+        url: '/web/comment/list',
         method: 'post',
         data
     })
@@ -10,7 +10,7 @@ export function list(data) {
 
 export function add(data) {
     return request({
-        url: '/cms/comment/add',
+        url: '/web/comment/add',
         method: 'post',
         data
     })

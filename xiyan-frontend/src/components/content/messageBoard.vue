@@ -56,6 +56,20 @@ import { list, add } from "@/api/message";
 import { getAes } from "@/utils/auth";
 import { AESEncrypt } from "@/api/aes";
 export default {
+  metaInfo: {
+    title: "留言板",
+    meta: [
+      {
+        name: "keywords",
+        content: "在线留言,留言,私密留言,评论",
+      },
+      {
+        name: "description",
+        content:
+          "提供在线留言,留言,私密留言,评论,为广大网友的开发工作提供便利。",
+      },
+    ],
+  },
   data() {
     return {
       //加密后请求服务器的参数
@@ -71,7 +85,9 @@ export default {
   },
   mounted() {
     //开启粒子特效
-    document.getElementById("particles-js").style.display = "block";
+    if (document.getElementById("particles-js") != null) {
+      document.getElementById("particles-js").style.display = "block";
+    }
   },
   methods: {
     getList() {

@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  zipkin:
+    image: registry.cn-shenzhen.aliyuncs.com/xiyan-blog/zipkin
+    container_name: zipkin
+    environment:
+      - STORAGE_TYPE=mysql
+      - MYSQL_DB=zipkin
+      - MYSQL_USER=root
+      - MYSQL_PASS=yoostar403
+      - MYSQL_HOST=mysql
+      - MYSQL_TCP_PORT=3306
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - STORAGE_TYPE=elasticsearch 
+      - ES_HOSTS=http://elasticsearch:9200
+    ports:
+      - 9411:9411
+    networks:
+      - xiyan
+
+networks:
+  xiyan:
+    external: true
