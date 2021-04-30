@@ -1,7 +1,10 @@
+# 夕颜博客
+<br>
+<br>
+<p align="center">
+  <img src="https://images.gitee.com/uploads/images/2021/0127/122407_d420f070_4856424.png "xiyan-logo.png" ></img>
+</p>
 
-
-# 夕颜博客 (集成K8S一键部署和Docker compose一键部署+集成支付)
-## 支持Linux系统|Windows系统一键部署夕颜博客，通过K8S或者Docker compose二套容器编排与管理
 <p align="center">
 <a target="_blank" https://gitee.com/bright-boy/xiyan-blog">
     	<img src="https://img.shields.io/hexpm/l/plug.svg" ></img>
@@ -24,22 +27,36 @@
 <img src="https://img.shields.io/badge/XXL-Job-ff69b4" ></img>
 <img src="https://img.shields.io/badge/Sentinel-blue" ></img>
 </a></p>
-<br>
-<p align="center">
-<a href='https://gitee.com/bright-boy/xiyan-blog/stargazers'><img src='https://gitee.com/bright-boy/xiyan-blog/badge/star.svg?theme=dark' alt='star'></img></a>
-<a href='https://gitee.com/bright-boy/xiyan-blog/members'><img src='https://gitee.com/bright-boy/xiyan-blog/badge/fork.svg?theme=dark' alt='fork'></img></a>
-</p>
-<p align="center">
-<a href='https://gitee.com/bright-boy/xiyan-blog'><img src='https://gitee.com/bright-boy/xiyan-blog/widgets/widget_3.svg' alt='Fork me on Gitee'></img></a>
-</p>
+
 
 ### 介绍
-夕颜博客，一个基于微服务架构的前后端分离博客源码系统。Web端使用Vue + iView , 并且很好的适配移动端。后端使用SpringCloudAlibaba + mybatis-plus进行开发，使用 Jwt 做登录验证，使用ElasticSearch作为全文检索服务，使用sentinel实现网关限流，熔断，降级，使用zipkin实现链路追踪，使用seate实现分布式事务，使用spring cloud stream 消息队列使用kafka，分布式任务调度XXL-JOB，使用ELK+Kafka+Filebeat日志收集，文件上传使用七牛云,数据加密AES,SEO优化加快爬虫抓取,个人免签支付系统采用的技术是SpringBoot+Layui+DB2+JPA，支持Linux和Windows一键部署夕颜博客系统，非常适合需要学习微服务的人才，采用K8S和docker compose二种容器编排模式,  ， **如果不喜欢粒子特效的可以在App.vue里面进行注释** 
+夕颜博客，一个基于微服务架构的前后端分离博客源码系统。Web端使用Vue + iView , 并且很好的适配移动端，目前支付宝小程序，微信小程序版，QQ小程序版，百度小程序版，字节跳动小程序版，Android版，IOS版，快应用版，360小程序版，H5版，采用的技术uniapp进行开发，一套代码发布10个平台，后端使用SpringCloudAlibaba + mybatis-plus进行开发，使用 Jwt 做登录验证，使用ElasticSearch作为全文检索服务，使用sentinel实现网关限流，熔断，降级，使用zipkin实现链路追踪，使用seate实现分布式事务，使用spring cloud stream 消息队列使用kafka，分布式任务调度XXL-JOB，使用ELK+Kafka+Filebeat日志收集，文件上传使用七牛云,数据加密AES,采用Nuxt.js作为服务端SSR渲染，加快SEO优化加快爬虫抓取,有Vue和Nuxt二套前端源码，个人免签支付系统采用的技术是SpringBoot+Layui+DB2+JPA，支持Linux和Windows一键部署夕颜博客系统，非常适合需要学习微服务的人才，采用K8S和docker compose二种容器编排模式 **如果不喜欢粒子特效的可以在App.vue里面进行注释** 
 <br>
 <br>
 ### QQ群欢迎各位一起来交流技术，探讨技术，互相学习
 
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0224/120440_39a64794_4856424.jpeg "IMG_0112(20210223-184551).JPG")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0323/215236_dda1a80d_4856424.jpeg "120440_39a64794_4856424_gaitubao_300x534.jpg")
+
+### 站点演示
+【夕颜SEO优化Nuxt前端】：https://xiyanit.cn/ <br>
+【夕颜Vue前端】：https://vue.xiyanit.cn/ <br>
+【夕颜支付】：https://pay.xiyanit.cn/ <br>
+【夕颜后台管理系统】：https://manage.xiyanit.cn/
+
+| 字节跳动小程序版  | 微信小程序版  |
+|---|---|
+| 平台审核中，敬请期待  | <img src="./doc/wechat.jpg" width="200"/>  |
+| 百度小程序版  | QQ小程序版  |
+| 平台审核中，敬请期待  | 平台审核中，敬请期待  |
+|  支付宝小程序版 | 360小程序版  |
+|  <img src="./doc/ali.jpg" width="200"/> |  平台审核中，敬请期待 |
+| IOS版  |  Android版  |
+| 平台审核中，敬请期待  | <img src="./doc/app.png" width="200"/>  |
+| 快应用版  | H5版  |
+| 平台审核中，敬请期待  | <img src="./doc/h5.png" width="200"/>  |
+
+
+
 ### 系统架构图
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/1229/172528_428cdedf_4856424.png "总体架构图.png")
@@ -99,8 +116,6 @@
 |       wangeditor | wangeditor富文本编辑器  |           http://www.wangeditor.com/            |
 |       v-viewer| 富文本图片预览插件  |           https://www.npmjs.com/package/v-viewer            |
 |       vue-monoplasty-slide-verify| vue滑动验证码  |           https://github.com/monoplasty/vue-monoplasty-slide-verify            |
-|       prerender-spa-plugin| 预渲染插件  |           https://www.npmjs.com/package/prerender-spa-plugin            |
-|       vue-meta-info| 动态设置meta标签插件  |           https://www.npmjs.com/package/vue-meta-info            |
 
 ### 环境要求
 
@@ -141,16 +156,22 @@ nacos，nginx，kafka， redis，mysql，xiyan-gateway，cms-service，oss-servi
      1.2. docker compose 一键部署脚本 <br>
      1.3. 本地后端和前端构建镜像脚本 <br>
      1.4. K8S 一键部署博客脚本 <br>
+     1.5. Nginx部署配置文件 <br>
 2. - xiyan-parent<br>
         2.1. - xiyan-gateway gateway 网关<br>
         2.2. - xiyan-web-service 夕颜web服务<br>
         2.3. - oss-service 文件服务<br>
-        2.4. - system-base-service 用户认证服务<br>
-        2.5. - search-service 搜索服务<br>
-        2.6. - admin-server Spring Boot Admin监控服务
-3. - xiyan-frontend 夕颜源码前端
-4. - xiyan-pay 夕颜个人免签支付
-5. - xxl-job 分布式调度任务
+        2.4. - system-base-service 系统基础服务<br>
+        2.5. - backstage-service 夕颜后台服务<br>
+        2.6. - user-oauth2-auth 认证服务<br>
+        2.7. - user-oauth2-auth-api 认证Feign调用api<br>
+        2.8. - search-service 搜索服务<br>
+        2.9. - admin-server Spring Boot Admin监控服务
+3. - nuxt-xiyan-frontend 夕颜源码Nuxt前端
+4. - vue-xiyan-frontend 夕颜源码Vue前端
+5. - vue-xiyan-backstage 夕颜源码后台管理系统
+6. - xiyan-pay 夕颜个人免签支付
+7. - xxl-job 分布式任务调度
 
 ### 项目地址
 
@@ -163,10 +184,6 @@ Github地址：https://github.com/694475668/xiyan-blog
 
 https://bright-boy.gitee.io/docs
 
-
-### 站点演示
-【夕颜前端】：http://xiyanit.cn/ <br>
-【夕颜后台】：开发中。。。。。。。
 
 ### 后期计划：
 
@@ -182,12 +199,15 @@ https://bright-boy.gitee.io/docs
 - [x] &nbsp;&nbsp;&nbsp;集成Spring Security安全框架<br>
 - [x] &nbsp;&nbsp;&nbsp;在线留言板<br>
 - [x] &nbsp;&nbsp;&nbsp;第三方QQ，微博登陆<br>
-- [x] &nbsp;&nbsp;&nbsp;Vue单页面动态SEO优化<br>
+- [x] &nbsp;&nbsp;&nbsp;Vue改造Nuxt<br>
 - [x] &nbsp;&nbsp;&nbsp;K8S部署夕颜博客<br>
+- [x] &nbsp;&nbsp;&nbsp;后台管理系统<br>
+- [x] &nbsp;&nbsp;&nbsp;夕颜博客App<br>
+- [x] &nbsp;&nbsp;&nbsp;夕颜博客小程序<br>
 - [ ] &nbsp;&nbsp;&nbsp;在线聊天<br>
+- [ ] &nbsp;&nbsp;&nbsp;夕颜App扫码登录web端<br>
 - [ ] &nbsp;&nbsp;&nbsp;夕颜课堂<br>
 - [ ] &nbsp;&nbsp;&nbsp;个人中心<br>
-- [ ] &nbsp;&nbsp;&nbsp;后台管理系统<br>
 
 ### 项目中初始用户和密码
 Mysql：用户：root，密码：yoostar403<br>
@@ -196,6 +216,24 @@ Nacos管理页面： 用户：nacos，密码：nacos<br>
 Sentinel管理页面： 用户：sentinel，密码：sentinel<br>
 xxl-job： 用户：admin，密码：123456<br>
 支付： 用户：admin，密码：admin<br>
+
+### Vue改Nuxt全面的SEO收录报告
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0420/094641_ab50e532_4856424.png "QQ截图20210420094352.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0420/094706_61d270ef_4856424.png "QQ截图20210420094509.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0420/094713_a0d314b4_4856424.png "QQ截图20210420094540.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0420/094723_fc5a202c_4856424.png "QQ截图20210420094553.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0420/094730_2dc0b17d_4856424.png "QQ截图20210420094602.png")
+
+### 小程序，App截图
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0429/220223_322a9cb6_4856424.png "QQ截图20210429215850.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0429/220232_b38f2428_4856424.png "QQ截图20210429215909.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0429/220243_820fbe62_4856424.png "QQ截图20210429215933.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0429/220307_c73a0af4_4856424.png "QQ截图20210429215955.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0429/220315_bbcce819_4856424.png "QQ截图20210429220013.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0429/220322_bdfeca87_4856424.png "QQ截图20210429220026.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0429/220329_b6a6bb7b_4856424.png "QQ截图20210429220110.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0429/220337_92ec7ee6_4856424.png "QQ截图20210429220136.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0429/220346_5f422bc9_4856424.png "QQ截图20210429220206.png")
 
 ### 移动端截图
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/1229/183856_a3d62b60_4856424.png "QQ截图20201229183512.png")
@@ -222,6 +260,9 @@ xxl-job： 用户：admin，密码：123456<br>
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0112/151414_4e33d184_4856424.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0112/151432_d52a0029_4856424.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0112/151450_b7b32234_4856424.png "屏幕截图.png")
+
+说说交流栏目
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0328/184218_62651915_4856424.png "QQ截图20210328184158.png")
 金币充值栏目
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/1229/184751_28070bcc_4856424.png "QQ截图20201229184557.png")
 排行榜栏目
@@ -237,7 +278,17 @@ xxl-job： 用户：admin，密码：123456<br>
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0112/151627_0c0c4c58_4856424.png "屏幕截图.png")
 评论
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0112/163907_59e3cfc8_4856424.png "屏幕截图.png")
-支付截图
+
+### 夕颜后台管理系统第一版
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0416/150310_c421cbcf_4856424.png "QQ截图20210416150210.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0416/150322_d3b3f6c4_4856424.png "QQ截图20210416150219.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0416/150331_5ca2de84_4856424.png "QQ截图20210416150227.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0416/150340_43f4950c_4856424.png "QQ截图20210416150236.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0416/150350_850a0444_4856424.png "QQ截图20210416150245.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0416/150359_277d912c_4856424.png "QQ截图20210416150252.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0416/150407_fda8a155_4856424.png "QQ截图20210416150302.png")
+
+### 支付系统
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0112/171011_7ad727f0_4856424.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0112/171023_5e9a10e9_4856424.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0112/171033_54a27e37_4856424.png "屏幕截图.png")
