@@ -2,7 +2,7 @@
 <br>
 <br>
 <p align="center">
-  <img src="https://images.gitee.com/uploads/images/2021/0127/122407_d420f070_4856424.png "xiyan-logo.png" ></img>
+ <img src="https://images.gitee.com/uploads/images/2021/0127/122407_d420f070_4856424.png" ></img>	
 </p>
 
 <p align="center">
