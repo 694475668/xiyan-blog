@@ -1,4 +1,4 @@
-management:
+﻿management:
   # 端点检查（健康检查）
   endpoints:
     web:
@@ -8,8 +8,8 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: nacos:8848
-        namespace: prod
+        server-addr: 127.0.0.1:8848
+        namespace: c8ae8be9-471e-4fa5-a5a0-9dfa8bc3d216
     gateway:
       #处理跨域
       globalcors:
@@ -38,7 +38,7 @@ spring:
         - id: service-2
           uri: lb://xiyan-web-service
           predicates:
-            - Path=/web/article/byId/*
+            - Path=/web/article/by/*
           filters:
           #不开启token验证
             - Authorize=false
@@ -65,7 +65,7 @@ spring:
         - id: service-5
           uri: lb://xiyan-web-service
           predicates:
-            - Path=/web/code/byId/*
+            - Path=/web/code/by/*
           filters:
           #不开启token验证
             - Authorize=false
@@ -179,9 +179,44 @@ spring:
           #不开启token验证
             - Authorize=false
             - StripPrefix=1
-
-
+        
         - id: service-18
+          uri: lb://xiyan-web-service
+          predicates:
+            - Path=/web/talk/list
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-19
+          uri: lb://xiyan-web-service
+          predicates:
+            - Path=/web/talk/by/*
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+        
+        - id: service-20
+          uri: lb://xiyan-web-service
+          predicates:
+            - Path=/web/talk/browse/*
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-21
+          uri: lb://xiyan-web-service
+          predicates:
+            - Path=/web/write
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-22
           uri: lb://xiyan-web-service
           predicates:
             - Path=/web/**
@@ -190,7 +225,7 @@ spring:
             - Authorize=true
             - StripPrefix=1
 
-        - id: service-19
+        - id: service-23
           uri: lb://oss-service
           predicates:
             - Path=/oss/**
@@ -199,7 +234,7 @@ spring:
             - Authorize=true
             - StripPrefix=1
 
-        - id: service-20
+        - id: service-24
           uri: lb://search-service
           predicates:
             - Path=/search/technology/list
@@ -208,7 +243,7 @@ spring:
             - Authorize=false
             - StripPrefix=1
 
-        - id: service-21
+        - id: service-25
           uri: lb://search-service
           predicates:
             - Path=/search/**
@@ -217,88 +252,115 @@ spring:
             - Authorize=true
             - StripPrefix=1
         
-        - id: service-22
-          uri: lb://system-base-service
+        - id: service-26
+          uri: lb://user-oauth2-auth
           predicates:
-            - Path=/system/qq/login
+            - Path=/auth/qq/login
           filters:
           #开启token验证
             - Authorize=false
             - StripPrefix=1
         
-        - id: service-23
-          uri: lb://system-base-service
-          predicates:
-            - Path=/system/user/send
-          filters:
-          #不开启token验证
-            - Authorize=false
-            - StripPrefix=1
-
-        - id: service-24
-          uri: lb://system-base-service
-          predicates:
-            - Path=/system/user/register
-          filters:
-          #不开启token验证
-            - Authorize=false
-            - StripPrefix=1
-
-        - id: service-25
-          uri: lb://system-base-service
-          predicates:
-            - Path=/system/user/retrieve
-          filters:
-          #不开启token验证
-            - Authorize=false
-            - StripPrefix=1
-        
-        - id: service-26
-          uri: lb://system-base-service
-          predicates:
-            - Path=/system/qq/back
-          filters:
-          #不开启token验证
-            - Authorize=false
-            - StripPrefix=1
-
         - id: service-27
-          uri: lb://system-base-service
+          uri: lb://user-oauth2-auth
           predicates:
-            - Path=/system/weibo/back
+            - Path=/auth/user/send
           filters:
           #不开启token验证
             - Authorize=false
             - StripPrefix=1
-        
+
         - id: service-28
-          uri: lb://system-base-service
+          uri: lb://user-oauth2-auth
           predicates:
-            - Path=/system/leaderboard/**
+            - Path=/auth/user/register
           filters:
           #不开启token验证
             - Authorize=false
             - StripPrefix=1
 
         - id: service-29
-          uri: lb://system-base-service
+          uri: lb://user-oauth2-auth
           predicates:
-            - Path=/system/user/by
+            - Path=/auth/user/retrieve
           filters:
           #不开启token验证
             - Authorize=false
             - StripPrefix=1
-
+        
         - id: service-30
-          uri: lb://system-base-service
+          uri: lb://user-oauth2-auth
           predicates:
-            - Path=/system/user/update
+            - Path=/auth/qq/back
           filters:
           #不开启token验证
             - Authorize=false
             - StripPrefix=1
 
         - id: service-31
+          uri: lb://user-oauth2-auth
+          predicates:
+            - Path=/auth/weibo/back
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+        
+        - id: service-32
+          uri: lb://user-oauth2-auth
+          predicates:
+            - Path=/auth/leaderboard/**
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-33
+          uri: lb://user-oauth2-auth
+          predicates:
+            - Path=/auth/user/by
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-34
+          uri: lb://user-oauth2-auth
+          predicates:
+            - Path=/auth/user/update
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-35
+          uri: lb://user-oauth2-auth
+          predicates:
+            - Path=/auth/user/login
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+
+        - id: service-36
+          uri: lb://user-oauth2-auth
+          predicates:
+            - Path=/auth/**
+          filters:
+          #不开启token验证
+            - Authorize=true
+            - StripPrefix=1
+
+        - id: service-37
+          uri: lb://system-base-service
+          predicates:
+            - Path=/system/dictionary/by/name
+          filters:
+          #不开启token验证
+            - Authorize=false
+            - StripPrefix=1
+        
+        - id: service-38
           uri: lb://system-base-service
           predicates:
             - Path=/system/user/login
@@ -307,11 +369,19 @@ spring:
             - Authorize=false
             - StripPrefix=1
 
-        
-        - id: service-32
+        - id: service-39
           uri: lb://system-base-service
           predicates:
             - Path=/system/**
+          filters:
+          #不开启token验证
+            - Authorize=true
+            - StripPrefix=1
+
+        - id: service-40
+          uri: lb://backstage-service
+          predicates:
+            - Path=/backstage/**
           filters:
           #不开启token验证
             - Authorize=true
@@ -323,13 +393,13 @@ spring:
         gate-way-flow: 
           nacos:
             #如果你的配置分为了很多的环境，那么这个一定要配置，不然会出现找不到
-            namespace: prod
+            namespace: c8ae8be9-471e-4fa5-a5a0-9dfa8bc3d216
             data-id: xiyan-gateway-rules
             group-id: DEFAULT_GROUP
             rule-type: gw_flow
-            server-addr: nacos:8848
+            server-addr: 127.0.0.1:8848
       transport:
-        dashboard: sentinel:8888  
+        dashboard: 127.0.0.1:8888  
     # gateway 流控规则持久化配置  
       # 限流返回的响应
       scg:
@@ -339,7 +409,7 @@ spring:
           response-body: 您操作过快，请稍后在试!   
             #springCloudSleuth
   zipkin:
-    baseUrl: http://zipkin:9411/
+    baseUrl: http://127.0.0.1:9411/
     enabled: true
     sender: 
       type: kafka
@@ -350,13 +420,26 @@ spring:
     sampler: 
       probability: 1
   kafka: 
-    bootstrap-servers: kafka-service:9092
+    bootstrap-servers: 127.0.0.1:9092
   redis: 
-    host: redis
+    host: 127.0.0.1
     port: 6379
-    timeout: 5000
     password: yoostar403
+    timeout: 5000
     cache:
       expires: -1
 # 序列化key
 redis-key: xiyan
+
+
+#需要放行的授权接口
+exclude: 
+ path:
+  - /system/dictionary/by
+  - /system/resource/by
+  - /system/role/by
+  - /system/user/by
+  - /system/black/by
+  - /oss
+  - /web/article/by
+  - /web/code/by

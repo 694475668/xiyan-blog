@@ -1,0 +1,39 @@
+
+J
+java:S3740@"/Provide the parametrized type for this generic.(ÎêÙûÿÿÿÿ
+J
+java:S3740@"/Provide the parametrized type for this generic.(ÎêÙûÿÿÿÿ
+J
+java:S3740P"/Provide the parametrized type for this generic.(ü´Èüøÿÿÿÿ
+J
+java:S3740P"/Provide the parametrized type for this generic.(ü´Èüøÿÿÿÿ
+a
+java:S1192e"FDefine a constant instead of duplicating this literal "user_" 5 times.(ÏÅÉáÿÿÿÿÿ
+³
+java:S4449’"”Annotate the parameter with @javax.annotation.Nullable in method 'copyProperties' declaration, or make sure that null can not be passed as argument.(Ï¶Â­8ç°–³‘/
+@
+java:S5411B"*Use the primitive boolean expression here.(‹âöë
+E
+java:S5411e"*Use the primitive boolean expression here.(ÏÅÉáÿÿÿÿÿ
+M
+java:S5411"*Use the primitive boolean expression here.(ÏÅÉáÿÿÿÿÿ8Á ”³‘/
+P
+java:S4973ß"9Use the "equals" method if value comparison was intended.(¿Ö–­
+U
+java:S4973ä"9Use the "equals" method if value comparison was intended.(§º¥ûÿÿÿÿ
+U
+java:S4973î"9Use the "equals" method if value comparison was intended.(Œ†ì–øÿÿÿÿ
+`
+java:S3252D"EUse static access with "com.alibaba.fastjson.JSON" for "parseObject".(ÈØ¢°şÿÿÿÿ
+\
+java:S3252J"FUse static access with "com.alibaba.fastjson.JSON" for "toJSONString".(¨ ³ö
+N
+java:S1854d"8Remove this useless assignment to local variable "user".(…èØ¦
+`
+java:S3252g"EUse static access with "com.alibaba.fastjson.JSON" for "parseObject".(û†”Üùÿÿÿÿ
+\
+java:S3252k"FUse static access with "com.alibaba.fastjson.JSON" for "toJSONString".(æŠ½œ
+d
+java:S5361…"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ÓÃÑèúÿÿÿÿ
+c
+java:S3252"EUse static access with "com.alibaba.fastjson.JSON" for "parseObject".(ò¾Ş8÷ ”³‘/

@@ -31,4 +31,14 @@ public class Constant {
      * 如果为0不加密  为空加密
      */
     public static final String ENCRYPTION_FLAG = "0";
+
+    /**
+     * 认证资源
+     */
+    public static final String AUTH_USER_KEY = "xiyan_user_";
+
+    /**
+     * 黑名单redis列表标识
+     */
+    public static final String BLACK_LIST_KEY = "black-list";
 }

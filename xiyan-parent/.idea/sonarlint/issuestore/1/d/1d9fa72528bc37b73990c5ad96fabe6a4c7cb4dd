@@ -1,0 +1,16 @@
+
+E
+java:S3740f"/Provide the parametrized type for this generic.(¹»æý
+J
+java:S1066B"/Merge this if statement with the enclosing one.(‘Ã—Žùÿÿÿÿ
+[	java:S112¡"FDefine and throw a dedicated exception instead of using a generic one.(œÿ€:
+x
+java:S1488¥"aImmediately return this expression instead of assigning it to the temporary variable "substring".(¼‰Äõ
+m
+java:S37760"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(‹ËÃóÿÿÿÿÿ
+W
+java:S1874]"<Remove this use of "DefaultServerRequest"; it is deprecated.(ë®´…úÿÿÿÿ
+i	java:S100—"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(þåóßüÿÿÿÿ
+i	java:S100µ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºìÁóüÿÿÿÿ
+W
+java:S3252½"@Use static access with "com.alibaba.fastjson.JSON" for "toJSON".(†Òáó

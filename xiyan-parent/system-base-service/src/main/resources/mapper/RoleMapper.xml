@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiyan.mapper.RoleMapper">
+    <select id="queryRoleByUserId" resultType="RoleDO">
+        SELECT r.id, r.name
+        FROM t_user_role t
+                 INNER JOIN t_role r ON t.role_id = r.id
+        WHERE user_id = #{userId}
+    </select>
+
+
+    <insert id="addResourceRole">
+        insert into t_role_resource values
+        <foreach collection="resourceList" item="resourceId" index="index" separator=",">
+            (#{roleId},#{resourceId})
+        </foreach>
+    </insert>
+
+
+    <select id="hasUser" resultType="Integer">
+        select count(1)
+        from t_user_role t
+        where t.role_id = #{roleId}
+    </select>
+
+
+    <delete id="delResourceRoleByRoleId">
+        delete
+        from t_role_resource
+        where role_id = #{roleId}
+    </delete>
+</mapper>

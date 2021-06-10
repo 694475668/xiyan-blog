@@ -21,15 +21,9 @@ public class UserByIdVO extends BaseVO {
     @ApiModelProperty(value = "名称")
     private String name;
 
-    @ApiModelProperty(value = "头像")
-    private String photo;
+    @ApiModelProperty(value = "名称")
+    private String phone;
 
-    @ApiModelProperty(value = "金币")
-    private Integer point;
-
-    @ApiModelProperty(value = "状态")
-    private String state;
-
-    @ApiModelProperty(value = "是否是会员")
-    private String isMember;
+    @ApiModelProperty(value = "邮箱")
+    private String email;
 }

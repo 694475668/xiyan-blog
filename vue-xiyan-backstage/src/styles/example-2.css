@@ -1,0 +1,679 @@
+.example.example-2 {
+    background-color: #fff;
+}
+
+.example.example-2 * {
+    font-family: Inter UI, Open Sans, Segoe UI, sans-serif;
+}
+
+.example.example-2 form {
+    max-width: 707px !important;
+    padding: 0 15px;
+}
+
+.example.example-2 form>*+* {
+    margin-top: 20px;
+}
+
+.example.example-2 .container {
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    padding: 3px;
+}
+
+main>.container-lg .example.submitted #fields-form-example-2 {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+}
+
+.example.example-2 fieldset {
+    border-style: none;
+    padding: 5px;
+    margin-left: -5px;
+    margin-right: -5px;
+    background: rgba(18, 91, 152, 0.05);
+    border-radius: 8px;
+}
+
+.example.example-2 fieldset legend {
+    float: left;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    color: #8898aa;
+    padding: 3px 10px 7px;
+}
+
+.example.example-2 .card-only {
+    display: block;
+}
+
+.example.example-2 .payment-request-available {
+    display: none;
+}
+
+.example.example-2 fieldset legend+* {
+    clear: both;
+}
+
+.example.example-2 input,
+.example.example-2 button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border-style: none;
+}
+
+.example.example-2 button {
+    color: #fff;
+}
+
+.example.example-2 input:-webkit-autofill {
+    transition: background-color 100000000s;
+    -webkit-animation: 1ms void-animation-out;
+}
+
+.example.example-2 #example-2-card {
+    padding: 10px;
+    margin-bottom: 2px;
+}
+
+.example.example-2 input {
+    -webkit-animation: 1ms void-animation-out;
+}
+
+.example.example-2 input::-webkit-input-placeholder {
+    color: #B8BBC0;
+}
+
+.example.example-2 input::-moz-placeholder {
+    color: #B8BBC0;
+}
+
+.example.example-2 input:-ms-input-placeholder {
+    color: #B8BBC0;
+}
+
+.example.example-2 button {
+    display: block;
+    width: 100%;
+    height: 37px;
+    background-color: #E60023;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.example.example-2 button:active {
+    background-color: #E60023;
+}
+
+.example.example-2 .error svg .base {
+    fill: #e25950;
+}
+
+.example.example-2 .error svg .glyph {
+    fill: #f6f9fc;
+}
+
+.example.example-2 .error .message {
+    color: #e25950;
+}
+
+.example.example-2 .success .icon .border {
+    stroke: #21a35b;
+}
+
+.example.example-2 .success .icon .checkmark {
+    stroke: #266b45;
+}
+
+.example.example-2 .success .title {
+    color: #32325d;
+}
+
+.example.example-2 .success .message {
+    color: #8898aa;
+}
+
+.example.example-2 .success .reset path {
+    fill: #E60023;
+}
+
+.example.example-2 .field {
+    height: 50px;
+    width: 516px;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.example.example-2 .field.half {
+    display: inline-block;
+    width: 253px;
+    vertical-align: top;
+    margin-right: 3.5px;
+}
+
+.example.example-2 .field.half+.half {
+    margin-left: 3.5px;
+    margin-right: 0px;
+}
+
+.example.example-2 .field.cuarter {
+    display: inline-block;
+    width: 122px;
+    vertical-align: top;
+    margin-right: 3.5px;
+}
+
+.example.example-2 .field.cuarter+.cuarter {
+    margin-left: 3.5px;
+    margin-right: 0px;
+}
+
+.example.example-2 .field label {
+    display: block;
+    color: #29303B;
+    font-size: 15px;
+    font-family: PingFangSC-Semibold
+}
+
+.example.example-2 .field.newPayment {
+    padding-top: 21px;
+    margin-bottom: 0px;
+}
+
+.example.example-2 .newPayment label {
+    width: fit-content;
+    float: left;
+}
+
+.example.example-2 .containerX {
+    margin-left: 26px;
+}
+
+.example.example-2 .exampleX {
+    max-width: 707px;
+    padding-bottom: 20px;
+}
+
+.example.example-2 .exampleX::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.example.example-2 .custom input {
+    -webkit-appearance: none;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: block;
+    font-size: 15px;
+    width: 100%;
+    border: 1px solid #CACBCC;
+    height: 50px;
+    padding: 0px 12px;
+    background: white;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    border-radius: 2px;
+}
+
+.example.example-2 .custom select {
+    -webkit-appearance: none;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: block;
+    font-size: 15px;
+    width: 100%;
+    border: 1px solid #CACBCC;
+    height: 50px;
+    margin-left: 3px;
+    width: calc(100% - 3px);
+    padding: 0px 7px;
+    background: white;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+
+.example.example-2 ::placeholder {
+    color: #B8BBC0;
+}
+
+.example.example-2 .custom input::-moz-placeholder {
+    color: #aab7c4;
+}
+
+.example.example-2 .custom input::-webkit-input-placeholder {
+    color: #aab7c4;
+}
+
+.example.example-2 .custom .fitInput {
+    width: fit-content;
+    float: left;
+}
+
+.example.example-2 .brand-img {
+    margin-right: 13px;
+}
+
+.example.example-2 .brand-img.visa {
+    height: 13.42px;
+    float: left;
+    margin-top: 1px;
+}
+
+.example.example-2 .brand-img.first {
+    margin-left: 26px;
+}
+
+.example.example-2 .brand-img.mastercard {
+    height: 20px;
+    float: left;
+    margin-top: -4px;
+}
+
+.example.example-2 .brand-img.amex {
+    height: 20px;
+    float: left;
+    margin-top: -4px;
+}
+
+.example.example-2 .brand-img.discover {
+    height: 8px;
+    float: left;
+    margin-top: 2px;
+}
+
+.example.example-2 .custom button {
+    border-color: transparent;
+    border-radius: 2px;
+    outline: none;
+    text-decoration: none;
+    color: #fff;
+    background: #E60023;
+    white-space: nowrap;
+    height: 50px;
+    width: 269px;
+    line-height: 50px;
+    padding: 0 14px;
+    font-size: 18px;
+    letter-spacing: 0.025em;
+    text-decoration: none;
+    -webkit-transition: all 150ms ease;
+    transition: all 150ms ease;
+    float: left;
+    font-family: PingFangSC-Semibold;
+}
+
+.example.example-2 .custom hr {
+    background-color: #DEDFE0;
+    height: 1px;
+    border: 0;
+    margin-left: -27px;
+    margin-bottom: 30px;
+}
+
+.example.example-2 .terms {
+    font-size: 11px !important;
+    width: 217px;
+    float: left;
+    margin-left: 28px;
+    margin-top: 14px;
+}
+
+.example.example-2 #container {
+    height: 50px;
+}
+
+.example.example-2 .field.fieldCheck {
+    margin-bottom: 11px;
+    margin-top: 14px;
+    height: fit-content;
+    font-family: PingFangSC-Semibold
+}
+
+.example.example-2 .secureConnection {
+    font-size: 11px;
+    width: 91px;
+    float: left;
+    margin-left: 28px;
+    margin-top: 14px;
+    color: #CACBCC;
+}
+
+.example.example-2 .secureConnection img {
+    float: left;
+    height: 30px;
+    margin-top: -5px;
+}
+
+.example.example-2 .secureConnection label {
+    margin-left: 8px;
+    float: left;
+    width: 61px;
+    margin-top: 3px;
+}
+
+.example.example-2 .errorMsgContainer {
+    margin-top: 15px;
+}
+
+.example.example-2 .helpError {
+    font-size: 11px;
+    max-height: 30px;
+    color: #686f7a;
+    margin-bottom: 0;
+    visibility: hidden;
+    transition: visibility 0.2s ease-out 0.25s;
+}
+
+.example.example-2 .hasError .helpError {
+    visibility: visible;
+}
+
+.example.example-2 .field.hasError {
+    transition: margin-bottom 0.2s ease-out 0.25s;
+    margin-bottom: 36px;
+}
+
+.example.example-2 .Field--required .DlocalField {
+    border: 1px solid #E60023;
+}
+
+.example.example-2 .Field--required .helpError {
+    visibility: visible;
+}
+
+.example.example-2 .DlocalField {
+    background-color: white;
+    height: 50px;
+    padding: 10px 12px;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+    border: 1px solid #CACBCC;
+}
+
+.example.example-2 .Field--required .DlocalField--empty {
+    border: 1px solid #E60023;
+}
+
+.example.example-2 .Field--required .DlocalField--complete {
+    border: 1px solid #CACBCC;
+}
+
+.example.example-2 .DlocalField--invalid {
+    border: 1px solid #E60023;
+}
+
+.example.example-2 .DlocalField--invalid .helpError {
+    visibility: visible;
+}
+
+.example.example-2 .custom .hasError select:required,
+.example.example-2 .custom .hasError input:required {
+    border-color: #E60023;
+}
+
+.example.example-2 .custom select:focus,
+.example.example-2 .custom input:focus {
+    border: 1px solid #CACBCC;
+}
+
+.example.example-2 .tooltipContainer {
+    position: absolute;
+    height: 30px;
+    top: 19px;
+    right: 15px;
+}
+
+.example.example-2 .tooltipImage {
+    height: 16px;
+}
+
+.example.example-2 .tooltipInner {
+    visibility: hidden;
+    position: absolute;
+    top: -95px;
+    left: -94px;
+    height: 20px;
+    z-index: 5;
+}
+
+.example.example-2 .tooltipImage:hover+.tooltipInner {
+    visibility: visible;
+    transition: visibility 0.2s linear 0.25s;
+}
+
+.example.example-2 .tooltipInnerImage {
+    height: 70px;
+}
+
+
+/* 
+LOADER
+*/
+
+
+/* Center the loader */
+
+.example.example-2 .loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 100;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #E60023;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+.example.example-2 #panOverlay {
+    visibility: hidden;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Add animation to "page content" */
+
+.animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+    to {
+        bottom: 0px;
+        opacity: 1
+    }
+}
+
+@keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+
+/* autocomplete*/
+
+.example.example-2 input:-webkit-autofill,
+.example.example-2 input:-webkit-autofill:hover,
+.example.example-2 input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #fefde5 inset;
+    box-shadow: 0 0 0px 1000px #fefde5 inset;
+}
+
+.example.example-2 #customContainer {
+    visibility: hidden;
+    opacity: 0;
+    background: #F8F8F9;
+}
+
+@media screen and (max-width: 720px) {
+    .example.example-2 .secureConnection {
+        float: none;
+        width: fit-content;
+        margin-left: 298px;
+    }
+    .example.example-2 .exampleX {
+        height: fit-content;
+    }
+    .example.example-2 .custom button {
+        margin-bottom: 20px;
+    }
+    .example.example-2 .terms {
+        margin-bottom: 20px;
+    }
+    .example.example-2 .field {
+        width: calc(100% - 13px);
+    }
+    .example.example-2 .field.field.half {
+        width: calc(100% - 13px);
+    }
+    .example.example-2 .field.half+.half {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .example.example-2 .field.cuarter {
+        width: calc(50% - 13px);
+    }
+    .example.example-2 .terms {
+        margin-top: 0px;
+        margin-left: 0px;
+        float: left;
+        width: 50%;
+    }
+    .example.example-2 .secureConnection {
+        float: left;
+        margin-left: 25px;
+        margin-top: 0px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .example.example-2 .newPayment label {
+        width: 100%;
+    }
+    .example.example-2 .brand-img.visa {
+        margin-left: 33px;
+    }
+    .example.example-2 .field.newPayment {
+        margin-bottom: 30px;
+    }
+    .example.example-2 .secureConnection {
+        float: none;
+        width: fit-content;
+        margin-left: 0px;
+    }
+    .example.example-2 .terms {
+        margin-left: 0px;
+        width: 100%;
+    }
+    .example.example-2 #customContainer {
+        border-radius: unset;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .example.example-2 .exampleX {
+        width: 100%;
+        border: none;
+        margin-top: unset;
+        margin-bottom: unset;
+    }
+    .example.example-2 .containerX {
+        margin-left: 0px;
+    }
+    .example.example-2 .field.field.half {
+        width: 100%;
+        margin-right: 0px;
+    }
+    .example.example-2 .field.cuarter {
+        width: calc(50% - 6px);
+    }
+    .example.example-2 .field {
+        width: 100%;
+    }
+    .example.example-2 .tooltipInner {
+        left: -102px;
+    }
+    .example.example-2 .custom button {
+        width: 100%;
+    }
+    .example.example-2 .custom select {
+        margin-left: 0px;
+        width: 100%;
+    }
+    .example.example-2 .custom hr {
+        width: calc(100% + 30px);
+        margin-left: -13px;
+    }
+}
+
+@media screen and (max-width: 310px) {
+    .example.example-2 .brand-img.mastercard {
+        margin-right: 70px;
+    }
+    .example.example-2 .brand-img.amex {
+        margin-left: 33px;
+        margin-top: 4px;
+    }
+    .example.example-2 .brand-img.discover {
+        margin-top: 9px;
+    }
+    .example.example-2 .field.newPayment {
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 270px) {
+    .example.example-2 .brand-img.mastercard {
+        margin-right: 40px;
+    }
+    .example.example-2 .field.newPayment {
+        margin-bottom: 70px;
+    }
+}

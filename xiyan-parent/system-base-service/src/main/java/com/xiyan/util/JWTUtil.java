@@ -1,6 +1,5 @@
 package com.xiyan.util;
 
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -23,11 +22,11 @@ public class JWTUtil {
      * 生成Token
      *
      * @param userId
-     * @param username
+     * @param userName
      * @return
      * @throws Exception
      */
-    public static String createToken(String userId, String username) {
+    public static String createToken(String userId, String userName) {
         Calendar nowTime = Calendar.getInstance();
         nowTime.add(Calendar.SECOND, Constant.JWT_TTL);
         Date expireDate = nowTime.getTime();
@@ -39,7 +38,7 @@ public class JWTUtil {
         String token = JWT.create()
                 .withHeader(map)//头
                 .withClaim("userId", userId)
-                .withClaim("username", username)
+                .withClaim("username", userName)
                 .withSubject("令牌")//
                 .withIssuedAt(new Date())//签名时间
                 .withExpiresAt(expireDate)//过期时间

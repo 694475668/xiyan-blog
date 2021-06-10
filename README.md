@@ -1,8 +1,8 @@
-# 夕颜博客
+# 夕颜博客（K8S+Docker Compose容器编排+集成支付）
 <br>
 <br>
 <p align="center">
- <img src="https://images.gitee.com/uploads/images/2021/0127/122407_d420f070_4856424.png" ></img>	
+  <img src="https://images.gitee.com/uploads/images/2021/0127/122407_d420f070_4856424.png "xiyan-logo.png" ></img>
 </p>
 
 <p align="center">
@@ -30,32 +30,26 @@
 
 
 ### 介绍
-夕颜博客，一个基于微服务架构的前后端分离博客源码系统。Web端使用Vue + iView , 并且很好的适配移动端，目前支付宝小程序，微信小程序版，QQ小程序版，百度小程序版，字节跳动小程序版，Android版，IOS版，快应用版，360小程序版，H5版，采用的技术uniapp进行开发，一套代码发布10个平台，后端使用SpringCloudAlibaba + mybatis-plus进行开发，使用 Jwt 做登录验证，使用ElasticSearch作为全文检索服务，使用sentinel实现网关限流，熔断，降级，使用zipkin实现链路追踪，使用seate实现分布式事务，使用spring cloud stream 消息队列使用kafka，分布式任务调度XXL-JOB，使用ELK+Kafka+Filebeat日志收集，文件上传使用七牛云,数据加密AES,采用Nuxt.js作为服务端SSR渲染，加快SEO优化加快爬虫抓取,有Vue和Nuxt二套前端源码，个人免签支付系统采用的技术是SpringBoot+Layui+DB2+JPA，支持Linux和Windows一键部署夕颜博客系统，非常适合需要学习微服务的人才，采用K8S和docker compose二种容器编排模式 **如果不喜欢粒子特效的可以在App.vue里面进行注释** 
+夕颜博客，一个基于微服务架构的前后端分离博客源码系统。Web端使用Vue + iView , 并且很好的适配移动端，目前支付宝小程序，微信小程序版，QQ小程序版，百度小程序版，字节跳动小程序版，Android版，IOS版，快应用版，360小程序版，H5版，采用的技术uniapp进行开发，一套代码发布10个平台，后端使用SpringCloudAlibaba + mybatis-plus进行开发，使用 Jwt 做登录验证，使用ElasticSearch作为全文检索服务，使用sentinel实现网关限流，熔断，降级，使用zipkin实现链路追踪，使用seate实现分布式事务，使用spring cloud stream 消息队列使用kafka，分布式任务调度XXL-JOB，使用ELK+Kafka+Filebeat日志收集，文件上传使用七牛云,数据加密AES,采用Nuxt.js作为服务端SSR渲染，加快SEO优化加快爬虫抓取,有Vue和Nuxt二套前端源码，个人免签支付系统采用的技术是SpringBoot+Layui+DB2+JPA，支持Linux和Windows一键部署夕颜博客系统，非常适合需要学习微服务的人才，采用K8S和docker compose二种容器编排模式 **如果不喜欢粒子特效的可以在App.vue里面进行注释**,觉得不错的，帮忙点个star
 <br>
 <br>
-### QQ群欢迎各位一起来交流技术，探讨技术，互相学习
+| 微信公众号，每天给大家提供技术干货  | QQ群欢迎各位一起来交流技术，探讨技术，互相学习  |
+|---|---|
+|<img src="./doc/qrcode_for_gh_7651310b1058_258.jpg" width="250"/>|<img src="./doc/215236_dda1a80d_4856424.jpeg" width="400"/>|
 
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0323/215236_dda1a80d_4856424.jpeg "120440_39a64794_4856424_gaitubao_300x534.jpg")
 
 ### 站点演示
-【夕颜SEO优化Nuxt前端】：https://xiyanit.cn/ <br>
-【夕颜Vue前端】：https://vue.xiyanit.cn/ <br>
-【夕颜支付】：https://pay.xiyanit.cn/ <br>
-【夕颜后台管理系统】：https://manage.xiyanit.cn/
+【夕颜Vue前端】：http://vue.xiyanit.cn/ <br>
+【夕颜支付】：http://pay.xiyanit.cn/ <br>
+【夕颜后台管理系统】：http://manage.xiyanit.cn/
 
-| 字节跳动小程序版  | 微信小程序版  |
+| 支付宝小程序版  | 微信小程序版  |
 |---|---|
-| 平台审核中，敬请期待  | <img src="./doc/wechat.jpg" width="200"/>  |
-| 百度小程序版  | QQ小程序版  |
-| 平台审核中，敬请期待  | 平台审核中，敬请期待  |
-|  支付宝小程序版 | 360小程序版  |
-|  <img src="./doc/ali.jpg" width="200"/> |  平台审核中，敬请期待 |
-| IOS版  |  Android版  |
-| 平台审核中，敬请期待  | <img src="./doc/app.png" width="200"/>  |
-| 快应用版  | H5版  |
-| 平台审核中，敬请期待  | <img src="./doc/h5.png" width="200"/>  |
-
-
+| <img src="./doc/ali.jpg" width="200"/>  | <img src="./doc/wechat.jpg" width="200"/>  |
+| H5版  | QQ小程序版  |
+| <img src="./doc/h5.png" width="200"/>  | <img src="./doc/qq.png" width="200"/>  |
+| Android版  |
+| <img src="./doc/app.png" width="250"/>  |
 
 ### 系统架构图
 
@@ -184,6 +178,9 @@ Github地址：https://github.com/694475668/xiyan-blog
 
 https://bright-boy.gitee.io/docs
 
+### 备用文档
+http://doc.xiyanit.cn/
+
 
 ### 后期计划：
 
@@ -210,6 +207,7 @@ https://bright-boy.gitee.io/docs
 - [ ] &nbsp;&nbsp;&nbsp;个人中心<br>
 
 ### 项目中初始用户和密码
+后台：test 密码：yoostar403<br>
 Mysql：用户：root，密码：yoostar403<br>
 Redis：密码：yoostar403<br>
 Nacos管理页面： 用户：nacos，密码：nacos<br>

@@ -1,0 +1,156 @@
+{
+  "id": "1964143",
+  "name": "elementui",
+  "font_family": "el-icon-zz",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "4930874",
+      "name": "查看",
+      "font_class": "chakan1",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "6842602",
+      "name": "查看",
+      "font_class": "chakan2",
+      "unicode": "e67d",
+      "unicode_decimal": 59005
+    },
+    {
+      "icon_id": "9600983",
+      "name": "查看",
+      "font_class": "chakan3",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "10152845",
+      "name": "查看",
+      "font_class": "chakan4",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "10184016",
+      "name": "查看",
+      "font_class": "chakan5",
+      "unicode": "e6a3",
+      "unicode_decimal": 59043
+    },
+    {
+      "icon_id": "61180",
+      "name": "购买",
+      "font_class": "goumai",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "1191610",
+      "name": "购买",
+      "font_class": "goumai1",
+      "unicode": "e6a5",
+      "unicode_decimal": 59045
+    },
+    {
+      "icon_id": "1649596",
+      "name": "购买",
+      "font_class": "goumai2",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "2106556",
+      "name": "购买",
+      "font_class": "goumai3",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "6243637",
+      "name": "购买",
+      "font_class": "goumai4",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "6684016",
+      "name": "购买",
+      "font_class": "goumai5",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
+      "icon_id": "8686422",
+      "name": "购买",
+      "font_class": "goumai6",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "9531435",
+      "name": "取消",
+      "font_class": "quxiao1",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "9534485",
+      "name": "购买",
+      "font_class": "goumai7",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "9815649",
+      "name": "取消",
+      "font_class": "quxiao2",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "10757012",
+      "name": "购买 (1)",
+      "font_class": "goumai8",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "10794593",
+      "name": "取消",
+      "font_class": "quxiao3",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "12145767",
+      "name": "取消",
+      "font_class": "quxiao4",
+      "unicode": "e71a",
+      "unicode_decimal": 59162
+    },
+    {
+      "icon_id": "13332961",
+      "name": "购买",
+      "font_class": "goumai9",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "9037925",
+      "name": "取消",
+      "font_class": "quxiao11",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "1677613",
+      "name": "查看",
+      "font_class": "chakan",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    }
+  ]
+}

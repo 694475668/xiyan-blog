@@ -1,6 +1,5 @@
 package com.xiyan.service.impl;
 
-import cn.hutool.core.collection.IterUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -20,8 +19,8 @@ import com.xiyan.service.CodeService;
 import com.xiyan.util.ObjectConvertUtil;
 import com.xiyan.vo.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -59,9 +58,6 @@ public class CodeServiceImpl implements CodeService {
     @Resource
     private RedisTemplate<String, String> redisTemplate;
 
-    @Resource
-    private ElasticsearchRestTemplate elasticsearchRestTemplate;
-
 
     @Override
     public CommonListVO<CodeVO> tagList() {
@@ -82,28 +78,14 @@ public class CodeServiceImpl implements CodeService {
     @Override
     public CommonListVO<CodeVO> list(SortDTO sortDTO) {
         CommonListVO commonListVO = new CommonListVO();
-        boolean exists = elasticsearchRestTemplate.indexOps(CodeBO.class).exists();
-        log.info("es索引存在状态【{}】", elasticsearchRestTemplate.indexOps(CodeBO.class).exists());
-        if (!exists) {
-            //创建索引
-            elasticsearchRestTemplate.indexOps(CodeBO.class).create();
-            //判断es数据是否为空
-            log.info("es数据【{}】", IterUtil.isEmpty(codeRepository.findAll()));
-            if (IterUtil.isEmpty(codeRepository.findAll())) {
-                List<CodeDO> codeDOList = codeMapper.selectList(new QueryWrapper<CodeDO>().eq("state", "1"));
-                List<CodeBO> codeBOList = new ArrayList<>();
-                for (CodeDO codeDO : codeDOList) {
-                    CodeBO codeBO = new CodeBO();
-                    BeanUtils.copyProperties(codeDO, codeBO);
-                    codeBOList.add(codeBO);
-                }
-                //插入到es中
-                codeRepository.saveAll(codeBOList);
-            }
-        }
         Page<CodeDO> codeDOPage = new Page<>(sortDTO.getPageNo(), sortDTO.getPageSize());
-        QueryWrapper<CodeDO> codeDOQueryWrapper = new QueryWrapper<CodeDO>().and(queryWrapper -> queryWrapper.eq("state", "1").like("type", sortDTO.getType()))
+        QueryWrapper<CodeDO> codeDOQueryWrapper = new QueryWrapper<CodeDO>().and(queryWrapper -> queryWrapper.eq("state", "1").eq("type", sortDTO.getType()))
                 .orderByDesc(sortDTO.getSortField());
+        //出现type为null的时候
+        if (StringUtils.isEmpty(sortDTO.getType())) {
+            codeDOQueryWrapper = new QueryWrapper<CodeDO>().and(queryWrapper -> queryWrapper.eq("state", "1"))
+                    .orderByDesc(sortDTO.getSortField());
+        }
         //查询
         codeDOPage = codeMapper.selectPage(codeDOPage, codeDOQueryWrapper);
         //获取查询的数据
@@ -116,6 +98,14 @@ public class CodeServiceImpl implements CodeService {
         for (CodeDO codeDO : codeDOList) {
             codeVO = new CodeVO();
             UserByIdVO user = userFeign.getUser(new GetUserDTO(codeDO.getUserId(), null));
+            if (redisTemplate.hasKey("user_" + codeDO.getUserId())) {
+                String data = redisTemplate.opsForValue().get("user_" + codeDO.getUserId());
+                user = JSONArray.parseObject(data, UserByIdVO.class);
+            } else {
+                user = userFeign.getUser(new GetUserDTO(codeDO.getUserId(), null));
+                //写入redis缓存
+                redisTemplate.opsForValue().set("user_" + codeDO.getUserId(), JSONArray.toJSONString(user));
+            }
             log.info("用户信息【{}】", user);
             BeanUtils.copyProperties(codeDO, codeVO);
             codeVO.setName(user.getName());
@@ -147,7 +137,11 @@ public class CodeServiceImpl implements CodeService {
         List<String> tagList = Arrays.asList(split);
         codeByIdVO.setTagList(tagList);
         //所属用户
-        UserByIdVO userById = userFeign.getUser(new GetUserDTO(codeDO.getUserId(), null));
+        UserByIdVO userById = null;
+        if (redisTemplate.hasKey("user_" + codeDO.getUserId())) {
+            String data = redisTemplate.opsForValue().get("user_" + codeDO.getUserId());
+            userById = JSONArray.parseObject(data, UserByIdVO.class);
+        }
         UserVO userVO = new UserVO();
         BeanUtils.copyProperties(userById, userVO);
         //粉丝数
@@ -279,19 +273,5 @@ public class CodeServiceImpl implements CodeService {
         code.setDownloadCount(count);
         codeRepository.save(code);
         return codeDownloadVO;
-    }
-
-    @Override
-    public BaseVO review(CodeReviewDTO codeReviewDTO, Integer id) {
-        CodeDO codeDO = new CodeDO();
-        codeDO.setId(id);
-        codeDO.setState(codeReviewDTO.getState());
-        codeMapper.updateById(codeDO);
-        //插入es  由于有些字段是数据库默认赋值，所以我这里需要查询一遍在插入到ES中
-        CodeDO article = codeMapper.selectById(codeDO.getId());
-        CodeBO codeBO = new CodeBO();
-        BeanUtils.copyProperties(article, codeBO);
-        codeRepository.save(codeBO);
-        return new BaseVO();
     }
 }

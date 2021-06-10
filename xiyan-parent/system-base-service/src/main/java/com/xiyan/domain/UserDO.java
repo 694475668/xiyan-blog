@@ -35,26 +35,24 @@ public class UserDO implements Serializable {
      */
     private String password;
     /**
-     * 头像
+     * 收集
      */
-    private String photo;
-    /**
-     * 金币
-     */
-    private Integer point;
-    /**
-     * openId
-     */
-    private String openId;
+    private String phone;
 
     /**
-     * 是否是会员
+     * 邮箱
      */
-    private String isMember;
+    private String email;
+
     /**
      * 状态
      */
-    private String state;
+    private String status;
+    /**
+     * 最后登录时间
+     */
+    private Date lastLoginDate;
+
     /**
      * 创建时间
      */
@@ -66,8 +64,25 @@ public class UserDO implements Serializable {
     private Date updateTime;
 
     /**
-     * 单纯字段  上传的数量
+     * 创建人
      */
+    private String createUser;
+
+
+    /**
+     * 父级
+     */
+    private Integer pid;
+
+    /**
+     * 修改人
+     */
+    private String updateUser;
+
     @TableField(exist = false)
-    private Integer count;
+    private String rIds;
+
+    @TableField(exist = false)
+    private String rNames;
+
 }

@@ -2,10 +2,7 @@ package com.xiyan.service;
 
 
 import com.xiyan.dto.*;
-import com.xiyan.vo.BaseVO;
-import com.xiyan.vo.UserByIdVO;
-
-import javax.mail.MessagingException;
+import com.xiyan.vo.*;
 
 /**
  * @author: bright
@@ -14,55 +11,82 @@ import javax.mail.MessagingException;
  */
 public interface UserService {
     /**
-     * 发送验证码
+     * 用户列表
      *
-     * @param emailDTO
-     * @return
-     * @throws MessagingException
-     */
-    BaseVO sendOutEmail(EmailDTO emailDTO) throws MessagingException;
-
-    /**
-     * 注册
-     *
-     * @param userDTO
+     * @param userVagueDTO
+     * @param userId
      * @return
      */
-    BaseVO register(UserDTO userDTO);
-
+    CommonListVO<UserDataVO> list(UserVagueDTO userVagueDTO, Integer userId);
 
     /**
-     * 第三方登陆绑定的账号和密码
+     * 根据用户名获取密码，内部使用，不对外暴露
      *
-     * @param accountLoginDTO
+     * @param username
+     * @return
+     */
+    UserAuthVO getUserByUserName(String username);
+
+    /**
+     * 添加
+     *
+     * @param userAddDTO
+     * @param userId
+     * @param username
+     * @return
+     */
+    BaseVO add(UserAddDTO userAddDTO, Integer userId, String username);
+
+    /**
+     * 根据id查询
+     *
      * @param id
      * @return
      */
-    BaseVO bind(AccountLoginDTO accountLoginDTO, Integer id);
-
-
-    /**
-     * 根据参数查询用户
-     *
-     * @param getUserDTO
-     * @return
-     */
-    UserByIdVO getUser(GetUserDTO getUserDTO);
+    UserByIdVO getUserById(Integer id);
 
     /**
      * 修改
      *
      * @param userUpdateDTO
+     * @param id
+     * @param username
      * @return
      */
-    BaseVO update(UserUpdateDTO userUpdateDTO);
+    BaseVO update(UserUpdateDTO userUpdateDTO, Integer id, String username);
 
     /**
-     * 找回密码
+     * 解锁和锁定
      *
-     * @param userDTO
+     * @param unlockAndLockDTO
      * @return
      */
-    BaseVO retrievePassword(UserDTO userDTO);
+    BaseVO unlockAndLock(UnlockAndLockDTO unlockAndLockDTO);
 
+
+    /**
+     * 删除
+     *
+     * @param id
+     * @param userId
+     * @return
+     */
+    BaseVO delete(Integer id, Integer userId);
+
+    /**
+     * 修改密码
+     *
+     * @param userPwdDTO
+     * @param userId
+     * @return
+     */
+    BaseVO updatePwd(UserPwdDTO userPwdDTO, Integer userId);
+
+    /**
+     * 授权
+     *
+     * @param userGrantDTO
+     * @return
+     */
+    BaseVO authorization(UserGrantDTO userGrantDTO);
 }

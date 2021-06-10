@@ -12,24 +12,31 @@ import java.util.List;
  * @describe :
  */
 public interface UserMapper extends BaseMapper<UserDO> {
-    /**
-     * 上传排行榜
-     *
-     * @return
-     */
-    List<UserDO> uploadLeaderboard();
 
     /**
-     * 下载排行榜
+     * 根据pid查询
      *
+     * @param pid
      * @return
      */
-    List<UserDO> downloadLeaderboard();
+    List<UserDO> queryUserByPid(Integer pid);
+
 
     /**
-     * 收藏排行榜
+     * 根据用户id删除用户与角色的关系
      *
+     * @param userId
      * @return
      */
-    List<UserDO> favoritesLeaderboard();
+    int delUserRoleByUserId(Integer userId);
+
+
+    /**
+     * 添加角色与用户的关系
+     *
+     * @param userId
+     * @param roleList
+     * @return
+     */
+    int addUserRole(Integer userId, Integer[] roleList);
 }

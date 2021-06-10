@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiyan.mapper.ResourceMapper">
+    <select id="queryResourceByRoleId" resultType="ResourceDO">
+        SELECT id, NAME,pid
+        FROM t_resource r
+        INNER JOIN(SELECT resource_id FROM t_role_resource WHERE role_id = #{roleId}) s ON s.resource_id = r.id
+        <if test="pidIsNotNull">
+            WHERE r.pid IS NOT NULL
+        </if>
+    </select>
+
+    <select id="queryResource" resultType="ResourceDO">
+        SELECT DISTINCT r.id,r.name,r.remark,
+        r.seq,r.url,r.pid
+        FROM t_resource r,t_dictionary d
+        WHERE r.id IN(
+        SELECT resource_id FROM t_role_resource WHERE role_id in (
+        SELECT role_id FROM t_user_role WHERE user_id=(
+        SELECT id FROM t_user where id=#{userId})))
+        <choose>
+            <when test="pid !=null ">
+                and r.pid=#{pid}
+            </when>
+            <otherwise>
+                and r.pid IS NULL
+            </otherwise>
+        </choose>
+        ORDER BY r.seq;
+    </select>
+
+
+    <select id="queryResourceByPid" resultType="ResourceDO">
+        SELECT r.id,r.name,r.remark,r.seq,r.url,r.pid,r.type,r.update_time updateTime,d.meaning meaning,r.update_user
+        updateUser FROM t_resource r INNER JOIN t_dictionary d ON r.type=d.`value` WHERE d.`name`='RESOURCETYPE_ID'
+        <choose>
+            <when test="pid !=null ">
+                and r.pid=#{pid}
+            </when>
+            <otherwise>
+                and r.pid IS NULL
+            </otherwise>
+        </choose>
+        ORDER BY r.seq;
+    </select>
+
+
+    <select id="hasRoleResource" resultType="Integer">
+        select count(1)
+        from t_role_resource t
+        where t.resource_id = #{id}
+          and t.role_id !=1
+    </select>
+
+
+    <delete id="delRoleResource">
+        DELETE
+        FROM t_role_resource
+        WHERE resource_id = #{id};
+    </delete>
+</mapper>

@@ -1,6 +1,7 @@
 package com.xiyan.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.xiyan.dto.GetUserDTO;
 import com.xiyan.dto.TechnologySearchDTO;
 import com.xiyan.feign.UserFeign;
@@ -22,6 +23,7 @@ import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -43,6 +45,8 @@ public class TechnologySearchServiceImpl implements TechnologySearchService {
     @Resource
     private UserFeign userFeign;
 
+    @Resource
+    private RedisTemplate<String, String> redisTemplate;
 
     @Override
     public CommonListVO<TechnologySearchVO> list(TechnologySearchDTO searchDTO) {
@@ -76,7 +80,15 @@ public class TechnologySearchServiceImpl implements TechnologySearchService {
             TechnologySearchVO search = JSON.parseObject(JSON.toJSONString(h.getContent()), TechnologySearchVO.class);
             search.setTitle(nameValue);
             searchVO = new TechnologySearchVO();
-            UserByIdVO user = userFeign.getUser(new GetUserDTO(search.getUserId(), null));
+            UserByIdVO user = null;
+            if (redisTemplate.hasKey("user_" + search.getUserId())) {
+                String data = redisTemplate.opsForValue().get("user_" + search.getUserId());
+                user = JSONArray.parseObject(data, UserByIdVO.class);
+            } else {
+                user = userFeign.getUser(new GetUserDTO(search.getUserId(), null));
+                //写入redis缓存
+                redisTemplate.opsForValue().set("user_" + search.getUserId(), JSONArray.toJSONString(user));
+            }
             BeanUtils.copyProperties(search, searchVO);
             searchVO.setName(user.getName());
             //标签拆分

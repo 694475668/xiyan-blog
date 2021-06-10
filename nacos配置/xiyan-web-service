@@ -1,9 +1,9 @@
-spring:
+﻿spring:
   cloud:
     nacos:
       discovery:
-        server-addr: nacos:8848
-        namespace: prod
+        server-addr: 127.0.0.1:8848
+        namespace: c8ae8be9-471e-4fa5-a5a0-9dfa8bc3d216
        
   sleuth:
     sampler:
@@ -11,7 +11,7 @@ spring:
       probability: 1
           #springCloudSleuth
   zipkin:
-    baseUrl: http://zipkin:9411/
+    baseUrl: http://127.0.0.1:9411/
     enabled: true
     sender:
       type: kafka
@@ -21,12 +21,12 @@ spring:
   data:
   elasticsearch:
     rest:
-      uris: [ "elasticsearch:9200" ]
+      uris: [ "127.0.0.1:9200" ]
     elasticsearch:
       #集群名称
       cluster-name: docker-cluster 
       #配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode
-      cluster-nodes: elasticsearch:9300 
+      cluster-nodes: 127.0.0.1:9300 
       properties:
         path:
           #elasticsearch日志存储目录
@@ -38,7 +38,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: yoostar403
-    url: jdbc:mysql://mysql:3306/xiyandb?serverTimezone=UTC&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://127.0.0.1:3306/xiyandb?serverTimezone=UTC&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
     hikari:
       auto-commit: true
       connection-test-query: SELECT 1
@@ -51,7 +51,7 @@ spring:
 
   # Kafka
   kafka:
-    bootstrap-servers: kafka-service:9092
+    bootstrap-servers: 127.0.0.1:9092
     #=============== consumer  =======================
     consumer:
       auto-commit-interval: 100
@@ -71,23 +71,30 @@ spring:
       
       # Redis
   redis:
-    host: redis
-    password: yoostar403
+    host: 127.0.0.1
     port: 6379
+    password: yoostar403
     timeout: 10000
     cache:
       expires: -1
       
 #feign
-feign: 
+feign:
   sentinel: 
     enabled: true
-  #feign调用超时时间配置，超过这个时间就熔断降级
+  httpclient:
+    #让Feign使用apache httlclient做请求,而不是默认的urlconttion
+    enabled: true
+    #Feign的最大连接数
+    max-connections: 200
+    #Feign单个路径的最大连接数
+    max-connections-per-route: 50
   client:
     config:
       default:
-        connectTimeout: 5000
-        readTimeout: 5000
+        connectTimeout: 15000
+        readTimeout: 15000
+        loggerLevel: BASIC
      
 #  mybatis-plus配置
 mybatis-plus:
@@ -123,20 +130,20 @@ seata:
     vgroup-mapping:
       bss: default
     grouplist:
-      default: seata:8091
+      default: 127.0.0.1:8091
   # seata 注册中心配置项，对应 RegistryProperties 类
   # registry:
   #   # 注册中心类型，默认为 file
   #   type: nacos
   #   nacos:
   #     #Nacos 服务地址
-  #     server-addr: 128.14.163.18:8848
+  #     server-addr: 127.0.0.1:8848
   # config:
   #    # 注册中心类型，默认为 file
   #   type: nacos
   #   nacos:
   #     # Nacos 服务地址
-  #     server-addr: 128.14.163.18:8848 
+  #     server-addr: 127.0.0.1:8848 
 #分布式任务调度报警邮箱
 alarm-email: 694475668@qq.com
 
@@ -147,7 +154,7 @@ xxl:
     password: 123456
     accessToken: member
     admin:
-      addresses: http://xxl-job-admin:8097/xxl-job-admin
+      addresses: http://127.0.0.1:9986/xxl-job-admin
     executor:
       #address: 
       appname: xxl-job
@@ -162,4 +169,4 @@ redis-key: xiyan
 
 pay:
   app_secret: app_secret
-  url:  http://pay.xiyanit.cn
+  url:  https://pay.xiyanit.cn

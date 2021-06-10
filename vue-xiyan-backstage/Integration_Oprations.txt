@@ -1,0 +1,8 @@
+Membership Integration:
+1. 申请并注册dLocal商户号，在注册的页面补充贵司的基本信息。
+网址为：https://merchant.dlocal.com/sign_up （通过邮箱注册商户号，密码会发送到注册使用的邮箱，后续登录也使用该注册邮箱）；
+
+2. 注册成功后申请激活正式商户号（注册完成后登录系统，在 settings --> Merchant Account页面右下角点击“I WANT TO GO LIVE!"按钮，
+补充所需要的信息后提交即可
+
+

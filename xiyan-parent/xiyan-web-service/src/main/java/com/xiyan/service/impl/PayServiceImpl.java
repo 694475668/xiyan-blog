@@ -11,6 +11,7 @@ import com.xiyan.mapper.OrderMapper;
 import com.xiyan.service.PayService;
 import com.xiyan.util.PayUtil;
 import com.xiyan.vo.UserByIdVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,6 +24,7 @@ import java.util.Date;
  * @date:Created in 2021/1/30 0030 10:28
  */
 @Service
+@Slf4j
 public class PayServiceImpl implements PayService {
 
     @Resource
@@ -39,7 +41,7 @@ public class PayServiceImpl implements PayService {
             OrderDO orderDO = new OrderDO();
             orderDO.setStatus("2");
             orderDO.setPrice(paySaPiBO.getReallyPrice());
-            orderDO.setPayTime(new Date());
+            orderDO.setUpdateTime(new Date());
             orderMapper.update(orderDO, new QueryWrapper<OrderDO>().eq("order_id", payId));
             OrderDO order = orderMapper.selectOne(new QueryWrapper<OrderDO>().eq("order_id", payId));
             //修改用户金币数据
@@ -50,6 +52,7 @@ public class PayServiceImpl implements PayService {
             } else {
                 //查询原有用户金币
                 UserByIdVO user = userFeign.getUser(new GetUserDTO(order.getUserId(), ""));
+                log.info("充值用户【{}】", user);
                 userUpdateDTO.setPoint(user.getPoint() + order.getPoint());
             }
             userFeign.update(userUpdateDTO);

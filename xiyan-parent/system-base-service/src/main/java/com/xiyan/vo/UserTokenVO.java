@@ -19,5 +19,5 @@ public class UserTokenVO extends BaseVO {
     private String token;
 
     @ApiModelProperty(value = "用户对象")
-    private UserVO userVO;
+    private UserAuthVO userAuthVO;
 }

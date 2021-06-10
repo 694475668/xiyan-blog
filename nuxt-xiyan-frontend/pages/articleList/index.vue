@@ -1,0 +1,239 @@
+<template>
+  <div class="article-list-content">
+    <Row>
+      <Col :xs="24" :sm="24" :md="24" :lg="17">
+        <div class="layout-left">
+          <section-title
+            :mainTitle="'技术分享'"
+            :btnFlag="true"
+            :tipText="'文章'"
+            :tipHref="'/postArticle'"
+          >
+            <title-menu-filter
+              @filterByMenu="getList"
+              slot="menu"
+              :downloadType="'download_count'"
+              :title="'文章'"
+              :menu-filter-list="defaultFilterList"
+              :show="true"
+            ></title-menu-filter>
+          </section-title>
+          <article-list-cell
+            v-for="article in articleList"
+            :article="article"
+            :key="article.id"
+          ></article-list-cell>
+          <Page
+            class="mt-10 text-right"
+            :total="total"
+            :current="param.pageNo"
+            :page-size="param.pageSize"
+            @on-change="changePage"
+            @on-page-size-change="changeSize"
+            :show-elevator="isShow"
+            :show-total="isShow"
+            :show-sizer="isShow"
+            :page-size-opts="[5, 10, 15, 20]"
+          />
+        </div>
+      </Col>
+      <Col :xs="0" :sm="0" :md="0" :lg="7">
+        <div class="layout-right">
+          <recommend></recommend>
+          <tag-wall style="margin-top: 15px"></tag-wall>
+          <friend-links style="margin-top: 15px"></friend-links>
+        </div>
+      </Col>
+    </Row>
+  </div>
+</template>
+
+<script>
+import Recommend from "@/pages/components/views/Recommend";
+import TagWall from "@/pages/components/views/TagWall";
+import ArticleListCell from "@/pages/components/views/Article/ArticleListCell";
+import SectionTitle from "@/pages/components/views/SectionTitle/SectionTitle";
+import TitleMenuFilter from "@/pages/components/views/SectionTitle/TitleMenuFilter";
+import { DefaultFilterList } from "~/assets/js/const";
+import FriendLinks from "@/pages/components/views/FriendLinks";
+import { AESEncrypt } from "@/assets/js/aes";
+export default {
+  head() {
+    return {
+      title: "技术博客",
+      meta: [
+        {
+          name: "keywords",
+          content:
+            "夕颜博客,夕颜社区,夕颜技术社区,,夕颜IT社区,IT社区,技术社区,Java技术分享",
+        },
+        {
+          name: "description",
+          content:
+            "一个专注于技术|源码分享的IT技术平台，大家以共同学习，乐于分享，拥抱开源的价值观进行学习交流",
+        },
+      ],
+    };
+  },
+  async asyncData({ $axios, route }) {
+    //获取路径的参数
+    var type = route.fullPath.substring(
+      route.fullPath.indexOf("=") + 1,
+      route.fullPath.length
+    );
+    //获取博客数据
+    let param = {
+      pageNo: 1,
+      pageSize: 5,
+      //默认是以创建时间倒叙排序
+      sortField: "create_time",
+      type: "",
+    };
+    //如果没有参数默认是路由地址，所以这里要排除掉
+    if (type != "/articleList") {
+      param.type = type;
+    }
+    //需要里面有多个接口需要统一接收参数的话let [第一个接口返回结果，第二个接口返回结果]
+    let [data] = await Promise.all([
+      $axios.post("/web/article/list", param).then((res) => {
+        return res;
+      }),
+    ]);
+    //需要在外面进行返回
+    return {
+      articleList: data.voList,
+      total: data.total,
+    };
+  },
+  data() {
+    return {
+      //加密后请求服务器的参数
+      res: {
+        requestData: "",
+      },
+      isShow: true,
+      defaultFilterList: DefaultFilterList,
+      articleList: [],
+      total: 0,
+      param: {
+        pageNo: 1,
+        pageSize: 5,
+        //默认是以创建时间倒叙排序
+        sortField: "create_time",
+        type: "",
+      },
+    };
+  },
+  watch: {
+    //监听路由变化
+    $route(to, from) {
+      // 对路由变化作出响应...
+      let type = this.$route.query.type;
+      this.param.type = type;
+      if (type == undefined) {
+        this.param.type = "";
+      }
+      this.getList();
+    },
+  },
+  mounted() {
+    //初始页一打开就定位到顶部
+    document.documentElement.scrollTop = 0;
+    this.$nextTick(function () {
+      if (document.body.offsetWidth <= 678) {
+        this.isShow = false;
+      }
+    });
+  },
+  methods: {
+    async getList(param) {
+      if (param != undefined) {
+        this.param.sortField = param.sortField;
+      }
+      //获取保存在cookie的AES密钥
+      let aesKey = this.$cookies.get("key");
+      //进行参数加密,必须把对象转换json字符串，不然加密不了
+      let dataJson = JSON.stringify(this.param);
+      //数据进行加密
+      this.res.requestData = AESEncrypt(dataJson, aesKey);
+      //设置Content-Type 为application/x-www-form-urlencoded 为了兼容苹果浏览器和ie浏览器
+      let res = await this.$axios.post("/web/article/list", this.res, {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      });
+      this.articleList = res.voList;
+      this.total = res.total;
+      //初始页一打开就定位到顶部
+      document.documentElement.scrollTop = 0;
+    },
+    changePage(page) {
+      this.param.pageNo = page;
+      this.getList();
+    },
+    changeSize(size) {
+      this.param.pageSize = size;
+      this.param.pageNo = 1;
+      this.getList();
+    },
+  },
+  components: {
+    recommend: Recommend,
+    "tag-wall": TagWall,
+    "article-list-cell": ArticleListCell,
+    "section-title": SectionTitle,
+    "title-menu-filter": TitleMenuFilter,
+    "friend-links": FriendLinks,
+  },
+};
+</script>
+<style lang="stylus" scoped rel="stylesheet/stylus">
+.ivu-modal-footer {
+  display: none !important;
+}
+
+.article-list-content {
+  width: auto;
+  min-height: calc(100vh - 308px);
+
+  @media only screen and (max-width: 768px) {
+    margin: 5px 5px 0 5px;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin: 10px 10px 0 10px;
+  }
+
+  @media screen and (min-width: 992px) {
+    margin: 15px 35px 0 35px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 1200px;
+    margin: 15px auto 0;
+    margin-bottom: 200px;
+  }
+
+  .layout-left, .layout-right {
+    padding: 0;
+
+    @media only screen and (max-width: 768px) {
+      padding: 0;
+    }
+
+    @media screen and (min-width: 768px) {
+      padding: 0;
+    }
+
+    @media screen and (min-width: 992px) {
+      padding: 0 10px;
+    }
+
+    @media screen and (min-width: 1200px) {
+      padding: 0 10px;
+    }
+  }
+}
+
+/* .live-bg{
+  background-image:url({{this.imgUrl}})
+} */
+</style>

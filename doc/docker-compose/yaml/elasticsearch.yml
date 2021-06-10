@@ -13,8 +13,6 @@ services:
             - http.cors.allow-credentials=false
             - bootstrap.memory_lock=true
             - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
-        volumes:
-            - ../data/elasticsearch_data:/usr/share/elasticsearch/data
         networks:
             - xiyan
         ports:

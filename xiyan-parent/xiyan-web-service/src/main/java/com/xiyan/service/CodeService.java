@@ -82,12 +82,4 @@ public interface CodeService {
     BaseVO download(CodeDownloadDTO codeDownloadDTO, Integer id);
 
 
-    /**
-     * 审核
-     *
-     * @param codeReviewDTO
-     * @param id
-     * @return
-     */
-    BaseVO review(CodeReviewDTO codeReviewDTO, Integer id);
 }

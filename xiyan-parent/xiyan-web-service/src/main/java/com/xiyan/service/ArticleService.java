@@ -1,7 +1,6 @@
 package com.xiyan.service;
 
 import com.xiyan.dto.ArticleDTO;
-import com.xiyan.dto.ArticleReviewDTO;
 import com.xiyan.dto.ArticleUpdateDTO;
 import com.xiyan.dto.SortDTO;
 import com.xiyan.vo.ArticleVO;
@@ -65,12 +64,4 @@ public interface ArticleService {
      */
     BaseVO update(ArticleUpdateDTO articleUpdateDTO, Integer id);
 
-    /**
-     * 审核
-     *
-     * @param articleReviewDTO
-     * @param id
-     * @return
-     */
-    BaseVO review(ArticleReviewDTO articleReviewDTO, Integer id);
 }

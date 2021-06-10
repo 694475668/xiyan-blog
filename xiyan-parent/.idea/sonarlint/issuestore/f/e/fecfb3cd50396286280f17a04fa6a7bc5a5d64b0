@@ -1,0 +1,75 @@
+
+_
+java:S1192w"IDefine a constant instead of duplicating this literal "username" 7 times.(€ÜÃ˜
+¬
+java:S4449µ"”Annotate the parameter with @javax.annotation.Nullable in method 'copyProperties' declaration, or make sure that null can not be passed as argument.(‡à‚ö
+>
+java:S1604j"(Make this anonymous inner class a lambda(ÉãÃ®
+P
+java:S2479>":Remove the non-escaped \u0009 character from this literal.(Ûëê…
+U
+java:S2479?":Remove the non-escaped \u0009 character from this literal.(†ç²˜ıÿÿÿÿ
+P
+java:S2479@":Remove the non-escaped \u0009 character from this literal.(³ù½‰
+P
+java:S2479A":Remove the non-escaped \u0009 character from this literal.(Ø‚À‡
+U
+java:S2479C":Remove the non-escaped \u0009 character from this literal.(Ú˜öõüÿÿÿÿ
+P
+java:S2479D":Remove the non-escaped \u0009 character from this literal.(§»ÓÚ
+P
+java:S2479E":Remove the non-escaped \u0009 character from this literal.(Öçë
+P
+java:S2479F":Remove the non-escaped \u0009 character from this literal.(¬öÎº
+U
+java:S2479G":Remove the non-escaped \u0009 character from this literal.(‡ô€…øÿÿÿÿ
+U
+java:S2479H":Remove the non-escaped \u0009 character from this literal.(ê¤Òæøÿÿÿÿ
+U
+java:S2479I":Remove the non-escaped \u0009 character from this literal.(•÷®€ÿÿÿÿÿ
+P
+java:S2479J":Remove the non-escaped \u0009 character from this literal.(—§ÒÁ
+U
+java:S2479K":Remove the non-escaped \u0009 character from this literal.(úÒ¶ÿÿÿÿÿ
+U
+java:S2479L":Remove the non-escaped \u0009 character from this literal.(‡ô€…øÿÿÿÿ
+P
+java:S2479M":Remove the non-escaped \u0009 character from this literal.(ÁŠìÀ
+O
+java:S2479N":Remove the non-escaped \u0009 character from this literal.(ê€Ú8
+P
+java:S2479O":Remove the non-escaped \u0009 character from this literal.(ø¬è
+U
+java:S2479V":Remove the non-escaped \u0009 character from this literal.(ƒ¼ùµÿÿÿÿÿ
+U
+java:S2479W":Remove the non-escaped \u0009 character from this literal.(“¥Òùûÿÿÿÿ
+P
+java:S2479X":Remove the non-escaped \u0009 character from this literal.(µº§Æ
+U
+java:S2479Y":Remove the non-escaped \u0009 character from this literal.(Ø“óşÿÿÿÿ
+U
+java:S2479Z":Remove the non-escaped \u0009 character from this literal.(ÌòÊûÿÿÿÿ
+U
+java:S2479[":Remove the non-escaped \u0009 character from this literal.(ÏÚÎÓÿÿÿÿÿ
+P
+java:S2479\":Remove the non-escaped \u0009 character from this literal.(®›Òá
+U
+java:S2479]":Remove the non-escaped \u0009 character from this literal.(ÆŒ©£ùÿÿÿÿ
+U
+java:S2479^":Remove the non-escaped \u0009 character from this literal.(ÆŒ©£ùÿÿÿÿ
+U
+java:S2479_":Remove the non-escaped \u0009 character from this literal.(ÆŒ©£ùÿÿÿÿ
+P
+java:S2479`":Remove the non-escaped \u0009 character from this literal.(ıÁÚõ
+U
+java:S2479a":Remove the non-escaped \u0009 character from this literal.(úÒ¶ÿÿÿÿÿ
+P
+java:S2479b":Remove the non-escaped \u0009 character from this literal.(ô‚¡
+P
+java:S2479c":Remove the non-escaped \u0009 character from this literal.(å¹Ğä
+U
+java:S2479d":Remove the non-escaped \u0009 character from this literal.(ÆŒ©£ùÿÿÿÿ
+P
+java:S2479e":Remove the non-escaped \u0009 character from this literal.(îÎÜÕ
+E
+java:S2140ƒ")Use "java.util.Random.nextInt()" instead.(ƒÌ©’ÿÿÿÿÿ

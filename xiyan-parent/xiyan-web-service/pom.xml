@@ -29,7 +29,7 @@
     <dependencies>
         <dependency>
             <groupId>com.xiyan</groupId>
-            <artifactId>system-base-service-api</artifactId>
+            <artifactId>user-oauth2-auth-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->

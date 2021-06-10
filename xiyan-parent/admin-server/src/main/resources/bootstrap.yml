@@ -8,4 +8,4 @@ spring:
       config:
         file-extension: yml
         namespace: 4ec05052-6224-4d34-975a-b27132b60587
-        server-addr: 128.14.163.18:8848
+        server-addr: 127.0.0.1:8848

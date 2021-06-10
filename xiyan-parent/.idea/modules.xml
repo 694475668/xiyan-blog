@@ -3,10 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/admin-server/admin-server.iml" filepath="$PROJECT_DIR$/admin-server/admin-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backstage-service/backstage-service.iml" filepath="$PROJECT_DIR$/backstage-service/backstage-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/oss-service/oss-service.iml" filepath="$PROJECT_DIR$/oss-service/oss-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/search-service/search-service.iml" filepath="$PROJECT_DIR$/search-service/search-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/system-base-service/system-base-service.iml" filepath="$PROJECT_DIR$/system-base-service/system-base-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/system-base-service-api/system-base-service-api.iml" filepath="$PROJECT_DIR$/system-base-service-api/system-base-service-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-oauth2-auth/user-oauth2-auth.iml" filepath="$PROJECT_DIR$/user-oauth2-auth/user-oauth2-auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-oauth2-auth-api/user-oauth2-auth-api.iml" filepath="$PROJECT_DIR$/user-oauth2-auth-api/user-oauth2-auth-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/xiyan-gateway/xiyan-gateway.iml" filepath="$PROJECT_DIR$/xiyan-gateway/xiyan-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/xiyan-parent.iml" filepath="$PROJECT_DIR$/xiyan-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/xiyan-web-service/xiyan-web-service.iml" filepath="$PROJECT_DIR$/xiyan-web-service/xiyan-web-service.iml" />

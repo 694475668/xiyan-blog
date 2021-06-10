@@ -31,6 +31,8 @@ public class TechnologySearchVO implements Serializable {
 
     private String tag;
 
+    private String type;
+
     @ApiModelProperty(value = "好文")
     private String good;
 
@@ -42,5 +44,14 @@ public class TechnologySearchVO implements Serializable {
 
     @ApiModelProperty(value = "用户id")
     private Integer userId;
+
+    @ApiModelProperty(value = "点赞数")
+    private Integer starCount;
+
+    @ApiModelProperty(value = "评论数")
+    private Integer conCount;
+
+    @ApiModelProperty(value = "文章阅读量")
+    private Integer readCount;
 
 }

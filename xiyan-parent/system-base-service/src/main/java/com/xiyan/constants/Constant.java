@@ -9,6 +9,7 @@ package com.xiyan.constants;
  * @date:Created in 2020/7/3
  */
 public class Constant {
+
     /**
      * token失效时间 1天
      */
@@ -19,12 +20,15 @@ public class Constant {
      */
     public static final String SECRET = "xiyan";
 
-    public static final String LOCK_STATE = "0";
+    public static final String LOCK_STATE = "1";
 
     /**
-     * 加密方式
+     * 认证资源
      */
-    public static final String ALGORITHM = "AES/ECB/PKCS5Padding";
+    public static final String AUTH_USER_KEY = "xiyan_user_";
 
-
+    /**
+     * 黑名单redis列表标识
+     */
+    public static final String BLACK_LIST_KEY = "black-list";
 }

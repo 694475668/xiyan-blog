@@ -1,9 +1,9 @@
-spring:
+﻿spring:
   cloud:
     nacos:
       discovery:
-        server-addr: nacos:8848
-        namespace: prod
+        server-addr: 127.0.0.1:8848
+        namespace: c8ae8be9-471e-4fa5-a5a0-9dfa8bc3d216
   # 设置上传文件大小
   servlet:
     multipart:
@@ -16,7 +16,7 @@ spring:
       probability: 1
           #springCloudSleuth
   zipkin:
-    baseUrl: http://zipkin:9411/
+    baseUrl: http://127.0.0.1:9411/
     enabled: true
     sender:
       type: kafka
@@ -25,7 +25,7 @@ spring:
 
   # Kafka
   kafka:
-    bootstrap-servers: kafka-service:9092
+    bootstrap-servers: 127.0.0.1:9092
     #=============== consumer  =======================
     consumer:
       auto-commit-interval: 100
@@ -45,12 +45,12 @@ spring:
       
       # Redis
   redis:
-    host: redis
+    host: 127.0.0.1
     port: 6379
     password: yoostar403
     timeout: 10000
     cache:
-      expires: -1
+      expires: 1
       
 #feign
 feign: 
@@ -62,20 +62,21 @@ feign:
       default:
         connectTimeout: 5000
         readTimeout: 5000
+        loggerLevel: full
 
 #  七牛秘钥
 oss:
   qiniu:
-     accessKey: accessKey
-     secretKey: secretKey
+     accessKey: ZGi4IKx5A5NStOwA9swVeeBVpGQ-mYdIVw2mmmoB
+     secretKey: nvnGW2gAUR3B3S_wzZ5ag_Ap_0S7Yf0bCe9OEb7K
      #图片名字
      bucketPictureName: sunset-pictures
      #图片外部访问拦截
-     domainPicture: 图片外部访问地址
+     domainPicture: http://qiniu-picture.xiyanit.cn/
      #文件名字
      bucketFileName: sunset-file
      #文件外部访问拦截
-     domainFile: 文件外部访问地址
+     domainFile: http://qiniu-file.xiyanit.cn/
 
 #redis序列化key
 redis-key: xiyan

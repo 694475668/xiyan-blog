@@ -68,7 +68,7 @@ public class OrderDO implements Serializable {
     /**
      * 支付时间
      */
-    private Date payTime;
+    private Date updateTime;
 
 
 }

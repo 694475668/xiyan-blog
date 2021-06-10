@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiyan.mapper.UserMapper">
+    <select id="uploadLeaderboard" resultType="UserDO">
+        select name,photo,b.count count,is_member from t_user t INNER JOIN   (select * from ( SELECT count(1) count,user_id FROM xiyandb.`t_code` GROUP BY user_id) a ORDER BY count DESC) b
+        ON t.id=b.user_id
+    </select>
+
+    <select id="downloadLeaderboard" resultType="UserDO">
+        select name,photo,b.count count,is_member from t_user t INNER JOIN   (select * from ( SELECT count(1) count,user_id FROM xiyandb.`t_download` GROUP BY user_id) a ORDER BY count DESC) b
+        ON t.id=b.user_id
+    </select>
+
+    <select id="favoritesLeaderboard" resultType="UserDO">
+        select name,photo,b.count count,is_member from t_user t INNER JOIN   (select * from ( SELECT count(1) count,user_id FROM xiyandb.`t_favorites` GROUP BY user_id) a ORDER BY count DESC) b
+        ON t.id=b.user_id
+    </select>
+
+</mapper>

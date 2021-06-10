@@ -77,23 +77,23 @@ kubectl apply -f ../yaml/xiyan-web-service.yaml
 ../config/wait-for-it.sh http://localhost:port --timeout=60  -- echo "=====已经准备就绪====="
 
 echo '=====开始运行system-base-service====='
-kubectl apply -f ../yaml/system-base-service.yaml
+#kubectl apply -f ../yaml/system-base-service.yaml
 
 sleep 30
 
 echo '=====开始运行search-service====='
-kubectl apply -f ../yaml/search-service.yaml
+#kubectl apply -f ../yaml/search-service.yaml
 
 sleep 30
 
 
 echo '=====开始运行oss-service====='
-kubectl apply -f ../yaml/oss-service.yaml
+#kubectl apply -f ../yaml/oss-service.yaml
 
 ../config/wait-for-it.sh http://localhost:port --timeout=60  -- echo "=====已经准备就绪====="
 
 echo '=====开始运行pay====='
-kubectl apply -f ../yaml/pay.yaml
+#kubectl apply -f ../yaml/pay.yaml
 
 
 echo '======================'

@@ -1,0 +1,15 @@
+
+E
+java:S5411x"*Use the primitive boolean expression here.(ŸÏ¹‰úÿÿÿÿ
+@
+java:S5411~"*Use the primitive boolean expression here.(ÌÖü—
+h
+java:S3776M"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(¦°–É
+T
+java:S1117™"8Rename "path" which hides the field declared at line 46.( Ã»Ðýÿÿÿÿ
+`
+java:S3252 "DUse static access with "com.alibaba.fastjson.JSON" for "parseArray".(€é¡€ýÿÿÿÿ
+[
+java:S3252µ"DUse static access with "com.alibaba.fastjson.JSON" for "parseArray".(Ï¶ÁŸ
+]
+java:S1126¶"AReplace this if-then-else statement by a single return statement.( –¬ßþÿÿÿÿ

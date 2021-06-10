@@ -48,26 +48,25 @@ public class RequestBodyFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         //获取aes密钥
         String keypair = redisTemplate.opsForValue().get(Constant.AES_KEY);
-        log.info("redis-key [{}]", keypair);
         //获取ServerHttpRequest对象
         ServerHttpRequest request = exchange.getRequest();
 
-        //根据请求头的x-aes 判断请求参数是否需要加密
         HttpHeaders head = request.getHeaders();
+
+        //获取请求类型
+        String methodValue = request.getMethodValue();
+        //获取Content-type
+        String contentType = head.getFirst("Content-type");
+        //获取请求体
+        Object requestBody = exchange.getAttribute("cachedRequestBodyObject");
+        log.info("requestUrl [{}], Content-type [{}],  method [{}],requestBody[{}]，redis-key[{}]", request.getURI(), contentType, methodValue, requestBody,keypair);
+        //根据请求头的x-aes 判断请求参数是否需要加密
         String encryptionFlag = head.getFirst("x-aes");
         if (encryptionFlag != null) {
             if (encryptionFlag.equals(Constant.ENCRYPTION_FLAG)) {
                 return chain.filter(exchange);
             }
         }
-
-        //获取请求类型
-        String methodValue = request.getMethodValue();
-        //获取Content-type
-        String contentType = head.getFirst("Content-type");
-        log.info("requestUrl [{}], Content-type [{}],  method [{}]", request.getURI(), contentType, methodValue);
-        //获取请求体
-        Object requestBody = exchange.getAttribute("cachedRequestBodyObject");
         String requestData = "";
         //PUT请求Content-type可以是application/json,application/json;charset=utf-8,application/x-www-form-urlencoded
         if (methodValue.equalsIgnoreCase(HttpMethod.PUT.toString())) {
@@ -87,7 +86,7 @@ public class RequestBodyFilter implements GlobalFilter, Ordered {
         if (!requestData.equals("")) {
             //获取解密后的内容
             String content = AESUtil.aesDecrypt(requestData, keypair);
-            log.info("\n 解密后》requestBody[{}]", content);
+            log.info("requestUrl [{}], Content-type [{}],  method [{}],解密后requestBody[{}]，redis-key[{}]", request.getURI(), contentType, methodValue, content,keypair);
             // mediaType
             MediaType mediaType = exchange.getRequest().getHeaders().getContentType();
             // read & modify body
@@ -151,8 +150,8 @@ public class RequestBodyFilter implements GlobalFilter, Ordered {
      */
     public String InterceptFormData(Object requestData, ServerHttpRequest request) {
         //过滤一些请求,因为支付的回调里面的参数是没有加密的所以转换会出现问题,所以需要过滤下支付的回调地址
-        if (request.getURI().toString().indexOf("/user/user/qq/back") != -1
-                || request.getURI().toString().indexOf("/user/user/weibo/back") != -1
+        if (request.getURI().toString().indexOf("/auth/qq/back") != -1
+                || request.getURI().toString().indexOf("/auth/weibo/back") != -1
         ) {
             return "";
         }
@@ -181,8 +180,8 @@ public class RequestBodyFilter implements GlobalFilter, Ordered {
      */
     public String InterceptPost(Object requestBody, ServerHttpRequest request) {
         //过滤一些请求,因为支付的回调里面的参数是没有加密的所以转换会出现问题,所以需要过滤下支付的回调地址
-        if (request.getURI().toString().indexOf("/user/qq/back") != -1
-                || request.getURI().toString().indexOf("/user/weibo/back") != -1
+        if (request.getURI().toString().indexOf("/auth/qq/back") != -1
+                || request.getURI().toString().indexOf("/auth/weibo/back") != -1
         ) {
             return "";
         }
@@ -191,7 +190,13 @@ public class RequestBodyFilter implements GlobalFilter, Ordered {
         //获取加密串
         String requestData = "";
         if (requestBody != null) {
-            requestData = jsonObject.get("requestData").toString();
+            try {
+                requestData = jsonObject.get("requestData").toString();
+                log.info("requestData【{}】", requestData);
+            } catch (NullPointerException e) {
+                log.info("requestData【{}】,异常【{}】", requestData, e.getMessage());
+                return "";
+            }
         }
         return requestData;
     }

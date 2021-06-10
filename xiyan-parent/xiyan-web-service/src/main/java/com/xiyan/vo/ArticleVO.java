@@ -64,4 +64,7 @@ public class ArticleVO implements Serializable {
     @ApiModelProperty(value = "发布人")
     private String name;
 
+    @ApiModelProperty(value = "头像")
+    private String image;
+
 }

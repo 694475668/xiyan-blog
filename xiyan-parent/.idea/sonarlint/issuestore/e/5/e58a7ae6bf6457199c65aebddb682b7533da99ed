@@ -1,0 +1,21 @@
+
+J
+java:S3740?"/Provide the parametrized type for this generic.(ü´Èüøÿÿÿÿ
+J
+java:S3740?"/Provide the parametrized type for this generic.(ü´Èüøÿÿÿÿ
+a
+java:S1192U"FDefine a constant instead of duplicating this literal "user_" 5 times.(ïÞ·˜ýÿÿÿÿ
+¬
+java:S4449ƒ"”Annotate the parameter with @javax.annotation.Nullable in method 'copyProperties' declaration, or make sure that null can not be passed as argument.(Ï¶Â­
+E
+java:S5411U"*Use the primitive boolean expression here.(ïÞ·˜ýÿÿÿÿ
+E
+java:S5411~"*Use the primitive boolean expression here.(ïÞ·˜ýÿÿÿÿ
+`
+java:S3252W"EUse static access with "com.alibaba.fastjson.JSON" for "parseObject".(û†”Üùÿÿÿÿ
+a
+java:S3252["FUse static access with "com.alibaba.fastjson.JSON" for "toJSONString".(Ã‚ôìûÿÿÿÿ
+c
+java:S5361v"HReplace this call to "replaceAll()" by a call to the "replace()" method.(´Þ³ ýÿÿÿÿ
+\
+java:S3252€"EUse static access with "com.alibaba.fastjson.JSON" for "parseObject".(ò¾ŽÞ

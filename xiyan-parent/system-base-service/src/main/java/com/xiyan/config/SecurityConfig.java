@@ -43,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * 自定义登录失败处理器
      */
     final UserLoginFailureHandler userLoginFailureHandler;
+
     /**
      * 自定义未登录的处理器
      */

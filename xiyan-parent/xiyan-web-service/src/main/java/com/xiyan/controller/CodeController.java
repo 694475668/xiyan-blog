@@ -42,7 +42,7 @@ public class CodeController {
     }
 
     @ApiOperation(value = "根据id查询源码信息接口")
-    @GetMapping("/byId/{id}")
+    @GetMapping("/by/{id}")
     public BaseVO getCodeById(@PathVariable("id") Integer id) {
         return codeService.getCodeById(id);
     }
@@ -76,11 +76,5 @@ public class CodeController {
     @PostMapping("/download")
     public BaseVO download(@RequestBody @Valid CodeDownloadDTO codeDownloadDTO) {
         return codeService.download(codeDownloadDTO, Integer.valueOf(request.getHeader("User-ID")));
-    }
-
-    @ApiOperation(value = "审核接口")
-    @PutMapping("/review/{id}")
-    public BaseVO review(@RequestBody CodeReviewDTO codeReviewDTO, @PathVariable("id") Integer id) {
-        return codeService.review(codeReviewDTO, id);
     }
 }

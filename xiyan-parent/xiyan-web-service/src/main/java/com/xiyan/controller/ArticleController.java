@@ -1,7 +1,6 @@
 package com.xiyan.controller;
 
 import com.xiyan.dto.ArticleDTO;
-import com.xiyan.dto.ArticleReviewDTO;
 import com.xiyan.dto.ArticleUpdateDTO;
 import com.xiyan.dto.SortDTO;
 import com.xiyan.service.ArticleService;
@@ -39,7 +38,7 @@ public class ArticleController {
     }
 
     @ApiOperation(value = "根据id查询博客信息接口")
-    @GetMapping("/byId/{id}")
+    @GetMapping("/by/{id}")
     public BaseVO getArticleById(@PathVariable("id") Integer id) {
         return articleService.getArticleById(id);
     }
@@ -67,11 +66,5 @@ public class ArticleController {
     @GetMapping("/like/{id}")
     public BaseVO like(@PathVariable("id") Integer id) {
         return articleService.like(id);
-    }
-
-    @ApiOperation(value = "审核接口")
-    @PutMapping("/review/{id}")
-    public BaseVO review(@RequestBody ArticleReviewDTO articleReviewDTO, @PathVariable("id") Integer id) {
-        return articleService.review(articleReviewDTO, id);
     }
 }

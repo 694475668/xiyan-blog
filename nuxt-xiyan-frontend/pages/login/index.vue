@@ -1,0 +1,375 @@
+<template>
+  <div class="home-content">
+    <Row style="position: relative">
+      <Col :xs="500" :sm="500" :md="500" :lg="500">
+        <div class="dev-sign-main ivu-card ivu-card-dis-hover ivu-card-shadow">
+          <div class="ivu-card-body">
+            <Form
+              autocomplete="off"
+              class="ivu-form ivu-form-label-top"
+              ref="registForm"
+              :model="form"
+              :rules="rules"
+              @keydown.enter.native="handleSubmit"
+            >
+              <div
+                class="ivu-form-item ivu-form-item-required ivu-form-item-error"
+              >
+                <label class="ivu-form-item-label">电子邮箱</label>
+                <FormItem prop="username"
+                  ><!---->
+                  <!---->
+                  <Input
+                    type="text"
+                    placeholder="请填写你的电子邮箱"
+                    v-model="form.username"
+                  >
+                  </Input>
+                </FormItem>
+              </div>
+              <div
+                class="ivu-form-item ivu-form-item-required ivu-form-item-error"
+              >
+                <label class="ivu-form-item-label">密码</label>
+                <FormItem prop="password"
+                  ><!---->
+                  <Input
+                    autocomplete="off"
+                    type="password"
+                    password
+                    v-model="form.password"
+                    placeholder="请输入密码"
+                  />
+                </FormItem>
+              </div>
+            </Form>
+            <div class="dev-sign-main-aside">
+              <Button
+                class="ivu-btn ivu-btn-success ivu-btn-long ivu-btn-large"
+                @click="logins"
+              >
+                <i class="ivu-icon ivu-icon-md-log-in"></i>
+                <span>登录</span>
+              </Button>
+              <span class="ivu-input-prefix">
+                <i class="ivu-icon ivu-icon-ios-mail-outline"></i
+              ></span>
+              <div class="box">
+                <div class="dev-sign-main-aside-tip">
+                  <p style="margin-top: 20px">
+                    <nuxt-link to="/recover" class="">忘记密码？</nuxt-link>
+                  </p>
+                  <span class="ivu-input-prefix">
+                    <i class="ivu-icon ivu-icon-ios-mail-outline"></i
+                  ></span>
+                  <p style="margin-top: 5px">
+                    还没有账户？
+                    <nuxt-link to="/regist" class="">注册</nuxt-link>
+                  </p>
+                </div>
+                <div class="login">
+                  <a @click="qqLogin"> <img src="@/assets/images/QQ.svg" /></a>
+                  <a
+                    href="https://api.weibo.com/oauth2/authorize?client_id=3751771182&response_type=code&redirect_uri=https://xiyanit.cn/xiyan/auth/weibo/back"
+                  >
+                    <img src="@/assets/images/weibo.svg"
+                  /></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Col>
+    </Row>
+  </div>
+</template>
+
+<script>
+// import "vue-nav-tabs/themes/paper.css";
+// mixin
+import { AESEncrypt } from "@/assets/js/aes";
+import { mapMutations } from "vuex";
+export default {
+  head() {
+    return {
+      title: "毕设源码",
+      meta: [
+        {
+          name: "keywords",
+          content:
+            "Java毕设,Java项目,Java源码,Vue博客,代码,教程,web编程,前端开发,后端开发",
+        },
+        {
+          name: "description",
+          content:
+            "Java毕设,Java项目,Java源码,Vue博客,代码,教程,web编程,前端开发,后端开发",
+        },
+      ],
+    };
+  },
+  name: "registForm",
+  props: {
+    userNameRules: {
+      type: Array,
+      default: () => {
+        return [{ required: true, message: "账号不能为空", trigger: "blur" }];
+      },
+    },
+    passwordRules: {
+      type: Array,
+      default: () => {
+        return [{ required: true, message: "密码不能为空", trigger: "blur" }];
+      },
+    },
+  },
+  data() {
+    return {
+      //加密后请求服务器的参数
+      res: {
+        requestData: "",
+      },
+      form: {
+        username: "",
+        password: "",
+      },
+    };
+  },
+  mounted() {
+    //初始页一打开就定位到顶部
+    document.documentElement.scrollTop = 0;
+  },
+  computed: {
+    rules() {
+      return {
+        username: this.userNameRules,
+        password: this.passwordRules,
+      };
+    },
+  },
+  methods: {
+    //引入方法并使用
+    ...mapMutations(["setUserInfo"]),
+    async logins() {
+      // alert("请注意去你的邮箱查收验证码哦");
+      if (this.form.username === null || this.form.username === "") {
+        this.$Message.warning("请输入你的邮箱哦！");
+        return;
+      }
+      if (this.form.password === null || this.form.password === "") {
+        this.$Message.warning("请输入你的密码哦！");
+        return;
+      }
+      //获取保存在cookie的AES密钥
+      let aesKey = this.$cookies.get("key");
+      //进行参数加密,必须把对象转换json字符串，不然加密不了
+      let dataJson = JSON.stringify(this.form);
+      //数据进行加密
+      this.res.requestData = AESEncrypt(dataJson, aesKey);
+      let res = await this.$axios.post("/auth/user/login", this.res, {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      });
+      if (!res.success) {
+        this.$Message.error({
+          background: true,
+          content: res.errorMsg,
+        });
+        return;
+      }
+      // 登录成功，向Vuex中设置用户信息
+      this.setUserInfo({
+        token: res.token,
+        user: res.userVO,
+      });
+      const inFifteenMinutes = new Date(
+        new Date().getTime() + 24 * 60 * 60 * 1000
+      );
+      // Cookie的过期时间与Token的过期时间一致，为4小时
+      this.$cookies.set("token", res.token, { expires: inFifteenMinutes });
+      this.$cookies.set("user", res.userVO, { expires: inFifteenMinutes });
+      this.$router.go(-1);
+    },
+
+    handleSubmit() {
+      this.$refs.registForm.validate((valid) => {
+        if (valid) {
+          this.$emit("on-success-valid", {
+            username: this.form.username,
+            password: this.form.password,
+          });
+        }
+      });
+    },
+    async qqLogin() {
+      let res = await this.$axios.get("/auth/qq/login", this.res, {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      });
+      location.href = res.url;
+    },
+  },
+};
+</script>
+<style scoped >
+.ivu-form-item .ivu-form-item-label {
+  font-size: 14px !important;
+}
+.box {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.login img {
+  padding-right: 20px !important;
+}
+</style>
+<style lang="stylus" scope type="text/stylus" rel="stylesheet/stylus">
+@import '~/assets/stylus/theme.styl';
+@import '~/assets/stylus/article.styl';
+
+.ivu-col {
+  width: 100%;
+}
+
+a {
+  color: #2d8cf0;
+}
+
+.home-content {
+  width: auto;
+  min-height: calc(100vh - 108px);
+
+  @media only screen and (max-width: 768px) {
+    margin: 5px 5px 0 5px;
+
+    .dev-sign-main {
+      width: 100%;
+      margin: 60px auto;
+      padding: 0 16px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    margin: 10px 10px 0 10px;
+  }
+
+  @media screen and (min-width: 992px) {
+    margin: 15px 35px 0 35px;
+  }
+
+  .layout-left, .layout-right {
+    padding: 0;
+
+    @media only screen and (max-width: 768px) {
+      padding: 0;
+    }
+
+    @media screen and (min-width: 768px) {
+      padding: 0;
+    }
+
+    @media screen and (min-width: 992px) {
+      padding: 0 10px;
+    }
+
+    @media screen and (min-width: 1200px) {
+      padding: 0 10px;
+    }
+  }
+}
+
+.dev-sign-main {
+  width: 400px;
+  margin: 120px auto;
+  padding: 0 16px;
+}
+
+.ivu-card-shadow {
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.ivu-card {
+  background: #FAFAFA;
+  border-radius: 4px;
+  font-size: 14px;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+article, aside, blockquote, body, button, dd, details, div, dl, dt, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, hr, iv-input, legend, li, menu, nav, ol, p, section, td, textarea, th, ul {
+  margin: 0;
+  padding: 0;
+}
+
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+user agent stylesheet, div {
+  display: block;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, 5FAE 8 F6F 9 6C 5 9 ED1, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 22px !important;
+  color: #515a6e;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+.lizi {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: calc(100VH - 66px);
+  width: 100VW;
+  z-index: -1;
+}
+
+html, body {
+  width: 100%;
+}
+</style>

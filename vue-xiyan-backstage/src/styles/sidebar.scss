@@ -1,0 +1,134 @@
+#app {
+    // 主体区域
+    .main-container {
+        min-height: 100%;
+        transition: margin-left .28s;
+        margin-left: 200px;
+    }
+    //如果设置为导航栏固定定位会出现图标不能动会进行隐藏，这里设置隐藏的时候图标 margin-left: 10px
+    .hamburger-container {
+        margin-left: 190px;
+    }
+    // 侧边栏
+    .sidebar-container {
+        .horizontal-collapse-transition {
+            transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+        }
+        transition: width .28s;
+        width: 200px;
+        height: 100%;
+        position: fixed;
+        font-size: 0px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1001;
+        overflow: hidden;
+        a {
+            display: inline-block;
+            width: 100%;
+            font-family: PingFangSC-Medium !important;
+            font-size: 14px !important;
+            color: #6D6D6E !important;
+            line-height: 40px !important;
+        }
+        .svg-icon {
+            margin-right: 16px;
+        }
+        .el-menu {
+            border: none;
+            width: 100% !important;
+        }
+    }
+    .hideSidebar {
+        //如果设置导航栏为固定定位会出现图标不能动会进行隐藏,这里设置隐藏的时候图标 margin-left: 15px
+        .hamburger-container {
+            margin-left: 15px !important;
+        }
+        .el-menu-item.is-active {
+            border: none;
+        }
+        .sidebar-container {
+            width: 36px !important;
+        }
+        .main-container {
+            margin-left: 36px;
+        }
+        .submenu-title-noDropdown {
+            padding-left: 10px !important;
+            position: relative;
+            .el-tooltip {
+                padding: 0 10px !important;
+            }
+        }
+        .el-submenu {
+            &>.el-submenu__title {
+                padding-left: 10px !important;
+                &>span {
+                    height: 0;
+                    width: 0;
+                    overflow: hidden;
+                    visibility: hidden;
+                    display: inline-block;
+                }
+                .el-submenu__icon-arrow {
+                    display: none;
+                }
+            }
+        }
+    }
+    .sidebar-container .nest-menu .el-submenu>.el-submenu__title,
+    .sidebar-container .el-submenu .el-menu-item .el-menu-item * {
+        min-width: 200px !important;
+        background-color: $subMenuBg !important;
+        &:hover {
+            background-color: $menuHover !important;
+        }
+    }
+    .el-menu-item.is-active {
+        border-right: 7px solid #E60023;
+    }
+    .el-menu--collapse .el-menu .el-submenu {
+        min-width: 200px !important;
+    }
+    //适配移动端
+    .mobile {
+        //手机端导航栏为固定定位就让它恢复原来的样子
+        .hamburger-container {
+            margin-left: 15px;
+        }
+        .main-container {
+            margin-left: 0px;
+        }
+        .sidebar-container {
+            transition: transform .28s;
+            width: 300px !important;
+        }
+        .menu-wrapper {
+            margin-top: 15%;
+        }
+        a {
+            padding-top: 11px;
+            padding-left: 20px;
+        }
+        .el-menu-item {
+            font-size: 19px;
+            span {
+                font-size: 21px;
+                margin-bottom: 50px;
+            }
+        }
+        &.hideSidebar {
+            .sidebar-container {
+                transition-duration: 0.3s;
+                transform: translate3d(-300px, 0, 0);
+            }
+        }
+    }
+    .withoutAnimation {
+        .main-container,
+        .sidebar-container {
+            transition: none;
+        }
+    }
+}

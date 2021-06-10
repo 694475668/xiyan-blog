@@ -1,0 +1,71 @@
+{
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [{
+		"path": "pages/home/home",
+		"style": {
+			"enablePullDownRefresh": true
+		}
+
+	}, {
+		"path": "pages/code/code",
+		"style": {
+			"enablePullDownRefresh": true
+		}
+
+	}, {
+		"path": "pages/blog/blog",
+		"style": {
+			"enablePullDownRefresh": true
+		}
+
+	}, {
+		"path": "pages/user/user",
+		"style": {}
+
+	}, {
+		"path": "pages/classroom/classroom",
+		"style": {}
+
+	}, {
+		"path": "pages/user/login",
+		"style": {}
+	}, {
+		"path": "pages/user/register",
+		"style": {}
+	}, {
+		"path": "pages/user/recover",
+		"style": {}
+	}, {
+		"path": "pages/user/personal",
+		"style": {}
+
+	}, {
+		"path": "pages/user/pay",
+		"style": {}
+
+	}, {
+		"path": "pages/web-view/web-view",
+		"style": {}
+
+	}, {
+		"path": "pages/user/contact",
+		"style": {}
+
+	}, {
+		"path": "pages/search/search",
+		"style": {}
+
+	}, {
+		"path": "pages/details/details",
+		"style": {}
+
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationStyle": "custom",
+		"navigationBarBackgroundColor": "#38ef7d",
+		"backgroundColor": "#ffffff"
+	}
+}

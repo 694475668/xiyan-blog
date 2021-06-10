@@ -1,0 +1,236 @@
+/**
+  * Make the field a flex-container, reverse the order so label is on top.
+  */
+
+.fieldFloating {
+    position: relative;
+    background-color: white;
+    border: 1px solid #CACBCC;
+}
+
+
+/**
+  * Add a transition to the label and input.
+  * I'm not even sure that touch-action: manipulation works on
+  * inputs, but hey, it's new and cool and could remove the 
+  * pesky delay.
+  */
+
+.custom .hasError input:required {
+    border-color: transparent !important;
+}
+
+.custom .hasError select:required {
+    border-color: transparent !important;
+}
+
+.custom .hasError {
+    border: 1px solid #E60023;
+}
+
+.custom input,
+.custom select {
+    border-color: transparent !important;
+}
+
+.custom select:focus,
+.custom input:focus {
+    border-color: transparent !important;
+}
+
+.fieldFloating label {
+    cursor: text;
+    z-index: 3;
+    white-space: nowrap;
+    transform-origin: left bottom;
+    transform: translate(11px, 24px) scale(1.0);
+    position: absolute;
+    top: -5px;
+    color: #aab7c4 !important;
+}
+
+.fieldFloating input,
+.fieldFloating select {
+    background-color: transparent !important;
+    border: none;
+}
+
+.fieldFloating label,
+.fieldFloating input,
+.fieldFloating select {
+    transition: all 0.2s;
+    touch-action: manipulation;
+}
+
+.fieldFloating input:focus,
+.fieldFloating select:focus {
+    outline: 0;
+}
+
+.overlay {
+    visibility: visible;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: white;
+}
+
+
+/**
+  * Translate down and scale the label up to cover the placeholder,
+  * when following an input (with placeholder-shown support).
+  * Also make sure the label is only on one row, at max 2/3rds of the
+  * field—to make sure it scales properly and doesn't wrap.
+  */
+
+.fieldFloating input:placeholder-shown+label,
+.fieldFloating select:placeholder-shown+label {
+    cursor: text;
+    white-space: nowrap;
+    transform-origin: left bottom;
+    transform: translate(11px, 22px) scale(1.0);
+    position: absolute;
+    top: -5px;
+}
+
+
+/**
+  * By default, the placeholder should be transparent. Also, it should 
+  * inherit the transition.
+  */
+
+.fieldFloating ::-webkit-input-placeholder,
+.fieldFloating ::-webkit-select-placeholder {
+    opacity: 0 !important;
+    transition: inherit;
+}
+
+
+/**
+  * Show the placeholder when the input is focused.
+  */
+
+.fieldFloating input:focus::-webkit-input-placeholder,
+.fieldFloating select:focus::-webkit-select-placeholder {
+    opacity: 1 !important;
+}
+
+
+/**
+  * When the element is focused, remove the label transform.
+  * Also, do this when the placeholder is _not_ shown, i.e. when 
+  * there's something in the input at all.
+  */
+
+.fieldFloating input:not(:placeholder-shown)+label,
+.fieldFloating input:focus+label,
+.fieldFloating select:not(:placeholder-shown)+label,
+.fieldFloating select:focus+label {
+    transform: translate(11px, 8px) scale(0.8);
+    cursor: pointer;
+}
+
+.fieldFloating input:not(:placeholder-shown),
+.fieldFloating input:focus,
+.fieldFloating select:not(:placeholder-shown),
+.fieldFloating select:focus {
+    transform: translate(0px, 10px);
+    cursor: pointer;
+}
+
+.DlocalField {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.Field--required .DlocalField--focus.DlocalField--empty {
+    border: none !important;
+}
+
+.Field--required .DlocalField--empty {
+    border: none !important;
+}
+
+.Field--required .DlocalField--complete {
+    border: none !important;
+}
+
+.DlocalField--invalid {
+    border: none !important;
+}
+
+.DlocalField--invalid .helpError {
+    visibility: visible;
+}
+
+.DlocalField--autofilled {
+    background-color: transparent !important;
+}
+
+.custom .hasError select:required,
+.custom .hasError input:required {
+    border: none !important;
+}
+
+.custom select:focus,
+.custom input:focus {
+    border: none !important;
+}
+
+.Field--required .DlocalField {
+    border: none !important;
+}
+
+.fieldFloating .input.focus+label,
+.fieldFloating .input:not(.empty)+label {
+    transform: translate(11px, 8px) scale(0.8);
+    cursor: pointer;
+}
+
+.fieldFloating .input.focus,
+.fieldFloating .input:not(.empty) {
+    transform: translate(0px, 10px);
+    cursor: pointer;
+}
+
+@keyframes onAutoFillStart {
+    from {
+        width: 10%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes onAutoFillCancel {
+    from {
+        width: 98%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.custom input:-webkit-autofill,
+.custom input:-webkit-autofill:hover,
+.custom input:-webkit-autofill:focus {
+    animation: onAutoFillStart 500ms;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    box-shadow: 0 0 0px 1000px transparent inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.custom input {
+    animation: onAutoFillCancel 10ms;
+}
+
+.custom .field.autofilled input {
+    background-color: transparent !important;
+}
+
+.custom .field.autofilled {
+    background-color: #fefde5
+}

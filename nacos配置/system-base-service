@@ -1,9 +1,9 @@
-spring:
+﻿spring:
   cloud:
     nacos:
       discovery:
-        server-addr: nacos:8848
-        namespace: prod
+        server-addr: 127.0.0.1:8848
+        namespace: c8ae8be9-471e-4fa5-a5a0-9dfa8bc3d216
        
   sleuth:
     sampler:
@@ -11,7 +11,7 @@ spring:
       probability: 1
           #springCloudSleuth
   zipkin:
-    baseUrl: http://zipkin:9411/
+    baseUrl: http://127.0.0.1:9411/
     enabled: true
     sender:
       type: kafka
@@ -23,28 +23,12 @@ spring:
       name: 694475668@qq.com
       password: baby52013148
 
-  # es
-  data:
-  elasticsearch:
-    rest:
-      uris: [ "elasticsearch:9200" ]
-    elasticsearch:
-      #集群名称
-      cluster-name: docker-cluster 
-      #配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode
-      cluster-nodes: elasticsearch:9300 
-      properties:
-        path:
-          #elasticsearch日志存储目录
-          logs: /home/aisys/logs/elasticsearch/log 
-          #elasticsearch数据存储目录
-          data: /home/aisys/logs/elasticsearch/data 
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: yoostar403
-    url: jdbc:mysql://mysql:3306/systembasedb?serverTimezone=UTC&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://127.0.0.1:3306/systembasedb?serverTimezone=UTC&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
     hikari:
       auto-commit: true
       connection-test-query: SELECT 1
@@ -60,18 +44,18 @@ spring:
     #邮箱
     username: xiyanyuanma@163.com  
     #密钥
-    password: password 
+    password: PVDCQNZENJYFUMSY 
     port: 465
     properties.mail.smtp.ssl.enable: true
 
   # Kafka
   kafka:
-    bootstrap-servers: kafka-service:9092
+    bootstrap-servers: 127.0.0.1:9092
     #=============== consumer  =======================
     consumer:
       auto-commit-interval: 100
       auto-offset-reset: earliest
-      group-id: systen-group
+      group-id: system-base-group
       # true=自动提交；false=手动提交
       enable-auto-commit: false
     #=============== provider  =======================
@@ -86,9 +70,9 @@ spring:
       
       # Redis
   redis:
-    host: redis
-    password: yoostar403
+    host: 127.0.0.1
     port: 6379
+    password: yoostar403
     timeout: 10000
     cache:
       expires: -1
@@ -101,8 +85,9 @@ feign:
   client:
     config:
       default:
-        connectTimeout: 5000
-        readTimeout: 5000
+        connectTimeout: 15000
+        readTimeout: 15000
+        loggerLevel: BASIC
      
 #  mybatis-plus配置
 mybatis-plus:
@@ -127,6 +112,7 @@ mybatis-plus:
     # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+
 # Seata
 seata:
   # seata 事务组编号，用于 TC 集群名
@@ -138,39 +124,12 @@ seata:
     vgroup-mapping:
       bss: default
     grouplist:
-      default: seata:8091
-  # seata 注册中心配置项，对应 RegistryProperties 类
-  # registry:
-  #   # 注册中心类型，默认为 file
-  #   type: nacos
-  #   nacos:
-  #     #Nacos 服务地址
-  #     server-addr: 128.14.163.18:8848
-  # config:
-  #    # 注册中心类型，默认为 file
-  #   type: nacos
-  #   nacos:
-  #     # Nacos 服务地址
-  #     server-addr: 128.14.163.18:8848 
+      default: 127.0.0.1:8091
 
 
 #redis序列化key
 redis-key: xiyan
 
-#QQ互联中的回调地址
-qq:
-  back: http://xiyanit.cn/xiyan/system/qq/back
-  app_id: 101933614
-  app_key: app_key
-
-weibo:
-  back: http://xiyanit.cn/xiyan/system/qq/back
-  client_id: 3751771182
-  client_secret: client_secret
-
-#QQ或者微博登录返回的前端地址
-web:
- url: http://xiyanit.cn/home
 
 # 配置Security需要忽略的路径
 exclude:
@@ -178,13 +137,8 @@ exclude:
       - /swagger-ui/**
       - /swagger-resources/**
       - /v3/api-docs
-      - /qq/login
-      - /leaderboard/**
-      - /user/send
-      - /user/register
-      - /user/retrieve
-      - /user/by
-      - /qq/back
-      - /user/update
-      - /user/bind
-      - /weibo/back
+      - /black/**
+      - /dictionary/**
+      - /resource/**
+      - /role/**
+      - /user/**

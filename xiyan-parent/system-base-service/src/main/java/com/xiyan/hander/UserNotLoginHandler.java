@@ -22,7 +22,6 @@ public class UserNotLoginHandler implements AuthenticationEntryPoint {
      */
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) {
-
-        ResponseUtil.ResponseMeg(response, new BaseVO(false, ErrorCodeEnum.E0858.getKey(), ErrorCodeEnum.E0858.getValue()));
+        ResponseUtil.ResponseMeg(response, new BaseVO(false, ErrorCodeEnum.E0762.getKey(), ErrorCodeEnum.E0762.getValue()));
     }
 }

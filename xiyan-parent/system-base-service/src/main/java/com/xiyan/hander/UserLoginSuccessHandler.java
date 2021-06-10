@@ -4,8 +4,8 @@ package com.xiyan.hander;
 import com.xiyan.domain.UserDO;
 import com.xiyan.util.JWTUtil;
 import com.xiyan.util.ResponseUtil;
+import com.xiyan.vo.UserAuthVO;
 import com.xiyan.vo.UserTokenVO;
-import com.xiyan.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.Authentication;
@@ -31,12 +31,12 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         // 获取登陆的用户信息
         UserDO user = (UserDO) authentication.getPrincipal();
+        UserAuthVO userAuthVO = new UserAuthVO();
+        BeanUtils.copyProperties(user, userAuthVO);
         //生成令牌
         String token = JWTUtil.createToken(String.valueOf(user.getId()), user.getUsername());
-        UserVO userVO = new UserVO();
-        BeanUtils.copyProperties(user, userVO);
         //写入到vo
-        UserTokenVO userTokenVO = new UserTokenVO(token, userVO);
+        UserTokenVO userTokenVO = new UserTokenVO(token, userAuthVO);
         //响应给前端
         ResponseUtil.ResponseMeg(response, userTokenVO);
     }

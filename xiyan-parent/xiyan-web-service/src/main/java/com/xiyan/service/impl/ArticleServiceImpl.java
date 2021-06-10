@@ -1,6 +1,6 @@
 package com.xiyan.service.impl;
 
-import cn.hutool.core.collection.IterUtil;
+import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xiyan.bo.ArticleBO;
@@ -8,7 +8,10 @@ import com.xiyan.constants.Constant;
 import com.xiyan.domain.ArticleDO;
 import com.xiyan.domain.AttentionDO;
 import com.xiyan.domain.CodeDO;
-import com.xiyan.dto.*;
+import com.xiyan.dto.ArticleDTO;
+import com.xiyan.dto.ArticleUpdateDTO;
+import com.xiyan.dto.GetUserDTO;
+import com.xiyan.dto.SortDTO;
 import com.xiyan.feign.UserFeign;
 import com.xiyan.mapper.ArticleMapper;
 import com.xiyan.mapper.AttentionMapper;
@@ -17,8 +20,9 @@ import com.xiyan.repository.ArticleRepository;
 import com.xiyan.service.ArticleService;
 import com.xiyan.vo.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -52,33 +56,19 @@ public class ArticleServiceImpl implements ArticleService {
     private ArticleRepository articleRepository;
 
     @Resource
-    private ElasticsearchRestTemplate elasticsearchRestTemplate;
+    private RedisTemplate<String, String> redisTemplate;
 
 
     public CommonListVO<ArticleVO> list(SortDTO sortDTO) {
         CommonListVO commonListVO = new CommonListVO();
-        boolean exists = elasticsearchRestTemplate.indexOps(ArticleBO.class).exists();
-        log.info("es索引存在状态【{}】", elasticsearchRestTemplate.indexOps(ArticleBO.class).exists());
-        if (!exists) {
-            //创建索引
-            elasticsearchRestTemplate.indexOps(ArticleBO.class).create();
-            //判断es数据是否为空
-            log.info("es数据【{}】", IterUtil.isEmpty(articleRepository.findAll()));
-            if (IterUtil.isEmpty(articleRepository.findAll())) {
-                List<ArticleDO> articleDOList = articleMapper.selectList(new QueryWrapper<ArticleDO>().eq("state", "1"));
-                List<ArticleBO> articleBOList = new ArrayList<>();
-                for (ArticleDO articleDO : articleDOList) {
-                    ArticleBO articleBO = new ArticleBO();
-                    BeanUtils.copyProperties(articleDO, articleBO);
-                    articleBOList.add(articleBO);
-                }
-                //插入到es中
-                articleRepository.saveAll(articleBOList);
-            }
-        }
         Page<ArticleDO> articleDOPage = new Page<>(sortDTO.getPageNo(), sortDTO.getPageSize());
-        QueryWrapper<ArticleDO> articleDOQueryWrapper = new QueryWrapper<ArticleDO>().and(queryWrapper -> queryWrapper.eq("state", "1").like("type", sortDTO.getType()))
+        QueryWrapper<ArticleDO> articleDOQueryWrapper = new QueryWrapper<ArticleDO>().and(queryWrapper -> queryWrapper.eq("state", "1").eq("type", sortDTO.getType()))
                 .orderByDesc(sortDTO.getSortField());
+        //出现type为null的时候
+        if (StringUtils.isEmpty(sortDTO.getType())) {
+            articleDOQueryWrapper = new QueryWrapper<ArticleDO>().and(queryWrapper -> queryWrapper.eq("state", "1"))
+                    .orderByDesc(sortDTO.getSortField());
+        }
         //查询
         articleDOPage = articleMapper.selectPage(articleDOPage, articleDOQueryWrapper);
         //获取查询的数据
@@ -91,10 +81,19 @@ public class ArticleServiceImpl implements ArticleService {
         ArticleVO articleVO = null;
         for (ArticleDO articleDO : articleDOList) {
             articleVO = new ArticleVO();
-            UserByIdVO user = userFeign.getUser(new GetUserDTO(articleDO.getUserId(), null));
+            UserByIdVO user = null;
+            if (redisTemplate.hasKey("user_" + articleDO.getUserId())) {
+                String data = redisTemplate.opsForValue().get("user_" + articleDO.getUserId());
+                user = JSONArray.parseObject(data, UserByIdVO.class);
+            } else {
+                user = userFeign.getUser(new GetUserDTO(articleDO.getUserId(), null));
+                //写入redis缓存
+                redisTemplate.opsForValue().set("user_" + articleDO.getUserId(), JSONArray.toJSONString(user));
+            }
             log.info("用户信息【{}】", user);
             BeanUtils.copyProperties(articleDO, articleVO);
             articleVO.setName(user.getName());
+            articleVO.setImage(user.getPhoto());
             //标签拆分
             String[] split = articleDO.getTag().split(",");
             //数组转换集合
@@ -122,7 +121,12 @@ public class ArticleServiceImpl implements ArticleService {
         String[] split = articleDO.getTag().split(",");
         List<String> tagList = Arrays.asList(split);
         articleByIdVO.setTagList(tagList);
-        UserByIdVO userById = userFeign.getUser(new GetUserDTO(articleDO.getUserId(), null));
+        //所属用户
+        UserByIdVO userById = null;
+        if (redisTemplate.hasKey("user_" + articleDO.getUserId())) {
+            String data = redisTemplate.opsForValue().get("user_" + articleDO.getUserId());
+            userById = JSONArray.parseObject(data, UserByIdVO.class);
+        }
         UserVO userVO = new UserVO();
         BeanUtils.copyProperties(userById, userVO);
         //粉丝数
@@ -184,20 +188,6 @@ public class ArticleServiceImpl implements ArticleService {
         article.setMarkdownContent(articleUpdateDTO.getMarkdownContent());
         article.setMarkdownType(articleUpdateDTO.getMarkdownType());
         articleRepository.save(article);
-        return new BaseVO();
-    }
-
-    @Override
-    public BaseVO review(ArticleReviewDTO articleReviewDTO, Integer id) {
-        ArticleDO articleDO = new ArticleDO();
-        articleDO.setId(id);
-        articleDO.setState(articleReviewDTO.getState());
-        articleMapper.updateById(articleDO);
-        //插入es  由于有些字段是数据库默认赋值，所以我这里需要查询一遍在插入到ES中
-        ArticleDO article = articleMapper.selectById(articleDO.getId());
-        ArticleBO articleBO = new ArticleBO();
-        BeanUtils.copyProperties(article, articleBO);
-        articleRepository.save(articleBO);
         return new BaseVO();
     }
 }

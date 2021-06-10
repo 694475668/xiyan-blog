@@ -1,20 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xiyan.mapper.UserMapper">
-    <select id="uploadLeaderboard" resultType="UserDO">
-        select name,photo,b.count count,is_member from t_user t INNER JOIN   (select * from ( SELECT count(1) count,user_id FROM xiyandb.`t_code` GROUP BY user_id) a ORDER BY count DESC) b
-        ON t.id=b.user_id
+
+
+    <select id="queryUserByPid" resultType="userDO">
+        SELECT *
+        FROM (SELECT s.id,
+                     s.username,
+                     s.`name`,
+                     group_concat(e.id)     AS rIds,
+                     group_concat(e.`name`) AS rNames,
+                     s.phone,
+                     s.email,
+                     s.updateUser,
+                     s.updateTime,
+                     s.`status`,
+                     s.pid
+              FROM t_role e
+                       INNER JOIN (
+                  SELECT u.id,
+                         u.username,
+                         u.`name`,
+                         u.phone,
+                         u.email,
+                         u.pid,
+                         u.update_user                                      updateUser,
+                         DATE_FORMAT(u.update_time, '%Y-%m-%d %H:%i:%s') AS updateTime,
+                         u.`status`,
+                         r.role_id
+                  FROM t_user u
+                           INNER JOIN t_user_role r
+                  WHERE u.id = r.user_id
+              ) s ON e.id = s.role_id
+              WHERE 1 = 1
+              GROUP BY s.id) g
+        WHERE 1 = 1
+          and id !=1
+        and pid=#{pid}
+        ORDER BY updateTime DESC
     </select>
 
-    <select id="downloadLeaderboard" resultType="UserDO">
-        select name,photo,b.count count,is_member from t_user t INNER JOIN   (select * from ( SELECT count(1) count,user_id FROM xiyandb.`t_download` GROUP BY user_id) a ORDER BY count DESC) b
-        ON t.id=b.user_id
-    </select>
 
-    <select id="favoritesLeaderboard" resultType="UserDO">
-        select name,photo,b.count count,is_member from t_user t INNER JOIN   (select * from ( SELECT count(1) count,user_id FROM xiyandb.`t_favorites` GROUP BY user_id) a ORDER BY count DESC) b
-        ON t.id=b.user_id
-    </select>
+    <delete id="delUserRoleByUserId">
+        delete
+        from t_user_role
+        where user_id = #{userId}
+    </delete>
 
+    <insert id="addUserRole">
+        insert into t_user_role values
+        <foreach collection="roleList" item="roleId" index="index" separator =",">
+            (#{userId},#{roleId})
+        </foreach>
+    </insert>
 </mapper>

@@ -7,5 +7,5 @@ spring:
     nacos:
       config:
         file-extension: yml
-        namespace: prod
-        server-addr: nacos:8848
+        namespace: 4ec05052-6224-4d34-975a-b27132b60587
+        server-addr: 127.0.0.1:8848

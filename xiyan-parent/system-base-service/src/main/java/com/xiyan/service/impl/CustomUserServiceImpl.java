@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * @version :
  * @author: bright
@@ -21,14 +23,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CustomUserServiceImpl implements AuthenticationProvider {
-    /**
-     * 可以通过构造方法注入对象
-     */
-    final UserMapper userMapper;
 
-    public CustomUserServiceImpl(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
+
+    @Resource
+    private UserMapper userMapper;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -47,7 +45,7 @@ public class CustomUserServiceImpl implements AuthenticationProvider {
             throw new BadCredentialsException("密码不正确");
         }
         // 还可以加一些其他信息的判断，比如用户账号已停用等判断
-        if (!Constant.LOCK_STATE.equals(user.getState())) {
+        if (!Constant.LOCK_STATE.equals(user.getStatus())) {
             throw new LockedException("该用户已被锁定");
         }
         return new UsernamePasswordAuthenticationToken(user, password);
